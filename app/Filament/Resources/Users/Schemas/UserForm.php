@@ -28,19 +28,25 @@ class UserForm
                     ->tel(),
                 TextInput::make('max_username'),
                 Select::make('department_id')
-                    ->relationship('department', 'id'),
+                    ->relationship('department', 'dep_name'),
                 TextInput::make('position'),
                 TextInput::make('profile_photo_path'),
                 DateTimePicker::make('email_verified_at'),
                 TextInput::make('password')
                     ->password()
-                    ->required(),
+                    ->dehydrated(fn ($state) => filled($state))
+                    ->required(fn (string $context): bool => $context === 'create')
+                    ->helperText('Оставьте пустым, чтобы не менять пароль (только при редактировании)'),
                 Textarea::make('two_factor_secret')
-                    ->columnSpanFull(),
+                    ->columnSpanFull()
+                    ->disabled(),
                 Textarea::make('two_factor_recovery_codes')
-                    ->columnSpanFull(),
-                DateTimePicker::make('two_factor_confirmed_at'),
-                DateTimePicker::make('last_login_at'),
+                    ->columnSpanFull()
+                    ->disabled(),
+                DateTimePicker::make('two_factor_confirmed_at')
+                    ->disabled(),
+                DateTimePicker::make('last_login_at')
+                    ->disabled(),
             ]);
     }
 }

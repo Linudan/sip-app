@@ -13,42 +13,81 @@ class UsersTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->striped()
             ->columns([
                 TextColumn::make('name')
-                    ->searchable(),
+                    ->placeholder('Name')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('surname')
-                    ->searchable(),
+                    ->placeholder('Surname')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('patronymic')
-                    ->searchable(),
+                    ->placeholder('Patronymic')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('email')
                     ->label('Email address')
-                    ->searchable(),
+                    ->placeholder('Email')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('phone')
-                    ->searchable(),
+                    ->placeholder('Phone')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('telegram_username')
-                    ->searchable(),
+                    ->placeholder('@telegram_username')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('max_username')
-                    ->searchable(),
-                TextColumn::make('department.id')
-                    ->searchable(),
+                    ->placeholder('@max_username')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(),
+                TextColumn::make('department.dep_name')
+                    ->placeholder('Department name')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('position')
-                    ->searchable(),
+                    ->placeholder('Position')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('profile_photo_path')
-                    ->searchable(),
+                    ->placeholder('Profile photo path')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('email_verified_at')
+                    ->placeholder('Email verified at')
                     ->dateTime()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('two_factor_confirmed_at')
+                    ->placeholder('Two factor confirmed at')
                     ->dateTime()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('last_login_at')
+                    ->placeholder('Last login at')
                     ->dateTime()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('created_at')
+                    ->placeholder('Created at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->placeholder('Updated at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
