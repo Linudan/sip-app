@@ -16,17 +16,34 @@ class UsersTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
+                TextColumn::make('surname')
+                    ->searchable(),
+                TextColumn::make('patronymic')
+                    ->searchable(),
                 TextColumn::make('email')
                     ->label('Email address')
+                    ->searchable(),
+                TextColumn::make('phone')
+                    ->searchable(),
+                TextColumn::make('telegram_username')
+                    ->searchable(),
+                TextColumn::make('max_username')
+                    ->searchable(),
+                TextColumn::make('department.id')
+                    ->searchable(),
+                TextColumn::make('position')
+                    ->searchable(),
+                TextColumn::make('profile_photo_path')
                     ->searchable(),
                 TextColumn::make('email_verified_at')
                     ->dateTime()
                     ->sortable(),
-                TextColumn::make('current_team_id')
-                    ->numeric()
+                TextColumn::make('two_factor_confirmed_at')
+                    ->dateTime()
                     ->sortable(),
-                TextColumn::make('profile_photo_path')
-                    ->searchable(),
+                TextColumn::make('last_login_at')
+                    ->dateTime()
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -35,28 +52,6 @@ class UsersTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('two_factor_confirmed_at')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('surname')
-                    ->searchable(),
-                TextColumn::make('patronymic')
-                    ->searchable(),
-                TextColumn::make('department.id')
-                    ->searchable(),
-                TextColumn::make('position')
-                    ->searchable(),
-                TextColumn::make('phone')
-                    ->searchable(),
-                TextColumn::make('telegram_username')
-                    ->searchable(),
-                TextColumn::make('max_username')
-                    ->searchable(),
-                TextColumn::make('avatar_url')
-                    ->searchable(),
-                TextColumn::make('last_login_at')
-                    ->dateTime()
-                    ->sortable(),
             ])
             ->filters([
                 //

@@ -6,29 +6,39 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
+        // Таблица users (с вашими полями, без current_team_id)
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('surname')->nullable();
+            $table->string('patronymic')->nullable();
             $table->string('email')->unique();
+            $table->string('phone')->nullable();
+            $table->string('telegram_username')->nullable();
+            $table->string('max_username')->nullable();
+            $table->unsignedBigInteger('department_id')->nullable();
+            $table->string('position')->nullable();
+            $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->text('two_factor_secret')->nullable();
+            $table->text('two_factor_recovery_codes')->nullable();
+            $table->timestamp('two_factor_confirmed_at')->nullable();
             $table->rememberToken();
-            $table->foreignId('current_team_id')->nullable();
-            $table->string('profile_photo_path', 2048)->nullable();
+            $table->timestamp('last_login_at')->nullable();
             $table->timestamps();
         });
 
+        // Таблица сброса паролей
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
 
+        // Таблица сессий
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->foreignId('user_id')->nullable()->index();
@@ -39,9 +49,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('users');

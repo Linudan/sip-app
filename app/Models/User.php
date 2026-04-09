@@ -43,7 +43,7 @@ class User extends Authenticatable
         'phone',
         'telegram_username',
         'max_username',
-        'avatar_url',
+        'profile_photo_path',
         'last_login_at',
         'email_verified_at',
         'password',
