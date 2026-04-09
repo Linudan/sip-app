@@ -15,12 +15,22 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class EquipmentItemResource extends Resource
 {
     protected static ?string $model = EquipmentItem::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static ?int $navigationSort = 3;
+
+    // Можно сделать потом динамическую надпись
+    protected static ?string $navigationLabel = 'Оборудование';
+
+    // Иконка
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::ComputerDesktop;
+
+    // Можно сделать потом динамическую надпись для поддержки языков
+    protected static string | UnitEnum | null $navigationGroup = 'Оборудование';
 
     public static function form(Schema $schema): Schema
     {

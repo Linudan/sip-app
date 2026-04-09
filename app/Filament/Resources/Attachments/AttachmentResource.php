@@ -13,12 +13,23 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class AttachmentResource extends Resource
 {
     protected static ?string $model = Attachment::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    // Сортировка
+    protected static ?int $navigationSort = 4;
+
+    // Можно сделать потом динамическую надпись для поддержки языков
+    protected static ?string $navigationLabel = 'Вложения';
+
+    // Иконка
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Link;
+
+    // Можно сделать потом динамическую надпись для поддержки языков
+    protected static string | UnitEnum | null $navigationGroup = 'Прочее';
 
     public static function form(Schema $schema): Schema
     {

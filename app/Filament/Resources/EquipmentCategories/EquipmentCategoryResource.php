@@ -13,12 +13,20 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class EquipmentCategoryResource extends Resource
 {
     protected static ?string $model = EquipmentCategory::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    // Можно сделать потом динамическую надпись
+    protected static ?string $navigationLabel = 'Категории оборудования';
+
+    // Иконка
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Tag;
+
+    // Можно сделать потом динамическую надпись для поддержки языков
+    protected static string | UnitEnum | null $navigationGroup = 'Оборудование';
 
     public static function form(Schema $schema): Schema
     {

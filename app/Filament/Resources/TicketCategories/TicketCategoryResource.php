@@ -13,12 +13,20 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class TicketCategoryResource extends Resource
 {
     protected static ?string $model = TicketCategory::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    // Можно сделать потом динамическую надпись
+    protected static ?string $navigationLabel = 'Категории заявок';
+
+    // Иконка
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Tag;
+
+    // Можно сделать потом динамическую надпись для поддержки языков
+    protected static string | UnitEnum | null $navigationGroup = 'Заявки';
 
     public static function form(Schema $schema): Schema
     {
