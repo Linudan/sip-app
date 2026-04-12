@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Resources\Users;
 
 use App\Filament\Resources\Users\Pages\CreateUser;
@@ -13,7 +12,6 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use UnitEnum;
 
 class UserResource extends Resource
 {
@@ -21,14 +19,44 @@ class UserResource extends Resource
 
     protected static ?int $navigationSort = 1;
 
-    // Можно сделать потом динамическую надпись
-    protected static ?string $navigationLabel = 'Пользователи';
+    // Динамическая надпись в навигации
+    public static function getNavigationLabel(): string
+    {
+
+        return __('filament-panels::resources.users.navigation_label');
+    }
+
+    // Динамическаое название таблицы во множественном числе
+    public static function getPluralLabel(): string
+    {
+        return __('filament-panels::resources.users.plural_label');
+    }
+
+    // Динамическаое название таблицы во единственном числе
+    public static function getSingularLabel(): string
+    {
+        return __('filament-panels::resources.users.singular_label');
+    }
+
+    public static function getLabel(): string
+    {
+        return __('filament-panels::resources.users.label');
+    }
+
+    // Динамическое название таблицы
+    public function getTitle(): string
+    {
+        return __('filament-panels::resources.users.table_title');
+    }
 
     // Иконка
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Users;
 
-    // Можно сделать потом динамическую надпись
-    protected static string | UnitEnum | null $navigationGroup = 'Управление пользователями';
+    // Динамическая надпись
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament-panels::resources.groups.users_group_label');
+    }
 
     public static function form(Schema $schema): Schema
     {
@@ -50,9 +78,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListUsers::route('/'),
+            'index'  => ListUsers::route('/'),
             'create' => CreateUser::route('/create'),
-            'edit' => EditUser::route('/{record}/edit'),
+            'edit'   => EditUser::route('/{record}/edit'),
         ];
     }
 }

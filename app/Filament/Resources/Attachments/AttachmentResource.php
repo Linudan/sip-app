@@ -22,14 +22,22 @@ class AttachmentResource extends Resource
     // Сортировка
     protected static ?int $navigationSort = 4;
 
-    // Можно сделать потом динамическую надпись для поддержки языков
-    protected static ?string $navigationLabel = 'Вложения';
+    // Динамическая надпись
+    public static function getNavigationLabel(): string {
+
+    return __('filament-panels::resources.attachments.navigation_label');
+    }
+
+    // Статическая надпись
+    // protected static ?string $navigationLabel = 'Вложения';
 
     // Иконка
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Link;
 
-    // Можно сделать потом динамическую надпись для поддержки языков
-    protected static string | UnitEnum | null $navigationGroup = 'Прочее';
+    // Динамическая надпись
+    public static function getNavigationGroup(): ?string {
+    return __('filament-panels::resources.groups.other_group_label');
+    }
 
     public static function form(Schema $schema): Schema
     {

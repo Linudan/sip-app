@@ -15,38 +15,52 @@ class UserForm
         return $schema
             ->components([
                 TextInput::make('name')
-                    ->required(),
-                TextInput::make('surname'),
-                TextInput::make('patronymic'),
+                    ->required()
+                    ->label(__('filament-panels::resources.users.columns.name')),
+                TextInput::make('surname')
+                    ->label(__('filament-panels::resources.users.columns.surname')),
+                TextInput::make('patronymic')
+                    ->label(__('filament-panels::resources.users.columns.patronymic')),
                 TextInput::make('email')
-                    ->label('Email address')
                     ->email()
-                    ->required(),
+                    ->required()
+                    ->label(__('filament-panels::resources.users.columns.email')),
                 TextInput::make('phone')
-                    ->tel(),
+                    ->tel()
+                    ->label(__('filament-panels::resources.users.columns.phone')),
                 TextInput::make('telegram_username')
-                    ->tel(),
-                TextInput::make('max_username'),
+                    ->label(__('filament-panels::resources.users.columns.telegram_username')),
+                TextInput::make('max_username')
+                    ->label(__('filament-panels::resources.users.columns.max_username')),
                 Select::make('department_id')
-                    ->relationship('department', 'dep_name'),
-                TextInput::make('position'),
-                TextInput::make('profile_photo_path'),
-                DateTimePicker::make('email_verified_at'),
+                    ->relationship('department', 'dep_name')
+                    ->label(__('filament-panels::resources.users.columns.department')),
+                TextInput::make('position')
+                    ->label(__('filament-panels::resources.users.columns.position')),
+                TextInput::make('profile_photo_path')
+                    ->label(__('filament-panels::resources.users.columns.profile_photo_path')),
+                DateTimePicker::make('email_verified_at')
+                    ->label(__('filament-panels::resources.users.columns.email_verified_at')),
                 TextInput::make('password')
                     ->password()
                     ->dehydrated(fn ($state) => filled($state))
                     ->required(fn (string $context): bool => $context === 'create')
+                    ->label(__('filament-panels::resources.users.columns.password'))
                     ->helperText('Оставьте пустым, чтобы не менять пароль (только при редактировании)'),
                 Textarea::make('two_factor_secret')
                     ->columnSpanFull()
-                    ->disabled(),
+                    ->disabled()
+                    ->label(__('filament-panels::resources.users.columns.two_factor_secret')),
                 Textarea::make('two_factor_recovery_codes')
                     ->columnSpanFull()
-                    ->disabled(),
+                    ->disabled()
+                    ->label(__('filament-panels::resources.users.columns.two_factor_recovery_codes')),
                 DateTimePicker::make('two_factor_confirmed_at')
-                    ->disabled(),
+                    ->disabled()
+                    ->label(__('filament-panels::resources.users.columns.two_factor_confirmed_at')),
                 DateTimePicker::make('last_login_at')
-                    ->disabled(),
+                    ->disabled()
+                    ->label(__('filament-panels::resources.users.columns.last_login_at')),
             ]);
     }
 }

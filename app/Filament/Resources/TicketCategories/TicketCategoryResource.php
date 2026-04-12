@@ -19,14 +19,19 @@ class TicketCategoryResource extends Resource
 {
     protected static ?string $model = TicketCategory::class;
 
-    // Можно сделать потом динамическую надпись
-    protected static ?string $navigationLabel = 'Категории заявок';
+    // Динамическая надпись
+    public static function getNavigationLabel(): string {
+
+    return __('filament-panels::resources.ticket-categories.navigation_label');
+    }
 
     // Иконка
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Tag;
 
-    // Можно сделать потом динамическую надпись для поддержки языков
-    protected static string | UnitEnum | null $navigationGroup = 'Заявки';
+    // Динамическая надпись
+    public static function getNavigationGroup(): ?string {
+    return __('filament-panels::resources.groups.tikets_group_label');
+    }
 
     public static function form(Schema $schema): Schema
     {

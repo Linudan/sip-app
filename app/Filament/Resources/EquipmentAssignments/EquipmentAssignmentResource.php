@@ -19,13 +19,18 @@ class EquipmentAssignmentResource extends Resource
 {
     protected static ?string $model = EquipmentAssignment::class;
 
-    // Можно сделать потом динамическую надпись
-    protected static ?string $navigationLabel = 'Назначения оборудования';
+    // Динамическая надпись
+    public static function getNavigationLabel(): string {
+
+    return __('filament-panels::resources.equipment-assignments.navigation_label');
+    }
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ArrowRightCircle;
 
-    // Можно сделать потом динамическую надпись
-    protected static string | UnitEnum | null $navigationGroup = 'Оборудование';
+    // Динамическая надпись
+    public static function getNavigationGroup(): ?string {
+    return __('filament-panels::resources.groups.equipments_group_label');
+    }
 
     public static function form(Schema $schema): Schema
     {

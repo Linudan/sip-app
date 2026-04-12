@@ -19,14 +19,20 @@ class EquipmentCategoryResource extends Resource
 {
     protected static ?string $model = EquipmentCategory::class;
 
-    // Можно сделать потом динамическую надпись
-    protected static ?string $navigationLabel = 'Категории оборудования';
+    // Динамическая надпись
+    public static function getNavigationLabel(): string {
+
+    return __('filament-panels::resources.equipment-сategories.navigation_label');
+    }
 
     // Иконка
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Tag;
 
     // Можно сделать потом динамическую надпись для поддержки языков
-    protected static string | UnitEnum | null $navigationGroup = 'Оборудование';
+    // Динамическая надпись
+    public static function getNavigationGroup(): ?string {
+    return __('filament-panels::resources.groups.equipments_group_label');
+    }
 
     public static function form(Schema $schema): Schema
     {

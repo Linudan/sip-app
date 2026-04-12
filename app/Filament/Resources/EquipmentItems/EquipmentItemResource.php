@@ -23,14 +23,19 @@ class EquipmentItemResource extends Resource
 
     protected static ?int $navigationSort = 3;
 
-    // Можно сделать потом динамическую надпись
-    protected static ?string $navigationLabel = 'Оборудование';
+    // Динамическая надпись
+    public static function getNavigationLabel(): string {
+
+    return __('filament-panels::resources.equipments.navigation_label');
+    }
 
     // Иконка
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ComputerDesktop;
 
-    // Можно сделать потом динамическую надпись для поддержки языков
-    protected static string | UnitEnum | null $navigationGroup = 'Оборудование';
+    // Динамическая надпись
+    public static function getNavigationGroup(): ?string {
+    return __('filament-panels::resources.groups.equipments_group_label');
+    }
 
     public static function form(Schema $schema): Schema
     {

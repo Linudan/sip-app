@@ -19,14 +19,19 @@ class DepartmentResource extends Resource
 {
     protected static ?string $model = Department::class;
 
-    // Можно сделать потом динамическую надпись
-    protected static ?string $navigationLabel = 'Отделы';
+    // Динамическая надпись
+    public static function getNavigationLabel(): string {
+
+    return __('filament-panels::resources.departments.navigation_label');
+    }
 
     // Иконка
     protected static string|BackedEnum|null $navigationIcon = Heroicon::BuildingOffice2;
 
-    // Можно сделать потом динамическую надпись
-    protected static string | UnitEnum | null $navigationGroup = 'Управление пользователями';
+    // Динамическая надпись
+    public static function getNavigationGroup(): ?string {
+    return __('filament-panels::resources.groups.users_group_label');
+    }
 
     public static function form(Schema $schema): Schema
     {
