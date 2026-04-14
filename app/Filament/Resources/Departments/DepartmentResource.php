@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Resources\Departments;
 
 use App\Filament\Resources\Departments\Pages\CreateDepartment;
@@ -13,24 +12,48 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use UnitEnum;
 
 class DepartmentResource extends Resource
 {
     protected static ?string $model = Department::class;
 
-    // Динамическая надпись
-    public static function getNavigationLabel(): string {
+    // Динамическая надпись в навигации
+    public static function getNavigationLabel(): string
+    {
 
-    return __('filament-panels::resources.departments.navigation_label');
+        return __('filament-panels::resources.departments.navigation_label');
+    }
+
+    // Динамическаое название таблицы во единственном числе
+    public static function getSingularLabel(): string
+    {
+        return __('filament-panels::resources.departments.singular_label');
+    }
+
+    // Динамическаое название таблицы во множественном числе
+    public static function getPluralLabel(): string
+    {
+        return __('filament-panels::resources.departments.plural_label');
+    }
+
+    public static function getLabel(): string
+    {
+        return __('filament-panels::resources.departments.label');
+    }
+
+    // Динамическое название таблицы
+    public function getTitle(): string
+    {
+        return __('filament-panels::resources.departments.table_title');
     }
 
     // Иконка
     protected static string|BackedEnum|null $navigationIcon = Heroicon::BuildingOffice2;
 
     // Динамическая надпись
-    public static function getNavigationGroup(): ?string {
-    return __('filament-panels::resources.groups.users_group_label');
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament-panels::resources.groups.users_group_label');
     }
 
     public static function form(Schema $schema): Schema
@@ -53,9 +76,9 @@ class DepartmentResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListDepartments::route('/'),
+            'index'  => ListDepartments::route('/'),
             'create' => CreateDepartment::route('/create'),
-            'edit' => EditDepartment::route('/{record}/edit'),
+            'edit'   => EditDepartment::route('/{record}/edit'),
         ];
     }
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Resources\Departments\Tables;
 
 use Filament\Actions\BulkActionGroup;
@@ -15,12 +14,24 @@ class DepartmentsTable
         return $table
             ->columns([
                 TextColumn::make('dep_name')
-                    ->searchable(),
+                    ->label(__('filament-panels::resources.departments.columns.dep_name'))
+                    ->placeholder(__('filament-panels::resources.departments.placeholder.dep_name'))
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(),
+                TextColumn::make('description')
+                    ->label(__('filament-panels::resources.departments.columns.description'))
+                    ->placeholder(__('filament-panels::resources.departments.placeholder.description'))
+                    ->toggleable(),
                 TextColumn::make('created_at')
+                    ->label(__('filament-panels::resources.departments.columns.created_at'))
+                    ->placeholder(__('filament-panels::resources.departments.placeholder.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label(__('filament-panels::resources.departments.columns.updated_at'))
+                    ->placeholder(__('filament-panels::resources.departments.placeholder.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

@@ -5,12 +5,30 @@ return [
     // Переводы для ресурса Departments (Отделы)
     "departments"           => [
         'navigation_label' => "Отделы",
+        'label'            => "Отдел",
+        'plural_label'     => "Отделы",
+        'singular_label'   => "Отдел",
+        'table_title'      => "Таблица отделов",
+        // Перевод столбцов таблицы
+        "columns"          => [
+            'dep_name'    => "Отдел",
+            'description' => "Описание",
+            'created_at'  => 'Дата создания',
+            'updated_at'  => 'Дата редактирования',
+        ],
+        // Placeholders
+        "placeholder"      => [
+            'dep_name'    => "Отдел",
+            'description' => "Описание",
+            'created_at'  => 'Дата создания',
+            'updated_at'  => 'Дата редактирования',
+        ],
     ],
 
     // Переводы для ресурса Users (Пользователи)
     "users"                 => [
         'navigation_label' => "Пользователи",
-        'label'            => "Пользователя",
+        'label'            => "Пользователь",
         'plural_label'     => "Пользователи",
         'singular_label'   => "Пользователь",
         'table_title'      => "Таблица пользователей",
