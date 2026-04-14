@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Resources\EquipmentHistories\Tables;
 
 use Filament\Actions\BulkActionGroup;
@@ -15,16 +14,29 @@ class EquipmentHistoriesTable
         return $table
             ->columns([
                 TextColumn::make('user.name')
+                    ->label(__('filament-panels::resources.equipment-histories.columns.user_name'))
+                    ->placeholder(__('filament-panels::resources.departequipment-historiesments.placeholder.user_name'))
+                    ->toggleable()
                     ->searchable(),
                 TextColumn::make('equipmentItem.name')
+                    ->label(__('filament-panels::resources.equipment-histories.columns.equipment_item_name'))
+                    ->placeholder(__('filament-panels::resources.departequipment-historiesments.placeholder.equipment_item_name'))
+                    ->toggleable()
                     ->searchable(),
                 TextColumn::make('action')
+                    ->label(__('filament-panels::resources.equipment-histories.columns.action'))
+                    ->placeholder(__('filament-panels::resources.departequipment-historiesments.placeholder.action'))
+                    ->toggleable()
                     ->searchable(),
                 TextColumn::make('created_at')
+                    ->label(__('filament-panels::resources.equipment-histories.columns.created_at'))
+                    ->placeholder(__('filament-panels::resources.departequipment-historiesments.placeholder.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label(__('filament-panels::resources.equipment-histories.columns.created_at'))
+                    ->placeholder(__('filament-panels::resources.departequipment-historiesments.placeholder.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -39,6 +51,9 @@ class EquipmentHistoriesTable
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            // Сообщения при пустой таблице
+            ->emptyStateHeading(__('filament-panels::resources.share.empty_table_heading'))
+            ->emptyStateDescription(__('filament-panels::resources.share.empty_table_description'));
     }
 }

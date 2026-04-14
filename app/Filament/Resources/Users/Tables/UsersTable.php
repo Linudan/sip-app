@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Resources\Users\Tables;
 
 use Filament\Actions\BulkActionGroup;
@@ -116,6 +115,9 @@ class UsersTable
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            // Сообщения при пустой таблице
+            ->emptyStateHeading(__('filament-panels::resources.share.empty_table_heading'))
+            ->emptyStateDescription(__('filament-panels::resources.share.empty_table_description'));
     }
 }

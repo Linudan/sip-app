@@ -16,6 +16,7 @@ return [
             'created_at'  => 'Дата создания',
             'updated_at'  => 'Дата редактирования',
         ],
+
         // Placeholders
         "placeholder"      => [
             'dep_name'    => "Отдел",
@@ -83,6 +84,7 @@ return [
             'created_at'       => 'Дата создания',
             'updated_at'       => 'Дата редактирования',
         ],
+
         // Placeholders
         "placeholder"      => [
             'deleted_at'       => 'Дата удаления',
@@ -124,6 +126,7 @@ return [
             'created_at'          => 'Дата создания',
             'updated_at'          => 'Дата редактирования',
         ],
+
         // Placeholders
         "placeholder"      => [
             'equipment_item_name' => 'Оборудование',
@@ -154,6 +157,7 @@ return [
             'created_at'  => 'Дата создания',
             'updated_at'  => 'Дата редактирования',
         ],
+
         // Placeholders
         "placeholder"      => [
             'name'        => 'Название',
@@ -168,6 +172,29 @@ return [
     // Переводы для ресурса Equipment Histories (История оборудования)
     "equipment-histories"   => [
         'navigation_label' => "История оборудования",
+        'label'            => "История оборудования",
+        'plural_label'     => "История оборудования",
+        'singular_label'   => "История оборудования",
+        'table_title'      => "Таблица истории оборудования",
+
+        // Перевод столбцов таблицы
+        "columns"          => [
+            'user_name'           => 'Пользователь',
+            'equipment_item_name' => 'Название оборудования',
+            'action'              => 'Действия',
+            'details'             => 'Примечание',
+            'created_at'          => 'Дата создания',
+            'updated_at'          => 'Дата редактирования',
+        ],
+
+        // Placeholders
+        "placeholder"      => [
+            'user_name'           => 'Пользователь',
+            'equipment_item_name' => 'Название оборудования',
+            'action'              => 'Действия',
+            'created_at'          => 'Дата создания',
+            'updated_at'          => 'Дата редактирования',
+        ],
     ],
 
     // Переводы для ресурса Tikets (Заявки)
@@ -191,5 +218,11 @@ return [
         "tikets_group_label"     => "Управление заявками",
         "equipments_group_label" => "Управление оборудованием",
         "users_group_label"      => "Управление пользователями",
+    ],
+
+    // Общие переводы
+    "share"                 => [
+        'empty_table_heading'     => 'В таблице нет записей',
+        'empty_table_description' => 'Начните с создания первой записи',
     ],
 ];

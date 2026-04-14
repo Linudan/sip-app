@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Resources\EquipmentHistories;
 
 use App\Filament\Resources\EquipmentHistories\Pages\CreateEquipmentHistory;
@@ -13,24 +12,48 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use UnitEnum;
 
 class EquipmentHistoryResource extends Resource
 {
     protected static ?string $model = EquipmentHistory::class;
 
     // Динамическая надпись
-    public static function getNavigationLabel(): string {
+    public static function getNavigationLabel(): string
+    {
 
-    return __('filament-panels::resources.equipment-histories.navigation_label');
+        return __('filament-panels::resources.equipment-histories.navigation_label');
+    }
+
+    // Динамическаое название таблицы во единственном числе
+    public static function getSingularLabel(): string
+    {
+        return __('filament-panels::resources.equipment-histories.singular_label');
+    }
+
+    // Динамическаое название таблицы во множественном числе
+    public static function getPluralLabel(): string
+    {
+        return __('filament-panels::resources.equipment-histories.plural_label');
+    }
+
+    public static function getLabel(): string
+    {
+        return __('filament-panels::resources.equipment-histories.label');
+    }
+
+    // Динамическое название таблицы
+    public function getTitle(): string
+    {
+        return __('filament-panels::resources.equipment-histories.table_title');
     }
 
     // Иконка
     protected static string|BackedEnum|null $navigationIcon = Heroicon::InboxStack;
 
     // Динамическая надпись
-    public static function getNavigationGroup(): ?string {
-    return __('filament-panels::resources.groups.equipments_group_label');
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament-panels::resources.groups.equipments_group_label');
     }
 
     public static function form(Schema $schema): Schema
@@ -53,9 +76,9 @@ class EquipmentHistoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListEquipmentHistories::route('/'),
+            'index'  => ListEquipmentHistories::route('/'),
             'create' => CreateEquipmentHistory::route('/create'),
-            'edit' => EditEquipmentHistory::route('/{record}/edit'),
+            'edit'   => EditEquipmentHistory::route('/{record}/edit'),
         ];
     }
 }
