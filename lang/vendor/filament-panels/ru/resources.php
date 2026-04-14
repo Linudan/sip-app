@@ -107,6 +107,34 @@ return [
     // Переводы для ресурса Equipment Assignments (Назначения оборудования)
     "equipment-assignments" => [
         'navigation_label' => "Назначения оборудования",
+        'label'            => "Назначение оборудования",
+        'plural_label'     => "Назначения оборудования",
+        'singular_label'   => "Назначение оборудования",
+        'table_title'      => "Таблица назначений оборудования",
+
+        // Перевод столбцов таблицы
+        "columns"          => [
+            'equipment_item_name' => 'Название оборудование',
+            'user_name'           => 'Пользователь',
+            'assigned_by'         => 'Назначено/Выдано',
+            'assigned_at'         => 'Дата назначения/выдачи',
+            'returned_at'         => 'Дата возвращения',
+            'return_reason'       => 'Причина возвращения',
+            'is_current'          => 'Статус',
+            'created_at'          => 'Дата создания',
+            'updated_at'          => 'Дата редактирования',
+        ],
+        // Placeholders
+        "placeholder"      => [
+            'equipment_item_name' => 'Оборудование',
+            'user_name'           => 'Пользователь',
+            'assigned_by'         => 'Назначено / Выдано',
+            'assigned_at'         => 'Дата назначения / выдачи',
+            'returned_at'         => 'Дата возвращения',
+            'is_current'          => 'Статус',
+            'created_at'          => 'Дата создания',
+            'updated_at'          => 'Дата редактирования',
+        ],
     ],
 
     // Переводы для ресурса Equipment Categories (Категории оборудования)
