@@ -14,14 +14,25 @@ class TicketCategoriesTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('filament-panels::resources.ticket-categories.columns.name'))
+                    ->placeholder(__('filament-panels::resources.ticket-categories.placeholder.name'))
+                    ->sortable()
+                    ->toggleable()
                     ->searchable(),
                 TextColumn::make('slug')
+                    ->label(__('filament-panels::resources.ticket-categories.columns.slug'))
+                    ->placeholder(__('filament-panels::resources.ticket-categories.placeholder.slug'))
+                    ->toggleable()
                     ->searchable(),
                 TextColumn::make('created_at')
+                    ->label(__('filament-panels::resources.ticket-categories.columns.created_at'))
+                    ->placeholder(__('filament-panels::resources.ticket-categories.placeholder.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label(__('filament-panels::resources.ticket-categories.columns.updated_at'))
+                    ->placeholder(__('filament-panels::resources.ticket-categories.placeholder.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

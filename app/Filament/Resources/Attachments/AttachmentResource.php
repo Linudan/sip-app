@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Resources\Attachments;
 
 use App\Filament\Resources\Attachments\Pages\CreateAttachment;
@@ -13,7 +12,6 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use UnitEnum;
 
 class AttachmentResource extends Resource
 {
@@ -23,9 +21,33 @@ class AttachmentResource extends Resource
     protected static ?int $navigationSort = 4;
 
     // Динамическая надпись
-    public static function getNavigationLabel(): string {
+    public static function getNavigationLabel(): string
+    {
 
-    return __('filament-panels::resources.attachments.navigation_label');
+        return __('filament-panels::resources.attachments.navigation_label');
+    }
+
+    // Динамическаое название таблицы во единственном числе
+    public static function getSingularLabel(): string
+    {
+        return __('filament-panels::resources.attachments.singular_label');
+    }
+
+    // Динамическаое название таблицы во множественном числе
+    public static function getPluralLabel(): string
+    {
+        return __('filament-panels::resources.attachments.plural_label');
+    }
+
+    public static function getLabel(): string
+    {
+        return __('filament-panels::resources.attachments.label');
+    }
+
+    // Динамическое название таблицы
+    public function getTitle(): string
+    {
+        return __('filament-panels::resources.attachments.table_title');
     }
 
     // Статическая надпись
@@ -35,8 +57,9 @@ class AttachmentResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Link;
 
     // Динамическая надпись
-    public static function getNavigationGroup(): ?string {
-    return __('filament-panels::resources.groups.other_group_label');
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament-panels::resources.groups.other_group_label');
     }
 
     public static function form(Schema $schema): Schema
@@ -59,9 +82,9 @@ class AttachmentResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListAttachments::route('/'),
+            'index'  => ListAttachments::route('/'),
             'create' => CreateAttachment::route('/create'),
-            'edit' => EditAttachment::route('/{record}/edit'),
+            'edit'   => EditAttachment::route('/{record}/edit'),
         ];
     }
 }

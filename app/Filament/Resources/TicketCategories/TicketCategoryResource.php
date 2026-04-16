@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Resources\TicketCategories;
 
 use App\Filament\Resources\TicketCategories\Pages\CreateTicketCategory;
@@ -13,24 +12,48 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use UnitEnum;
 
 class TicketCategoryResource extends Resource
 {
     protected static ?string $model = TicketCategory::class;
 
     // Динамическая надпись
-    public static function getNavigationLabel(): string {
+    public static function getNavigationLabel(): string
+    {
 
-    return __('filament-panels::resources.ticket-categories.navigation_label');
+        return __('filament-panels::resources.ticket-categories.navigation_label');
+    }
+
+    // Динамическаое название таблицы во единственном числе
+    public static function getSingularLabel(): string
+    {
+        return __('filament-panels::resources.ticket-categories.singular_label');
+    }
+
+    // Динамическаое название таблицы во множественном числе
+    public static function getPluralLabel(): string
+    {
+        return __('filament-panels::resources.ticket-categories.plural_label');
+    }
+
+    public static function getLabel(): string
+    {
+        return __('filament-panels::resources.ticket-categories.label');
+    }
+
+    // Динамическое название таблицы
+    public function getTitle(): string
+    {
+        return __('filament-panels::resources.ticket-categories.table_title');
     }
 
     // Иконка
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Tag;
 
     // Динамическая надпись
-    public static function getNavigationGroup(): ?string {
-    return __('filament-panels::resources.groups.tikets_group_label');
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament-panels::resources.groups.tikets_group_label');
     }
 
     public static function form(Schema $schema): Schema
@@ -53,9 +76,9 @@ class TicketCategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListTicketCategories::route('/'),
+            'index'  => ListTicketCategories::route('/'),
             'create' => CreateTicketCategory::route('/create'),
-            'edit' => EditTicketCategory::route('/{record}/edit'),
+            'edit'   => EditTicketCategory::route('/{record}/edit'),
         ];
     }
 }

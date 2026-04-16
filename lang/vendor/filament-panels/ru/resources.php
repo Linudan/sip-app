@@ -54,6 +54,28 @@ return [
             'created_at'                => 'Дата регистрации',
             'updated_at'                => 'Дата редактирования профиля',
         ],
+
+        // Placeholders
+        "placeholder"      => [
+            'name'                      => 'Имя',
+            'surname'                   => 'Фамилия',
+            'patronymic'                => 'Отчество',
+            'email'                     => 'Почта',
+            'phone'                     => 'Телефон',
+            'telegram_username'         => 'Ник в телеграмме',
+            'max_username'              => 'Ник в MAXe',
+            'department'                => 'Отдел',
+            'position'                  => 'Должность',
+            'profile_photo_path'        => 'Путь до фото профиля',
+            'email_verified_at'         => 'Дата подтверждения почты',
+            'password'                  => 'Пароль',
+            'two_factor_secret'         => 'Код двухфакторной аутентификации',
+            'two_factor_recovery_codes' => 'Коды восстановления двухфакторной аутентификации',
+            'two_factor_confirmed_at'   => 'Дата подключения TOTP',
+            'last_login_at'             => 'Дата последней авторизации',
+            'created_at'                => 'Дата регистрации',
+            'updated_at'                => 'Дата редактирования профиля',
+        ],
     ],
 
     // Переводы для ресурса Equipments (Оборудование)
@@ -200,16 +222,112 @@ return [
     // Переводы для ресурса Tikets (Заявки)
     "tikets"                => [
         'navigation_label' => "Заявки",
+        'label'            => "Заявки",
+        'plural_label'     => "Заявки",
+        'singular_label'   => "Заявка",
+        'table_title'      => "Таблица заявок",
+
+        // Перевод столбцов таблицы
+        "columns"          => [
+            'deleted_at'          => 'Дата удаления',
+            'ticket_number'       => 'Номер заявки',
+            'user_name'           => 'Имя пользователя',
+            'category_name'       => 'Категория',
+            'equipment_item_name' => 'Оборудование',
+            'title'               => 'Проблема',
+            'priority'            => 'Приоритет',
+            'status'              => 'Статус',
+            'telegram_chat_link'  => 'Чат в телеграмме',
+            'max_chat_link'       => 'Чат в максе',
+            'resolved_at'         => 'Дата создания',
+            'closed_at'           => 'Дата закрытия',
+            'user_rating'         => 'Оценка',
+            'created_at'          => 'Дата создания',
+            'updated_at'          => 'Дата редактирования',
+
+        ],
+
+        // Placeholders
+        "placeholder"      => [
+            'deleted_at'          => 'Дата удаления',
+            'ticket_number'       => 'Номер заявки',
+            'user_name'           => 'Имя пользователя',
+            'category_name'       => 'Категория',
+            'equipment_item_name' => 'Оборудование',
+            'title'               => 'Проблема',
+            'description'         => 'Описание',
+            'priority'            => 'Приоритет',
+            'status'              => 'Статус',
+            'telegram_chat_link'  => 'Чат в телеграмме',
+            'max_chat_link'       => 'Чат в максе',
+            'resolved_at'         => 'Дата создания',
+            'closed_at'           => 'Дата закрытия',
+            'user_rating'         => 'Оценка',
+            'user_feedback'       => 'Обратная связь',
+            'created_at'          => 'Дата создания',
+            'updated_at'          => 'Дата редактирования',
+        ],
     ],
 
     // Переводы для ресурса Ticket Categories (Категории заявок)
     "ticket-categories"     => [
         'navigation_label' => "Категории заявок",
+        'label'            => "Категории заявок",
+        'plural_label'     => "Категории заявок",
+        'singular_label'   => "Категория заявок",
+        'table_title'      => "Таблица категорий заявок",
+
+        // Перевод столбцов таблицы
+        "columns"          => [
+            'name'        => 'Название категории',
+            'slug'        => 'URL-префикс',
+            'description' => 'Описание',
+            'created_at'  => 'Дата создания',
+            'updated_at'  => 'Дата редактирования',
+        ],
+
+        // Placeholders
+        "placeholder"      => [
+            'name'       => 'Название категории',
+            'slug'       => 'URL-префикс',
+            'created_at' => 'Дата создания',
+            'updated_at' => 'Дата редактирования',
+        ],
     ],
 
     // Переводы для ресурса Attachments (Вложения)
     "attachments"           => [
         'navigation_label' => "Вложения",
+        'label'            => "Вложение",
+        'plural_label'     => "Вложения",
+        'singular_label'   => "Вложение",
+        'table_title'      => "Таблица вложений",
+
+        // Перевод столбцов таблицы
+        "columns"          => [
+            'attachable_type' => 'Тип',
+            'attachable_id'   => 'ID',
+            'file_path'       => 'Путь до файла',
+            'original_name'   => 'Имя файла',
+            'mime_type'       => 'Тип файла',
+            'size'            => 'Размер файла',
+            'uploaded_by'     => 'Кем загружено',
+            'created_at'      => 'Дата создания',
+            'updated_at'      => 'Дата редактирования',
+        ],
+
+        // Placeholders
+        "placeholder"      => [
+            'attachable_type' => 'Тип',
+            'attachable_id'   => 'ID',
+            'file_path'       => 'Путь до файла',
+            'original_name'   => 'Имя файла',
+            'mime_type'       => 'Тип файла',
+            'size'            => 'Размер файла',
+            'uploaded_by'     => 'Кем загружено',
+            'created_at'      => 'Дата создания',
+            'updated_at'      => 'Дата редактирования',
+        ],
     ],
 
     // Переводы для групп
@@ -225,4 +343,5 @@ return [
         'empty_table_heading'     => 'В таблице нет записей',
         'empty_table_description' => 'Начните с создания первой записи',
     ],
+
 ];
