@@ -20,42 +20,58 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
 
-class AdminPanelProvider extends PanelProvider
+
+class UserPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default()
-            ->id('admin')
-            ->path('admin')
-            ->login()
+            ->id('user')
+            ->path('user-panel')
             // Включение режима SPA
             ->spa()
             // Настройка шрифта, возможно изменить
             ->font("Montserrat")
-            // Панель профиля (стандартная Filament)
-            ->profile()
             // явный домашний URL
-            ->homeUrl('/admin')
+            ->homeUrl('/user-panel')
+            // Cтраница входа Breezy
+            ->login()
+            // Cтраница регистрации Breezy
+            ->registration()
+            // Функция восстановления пароля
+            ->passwordReset()
+            // Функция подтверждения почты
+            ->emailVerification()
             // Настройка цветов
             ->colors([
-                'primary' => Color::Indigo,
+                'primary' => Color::Green,
             ])
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
+            ->discoverResources(in: app_path('Filament/User/Resources'), for: 'App\Filament\User\Resources')
+            ->discoverPages(in: app_path('Filament/User/Pages'), for: 'App\Filament\User\Pages')
             ->pages([
                 Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
+            ->discoverWidgets(in: app_path('Filament/User/Widgets'), for: 'App\Filament\User\Widgets')
             ->widgets([
                 AccountWidget::class,
                 FilamentInfoWidget::class,
             ])
             // Подключение плагинов
             ->plugins([
+                // Плагин для авторизации и регистрации
                 BreezyCore::make()
-                    ->myProfile(shouldRegisterNavigation: false)
-                    ->enableTwoFactorAuthentication(false)
+                    ->myProfile(
+                        // пункт "Профиль" в меню пользователя
+                        shouldRegisterUserMenu: true,
+                        // не показывать в боковом меню
+                        shouldRegisterNavigation: false,
+                        // включить аватарки
+                        hasAvatars: true,
+                        // префикс
+                        // slug: 'profile'
+                    )
+                    // Требование к двухфакторной аутентификации
+                    ->enableTwoFactorAuthentication(force: false)
             ])
             ->middleware([
                 EncryptCookies::class,
