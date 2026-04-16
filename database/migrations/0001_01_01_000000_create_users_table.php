@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('max_username')->nullable();
             $table->unsignedBigInteger('department_id')->nullable();
             $table->string('position')->nullable();
-            $table->string('profile_photo_path', 2048)->nullable();
+            $table->string('avatar_url', 2048)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->text('two_factor_secret')->nullable();

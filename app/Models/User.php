@@ -22,10 +22,7 @@ class User extends Authenticatable
 
     /** @use HasFactory<UserFactory> */
     use HasFactory;
-
-    use HasProfilePhoto;
     use Notifiable;
-    use TwoFactorAuthenticatable;
     use HasRoles;
 
     /**
