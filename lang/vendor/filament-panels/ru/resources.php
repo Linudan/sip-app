@@ -126,6 +126,16 @@ return [
             'created_at'       => 'Дата создания',
             'updated_at'       => 'Дата редактирования',
         ],
+
+
+        'enums' => [
+            'status' => [
+                'in_use' => 'Используется',
+                'in_stock' => 'В наличии/на складе',
+                'in_repair' => 'В ремонте',
+                'written_off' => 'Списано',
+            ]
+        ]
     ],
 
     // Переводы для ресурса Equipment Assignments (Назначения оборудования)
@@ -217,6 +227,19 @@ return [
             'created_at'          => 'Дата создания',
             'updated_at'          => 'Дата редактирования',
         ],
+
+        // Enums
+        'enums' => [
+            // Action
+            'action' => [
+                'assigned' => 'Назначено',
+                'returned' => 'Возвращено',
+                'repaired' => 'Отремонтировано',
+                'status_changed' => 'Статус изменён',
+                'created' => 'Создано',
+                'updated' => 'Обновлено',
+            ]
+        ]
     ],
 
     // Переводы для ресурса Tikets (Заявки)
@@ -267,6 +290,26 @@ return [
             'created_at'          => 'Дата создания',
             'updated_at'          => 'Дата редактирования',
         ],
+
+        // Enums
+        'enums' => [
+            // Priority
+            'priority' => [
+                'low' => 'Низкий',
+                'medium' => 'Средний',
+                'high' => 'Высокий',
+                'critical' => 'Критический',
+            ],
+            'status' => [
+                'new' => 'Новая',
+                'in_progress' => 'В работе',
+                'pending' => 'В ожидании',
+                'resolved' => 'Решенная',
+                'closed' => 'Завершённая',
+                'cancelled' => 'Отменённая',
+            ]
+        ]
+
     ],
 
     // Переводы для ресурса Ticket Categories (Категории заявок)

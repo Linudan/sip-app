@@ -3,7 +3,6 @@ namespace App\Filament\Resources\EquipmentHistories\Schemas;
 
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
 class EquipmentHistoryForm
@@ -19,8 +18,16 @@ class EquipmentHistoryForm
                     ->label(__('filament-panels::resources.equipment-histories.columns.equipment_item_name'))
                     ->relationship('equipmentItem', 'name')
                     ->required(),
-                TextInput::make('action')
+                Select::make('action')
                     ->label(__('filament-panels::resources.equipment-histories.columns.action'))
+                    ->options([
+                        'assigned'       => __('filament-panels::resources.equipment-histories.enums.action.assigned'),
+                        'returned'       => __('filament-panels::resources.equipment-histories.enums.action.returned'),
+                        'repaired'       => __('filament-panels::resources.equipment-histories.enums.action.repaired'),
+                        'status_changed' => __('filament-panels::resources.equipment-histories.enums.action.status_changed'),
+                        'created'        => __('filament-panels::resources.equipment-histories.enums.action.created'),
+                        'updated'        => __('filament-panels::resources.equipment-histories.enums.action.updated'),
+                    ])
                     ->required(),
                 Textarea::make('details')
                     ->label(__('filament-panels::resources.equipment-histories.columns.details'))

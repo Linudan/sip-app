@@ -31,9 +31,15 @@ class EquipmentItemForm
                 Textarea::make('specifications')
                     ->label(__('filament-panels::resources.equipments.columns.specifications'))
                     ->columnSpanFull(),
-                TextInput::make('status')
+                Select::make('status')
                     ->label(__('filament-panels::resources.equipments.columns.status'))
                     ->required()
+                    ->options([
+                        'in_use'      => __('filament-panels::resources.equipments.enums.status.in_use'),
+                        'in_stock'    => __('filament-panels::resources.equipments.enums.status.in_stock'),
+                        'in_repair'   => __('filament-panels::resources.equipments.enums.status.in_repair'),
+                        'written_off' => __('filament-panels::resources.equipments.enums.status.written_off'),
+                    ])
                     ->default('in_stock'),
                 DatePicker::make('purchase_date')
                     ->label(__('filament-panels::resources.equipments.columns.purchase_date')),
@@ -48,7 +54,7 @@ class EquipmentItemForm
                     ->relationship('currentUser', 'name'),
                 Select::make('department_id')
                     ->label(__('filament-panels::resources.equipments.columns.department_id'))
-                    ->relationship('department', 'id'),
+                    ->relationship('department', 'dep_name'),
                 Textarea::make('notes')
                     ->label(__('filament-panels::resources.equipments.columns.notes'))
                     ->columnSpanFull(),

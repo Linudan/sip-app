@@ -89,7 +89,7 @@ class EquipmentItemsTable
                     ->sortable()
                     ->toggleable()
                     ->searchable(),
-                TextColumn::make('department.id')
+                TextColumn::make('department.dep_name')
                     ->label(__('filament-panels::resources.equipments.columns.department_id'))
                     ->placeholder(__('filament-panels::resources.equipments.placeholder.department_id'))
                     ->sortable()

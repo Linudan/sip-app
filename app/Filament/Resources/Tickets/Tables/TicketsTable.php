@@ -23,8 +23,8 @@ class TicketsTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('ticket_number')
-                    ->label(__('filament-panels::resources.tikets.columns.deleted_at'))
-                    ->placeholder(__('filament-panels::resources.tikets.placeholder.deleted_at'))
+                    ->label(__('filament-panels::resources.tikets.columns.ticket_number'))
+                    ->placeholder(__('filament-panels::resources.tikets.placeholder.ticket_number'))
                     ->toggleable()
                     ->sortable()
                     ->searchable(),

@@ -34,13 +34,27 @@ class TicketForm
                     ->label(__('filament-panels::resources.tikets.placeholder.description'))
                     ->required()
                     ->columnSpanFull(),
-                TextInput::make('priority')
+                Select::make('priority')
                     ->label(__('filament-panels::resources.tikets.placeholder.priority'))
                     ->required()
+                    ->options([
+                        'low'      => __('filament-panels::resources.tikets.enums.priority.low'),
+                        'medium'   => __('filament-panels::resources.tikets.enums.priority.medium'),
+                        'high'     => __('filament-panels::resources.tikets.enums.priority.high'),
+                        'critical' => __('filament-panels::resources.tikets.enums.priority.critical'),
+                    ])
                     ->default('medium'),
-                TextInput::make('status')
+                Select::make('status')
                     ->label(__('filament-panels::resources.tikets.placeholder.status'))
                     ->required()
+                    ->options([
+                        'new'         => __('filament-panels::resources.tikets.enums.status.new'),
+                        'in_progress' => __('filament-panels::resources.tikets.enums.status.in_progress'),
+                        'pending'     => __('filament-panels::resources.tikets.enums.status.pending'),
+                        'resolved'    => __('filament-panels::resources.tikets.enums.status.resolved'),
+                        'closed'      => __('filament-panels::resources.tikets.enums.status.closed'),
+                        'cancelled'   => __('filament-panels::resources.tikets.enums.status.cancelled'),
+                    ])
                     ->default('new'),
                 TextInput::make('telegram_chat_link')
                     ->label(__('filament-panels::resources.tikets.placeholder.telegram_chat_link'))
