@@ -1,6 +1,7 @@
 <?php
 namespace App\Providers;
 
+// Для плагина Laguage Switch
 use BezhanSalleh\LanguageSwitch\LanguageSwitch;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,7 +22,20 @@ class AppServiceProvider extends ServiceProvider
     {
         // Настройка переключателя языка
         LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
-            $switch->locales(['en', 'ru', 'es']);
+            $switch
+                ->locales(['en', 'ru', 'es'])
+                ->outsidePanelRoutes([
+                    'filament.user.auth.login',
+                    'filament.user.auth.register',
+                    'filament.admin.auth.login',
+                ]
+                )
+                ->labels([
+                    'en' => '🇬🇧 English',
+                    'ru' => '🇷🇺 Русский',
+                    'es' => '🇪🇸 Español',
+                ]);
         });
+
     }
 }
