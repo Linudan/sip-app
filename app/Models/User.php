@@ -92,14 +92,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Пользователь имеет много назначений оборудования.
-     */
-    public function equipmentAssignments(): HasMany
-    {
-        return $this->hasMany(EquipmentAssignment::class);
-    }
-
-    /**
      * Пользователь создал много заявок.
      */
     public function tickets(): HasMany

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Filament\Resources\EquipmentItems\Schemas;
 
 use Filament\Forms\Components\DatePicker;
@@ -6,6 +7,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use App\Models\User;
 
 class EquipmentItemForm
 {
@@ -33,14 +35,14 @@ class EquipmentItemForm
                     ->columnSpanFull(),
                 Select::make('status')
                     ->label(__('filament-panels::resources.equipments.columns.status'))
-                    ->required()
                     ->options([
-                        'in_use'      => __('filament-panels::resources.equipments.enums.status.in_use'),
                         'in_stock'    => __('filament-panels::resources.equipments.enums.status.in_stock'),
+                        'in_use'      => __('filament-panels::resources.equipments.enums.status.in_use'),
                         'in_repair'   => __('filament-panels::resources.equipments.enums.status.in_repair'),
                         'written_off' => __('filament-panels::resources.equipments.enums.status.written_off'),
                     ])
-                    ->default('in_stock'),
+                    ->default('in_stock')
+                    ->required(),
                 DatePicker::make('purchase_date')
                     ->label(__('filament-panels::resources.equipments.columns.purchase_date')),
                 DatePicker::make('warranty_until')
@@ -50,11 +52,29 @@ class EquipmentItemForm
                     ->numeric()
                     ->prefix('₽'),
                 Select::make('current_user_id')
-                    ->label(__('filament-panels::resources.equipments.columns.user_name'))
-                    ->relationship('currentUser', 'name'),
-                Select::make('department_id')
-                    ->label(__('filament-panels::resources.equipments.columns.department_id'))
-                    ->relationship('department', 'dep_name'),
+                    ->label(__('filament-panels::resources.equipments.columns.current_user'))
+                    ->relationship('currentUser', 'name')
+                    ->nullable()
+                    ->live()
+                    ->afterStateUpdated(function ($state, callable $set) {
+                        if ($state) {
+                            $user = User::find($state);
+                            // Автоматически подставляем отдел пользователя, но не блокируем поле
+                            $set('current_department_id', $user?->department_id);
+                            $set('status', 'in_use');
+                        } else {
+                            // Если пользователь сброшен, отдел остаётся (можно сбросить вручную)
+                            // $set('current_department_id', null);
+                            $set('status', 'in_stock');
+                        }
+                    }),
+                Select::make('current_department_id')
+                    ->label(__('filament-panels::resources.equipments.columns.current_department'))
+                    ->relationship('currentDepartment', 'dep_name')
+                    ->nullable()
+                    ->searchable()
+                    ->preload()
+                    ->hint(__('filament-panels::resources.equipments.hints.department_auto')),
                 Textarea::make('notes')
                     ->label(__('filament-panels::resources.equipments.columns.notes'))
                     ->columnSpanFull(),

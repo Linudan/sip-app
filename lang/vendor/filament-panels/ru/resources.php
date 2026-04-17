@@ -3,7 +3,7 @@
 // Russian Localization
 return [
     // Переводы для ресурса Departments (Отделы)
-    "departments"           => [
+    "departments"          => [
         'navigation_label' => "Отделы",
         'label'            => "Отдел",
         'plural_label'     => "Отделы",
@@ -27,7 +27,7 @@ return [
     ],
 
     // Переводы для ресурса Users (Пользователи)
-    "users"                 => [
+    "users"                => [
         'navigation_label' => "Пользователи",
         'label'            => "Пользователь",
         'plural_label'     => "Пользователи",
@@ -79,7 +79,7 @@ return [
     ],
 
     // Переводы для ресурса Equipments (Оборудование)
-    "equipments"            => [
+    "equipments"           => [
         'navigation_label' => "Оборудование",
         'label'            => "Оборудование",
         'plural_label'     => "Оборудование",
@@ -87,93 +87,77 @@ return [
         'table_title'      => "Таблица оборудования",
         // Перевод столбцов таблицы
         "columns"          => [
-            'deleted_at'       => 'Дата удаления',
-            'category_name'    => "Категория",
-            'name'             => 'Hазвание',
-            'inventory_number' => 'Инвентарный номер',
-            'serial_number'    => 'Серийный номер',
-            'manufacturer'     => 'Производитель',
-            'model'            => 'Модель',
-            'specifications'   => 'Подробные характеристики',
-            'status'           => 'Статус',
-            'purchase_date'    => 'Дата покупки',
-            'warranty_until'   => 'Списание',
-            'purchase_price'   => 'Стоимость покупки',
-            'user_name'        => 'Пользователь',
-            'department_id'    => 'Отдел',
-            'notes'            => 'Примечание',
-            'qr_code_hash'     => 'Hash-qr-кода',
-            'created_at'       => 'Дата создания',
-            'updated_at'       => 'Дата редактирования',
+            'deleted_at'         => 'Дата удаления',
+            'category_name'      => "Категория",
+            'name'               => 'Hазвание',
+            'inventory_number'   => 'Инвентарный номер',
+            'serial_number'      => 'Серийный номер',
+            'manufacturer'       => 'Производитель',
+            'model'              => 'Модель',
+            'specifications'     => 'Подробные характеристики',
+            'status'             => 'Статус',
+            'purchase_date'      => 'Дата покупки',
+            'warranty_until'     => 'Списание',
+            'purchase_price'     => 'Стоимость покупки',
+            'user_name'          => 'Пользователь',
+            'department_id'      => 'Отдел',
+            'current_user'       => 'Текущий пользователь',
+            'current_department' => 'Текущий отдел',
+            'notes'              => 'Примечание',
+            'qr_code_hash'       => 'Hash-qr-кода',
+            'created_at'         => 'Дата создания',
+            'updated_at'         => 'Дата редактирования',
         ],
 
         // Placeholders
         "placeholder"      => [
-            'deleted_at'       => 'Дата удаления',
-            'category_name'    => "Категория",
-            'name'             => 'Hазвание',
-            'inventory_number' => 'Инвентарный номер',
-            'serial_number'    => 'Серийный номер',
-            'manufacturer'     => 'Производитель',
-            'model'            => 'Модель',
-            'status'           => 'Статус',
-            'purchase_date'    => 'Дата покупки',
-            'warranty_until'   => 'Списание',
-            'purchase_price'   => 'Стоимость покупки',
-            'user_name'        => 'Пользователь',
-            'department_id'    => 'Отдел',
-            'qr_code_hash'     => 'Hash-qr-кода',
-            'created_at'       => 'Дата создания',
-            'updated_at'       => 'Дата редактирования',
+            'deleted_at'         => 'Дата удаления',
+            'category_name'      => "Категория",
+            'name'               => 'Hазвание',
+            'inventory_number'   => 'Инвентарный номер',
+            'serial_number'      => 'Серийный номер',
+            'manufacturer'       => 'Производитель',
+            'model'              => 'Модель',
+            'status'             => 'Статус',
+            'purchase_date'      => 'Дата покупки',
+            'warranty_until'     => 'Списание',
+            'purchase_price'     => 'Стоимость покупки',
+            'user_name'          => 'Пользователь',
+            'department_id'      => 'Отдел',
+            'current_user'       => 'Не назначен',
+            'current_department' => 'Не указан',
+            'qr_code_hash'       => 'Hash-qr-кода',
+            'created_at'         => 'Дата создания',
+            'updated_at'         => 'Дата редактирования',
         ],
 
+        "actions"          => [
+            'assign' => 'Назначить пользователю',
+            'return' => 'Вернуть на склад',
+        ],
 
-        'enums' => [
+        "modals"           => [
+            'assign_user' => 'Выберите пользователя',
+        ],
+
+        "messages"         => [
+            'already_assigned' => 'Оборудование уже назначено другому пользователю!',
+            'assigned_success' => 'Оборудование успешно назначено.',
+            'returned_success' => 'Оборудование возвращено на склад.',
+        ],
+
+        'enums'            => [
             'status' => [
-                'in_use' => 'Используется',
-                'in_stock' => 'В наличии/на складе',
-                'in_repair' => 'В ремонте',
+                'in_use'      => 'Используется',
+                'in_stock'    => 'В наличии/на складе',
+                'in_repair'   => 'В ремонте',
                 'written_off' => 'Списано',
-            ]
-        ]
-    ],
-
-    // Переводы для ресурса Equipment Assignments (Назначения оборудования)
-    "equipment-assignments" => [
-        'navigation_label' => "Назначения оборудования",
-        'label'            => "Назначение оборудования",
-        'plural_label'     => "Назначения оборудования",
-        'singular_label'   => "Назначение оборудования",
-        'table_title'      => "Таблица назначений оборудования",
-
-        // Перевод столбцов таблицы
-        "columns"          => [
-            'equipment_item_name' => 'Название оборудование',
-            'user_name'           => 'Пользователь',
-            'assigned_by'         => 'Назначено/Выдано',
-            'assigned_at'         => 'Дата назначения/выдачи',
-            'returned_at'         => 'Дата возвращения',
-            'return_reason'       => 'Причина возвращения',
-            'is_current'          => 'Статус',
-            'created_at'          => 'Дата создания',
-            'updated_at'          => 'Дата редактирования',
-        ],
-
-        // Placeholders
-        "placeholder"      => [
-            'equipment_item_name' => 'Оборудование',
-            'user_name'           => 'Пользователь',
-            'assigned_by'         => 'Назначено / Выдано',
-            'assigned_at'         => 'Дата назначения / выдачи',
-            'returned_at'         => 'Дата возвращения',
-            'is_current'          => 'Статус',
-            'created_at'          => 'Дата создания',
-            'updated_at'          => 'Дата редактирования',
+            ],
         ],
     ],
 
     // Переводы для ресурса Equipment Categories (Категории оборудования)
-    "equipment-сategories"  => [
+    "equipment-сategories" => [
         'navigation_label' => "Категории оборудования",
         'label'            => "Категория оборудования",
         'plural_label'     => "Категории оборудования",
@@ -202,7 +186,7 @@ return [
     ],
 
     // Переводы для ресурса Equipment Histories (История оборудования)
-    "equipment-histories"   => [
+    "equipment-histories"  => [
         'navigation_label' => "История оборудования",
         'label'            => "История оборудования",
         'plural_label'     => "История оборудования",
@@ -229,21 +213,21 @@ return [
         ],
 
         // Enums
-        'enums' => [
+        'enums'            => [
             // Action
             'action' => [
-                'assigned' => 'Назначено',
-                'returned' => 'Возвращено',
-                'repaired' => 'Отремонтировано',
+                'assigned'       => 'Назначено',
+                'returned'       => 'Возвращено',
+                'repaired'       => 'Отремонтировано',
                 'status_changed' => 'Статус изменён',
-                'created' => 'Создано',
-                'updated' => 'Обновлено',
-            ]
-        ]
+                'created'        => 'Создано',
+                'updated'        => 'Обновлено',
+            ],
+        ],
     ],
 
     // Переводы для ресурса Tikets (Заявки)
-    "tikets"                => [
+    "tikets"               => [
         'navigation_label' => "Заявки",
         'label'            => "Заявки",
         'plural_label'     => "Заявки",
@@ -292,28 +276,28 @@ return [
         ],
 
         // Enums
-        'enums' => [
+        'enums'            => [
             // Priority
             'priority' => [
-                'low' => 'Низкий',
-                'medium' => 'Средний',
-                'high' => 'Высокий',
+                'low'      => 'Низкий',
+                'medium'   => 'Средний',
+                'high'     => 'Высокий',
                 'critical' => 'Критический',
             ],
-            'status' => [
-                'new' => 'Новая',
+            'status'   => [
+                'new'         => 'Новая',
                 'in_progress' => 'В работе',
-                'pending' => 'В ожидании',
-                'resolved' => 'Решенная',
-                'closed' => 'Завершённая',
-                'cancelled' => 'Отменённая',
-            ]
-        ]
+                'pending'     => 'В ожидании',
+                'resolved'    => 'Решенная',
+                'closed'      => 'Завершённая',
+                'cancelled'   => 'Отменённая',
+            ],
+        ],
 
     ],
 
     // Переводы для ресурса Ticket Categories (Категории заявок)
-    "ticket-categories"     => [
+    "ticket-categories"    => [
         'navigation_label' => "Категории заявок",
         'label'            => "Категории заявок",
         'plural_label'     => "Категории заявок",
@@ -339,7 +323,7 @@ return [
     ],
 
     // Переводы для ресурса Attachments (Вложения)
-    "attachments"           => [
+    "attachments"          => [
         'navigation_label' => "Вложения",
         'label'            => "Вложение",
         'plural_label'     => "Вложения",
@@ -374,7 +358,7 @@ return [
     ],
 
     // Переводы для групп
-    "groups"                => [
+    "groups"               => [
         "other_group_label"      => "Прочее",
         "tikets_group_label"     => "Управление заявками",
         "equipments_group_label" => "Управление оборудованием",
@@ -382,7 +366,7 @@ return [
     ],
 
     // Общие переводы
-    "share"                 => [
+    "share"                => [
         'empty_table_heading'     => 'В таблице нет записей',
         'empty_table_description' => 'Начните с создания первой записи',
     ],

@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
             TicketCategoriesSeeder::class,
             EquipmentItemsSeeder::class,
             TicketsSeeder::class,
-            // AttachmentsSeeder::class, // если создадите
         ]);
     }
 }

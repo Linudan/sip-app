@@ -2,6 +2,9 @@
 namespace App\Providers;
 
 // Для плагина Laguage Switch
+
+use App\Models\EquipmentItem;
+use App\Observers\EquipmentItemObserver;
 use BezhanSalleh\LanguageSwitch\LanguageSwitch;
 use Illuminate\Support\ServiceProvider;
 
@@ -36,6 +39,8 @@ class AppServiceProvider extends ServiceProvider
                     'es' => '🇪🇸 Español',
                 ]);
         });
+
+        EquipmentItem::observe(EquipmentItemObserver::class);
 
     }
 }

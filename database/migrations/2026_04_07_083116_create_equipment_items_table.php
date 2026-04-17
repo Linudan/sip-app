@@ -9,8 +9,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('equipment_items', function (Blueprint $table) {
-            $table->softDeletes();
             $table->id();
+            $table->softDeletes();
             $table->foreignId('category_id')->constrained('equipment_categories')->cascadeOnDelete();
             $table->string('name');
             $table->string('inventory_number')->nullable()->unique();
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->date('warranty_until')->nullable();
             $table->decimal('purchase_price', 10, 2)->nullable();
             $table->foreignId('current_user_id')->nullable()->constrained('users')->nullOnDelete();
-            $table->foreignId('department_id')->nullable()->constrained('departments')->nullOnDelete();
+            $table->foreignId('current_department_id')->nullable()->constrained('departments')->nullOnDelete();
             $table->text('notes')->nullable();
             $table->string('qr_code_hash')->nullable()->unique();
             $table->timestamps();
@@ -31,9 +31,7 @@ return new class extends Migration
     }
 
     public function down(): void
-{
-    Schema::table('equipment_items', function (Blueprint $table) {
-        $table->dropSoftDeletes();
-    });
-}
+    {
+        Schema::dropIfExists('equipment_items');
+    }
 };
