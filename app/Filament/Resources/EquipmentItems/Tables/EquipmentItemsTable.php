@@ -9,6 +9,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
+use Filament\Actions\ViewAction;
 use Filament\Forms\Components\Select;
 use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
@@ -74,11 +75,15 @@ class EquipmentItemsTable
                     ->money()
                     ->sortable()
                     ->toggleable(),
-                TextColumn::make('currentUser.name')
+                TextColumn::make('currentUser.full_name_with_initials')
                     ->label(__('filament-panels::resources.equipments.columns.current_user'))
                     ->placeholder(__('filament-panels::resources.equipments.placeholder.current_user'))
-                    ->sortable()
-                    ->toggleable(),
+                    ->sortable(query: function ($query, $direction) {
+                        // Сортировка по фамилии, затем по имени
+                        return $query->join('users', 'equipment_items.current_user_id', '=', 'users.id')
+                            ->orderBy('users.surname', $direction)
+                            ->orderBy('users.name', $direction);
+                    }),
                 TextColumn::make('currentDepartment.dep_name')
                     ->label(__('filament-panels::resources.equipments.columns.current_department'))
                     ->placeholder(__('filament-panels::resources.equipments.placeholder.current_department'))
@@ -99,6 +104,7 @@ class EquipmentItemsTable
                 TrashedFilter::make(),
             ])
             ->recordActions([
+                ViewAction::make(),
                 EditAction::make(),
                 Action::make('assign')
                     ->label(__('filament-panels::resources.equipments.actions.assign'))
@@ -108,7 +114,7 @@ class EquipmentItemsTable
                     ->form([
                         Select::make('user_id')
                             ->label(__('filament-panels::resources.users.singular_label'))
-                            ->options(User::pluck('name', 'id'))
+                            ->options(User::all()->pluck('full_name_with_initials', 'id')->toArray())
                             ->searchable()
                             ->required(),
                     ])
@@ -152,9 +158,9 @@ class EquipmentItemsTable
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                DeleteBulkAction::make(),
-                ForceDeleteBulkAction::make(),
-                RestoreBulkAction::make(),
+                    DeleteBulkAction::make(),
+                    ForceDeleteBulkAction::make(),
+                    RestoreBulkAction::make(),
                 ]),
             ])
             ->emptyStateHeading(__('filament-panels::resources.share.empty_table_heading'))

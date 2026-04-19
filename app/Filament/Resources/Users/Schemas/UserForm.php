@@ -34,11 +34,14 @@ class UserForm
                     ->label(__('filament-panels::resources.users.columns.max_username')),
                 Select::make('department_id')
                     ->relationship('department', 'dep_name')
+                    ->preload()
+                    ->searchable()
                     ->label(__('filament-panels::resources.users.columns.department')),
                 TextInput::make('position')
                     ->label(__('filament-panels::resources.users.columns.position')),
-                TextInput::make('profile_photo_path')
-                    ->label(__('filament-panels::resources.users.columns.profile_photo_path')),
+                TextInput::make('avatar_url')
+                    ->label(__('filament-panels::resources.users.columns.avatar_url'))
+                    ->helperText('Не меняйте если хотите использовать простой аватар'),
                 DateTimePicker::make('email_verified_at')
                     ->label(__('filament-panels::resources.users.columns.email_verified_at')),
                 TextInput::make('password')

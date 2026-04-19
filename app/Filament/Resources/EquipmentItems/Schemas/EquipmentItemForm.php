@@ -1,13 +1,12 @@
 <?php
-
 namespace App\Filament\Resources\EquipmentItems\Schemas;
 
+use App\Models\User;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
-use App\Models\User;
 
 class EquipmentItemForm
 {
@@ -53,7 +52,12 @@ class EquipmentItemForm
                     ->prefix('₽'),
                 Select::make('current_user_id')
                     ->label(__('filament-panels::resources.equipments.columns.current_user'))
-                    ->relationship('currentUser', 'name')
+                    ->searchable()
+                    ->options(function () {
+                        return User::all()
+                            ->mapWithKeys(fn($user) => [$user->id => $user->full_name_with_initials])
+                            ->toArray();
+                    })
                     ->nullable()
                     ->live()
                     ->afterStateUpdated(function ($state, callable $set) {
@@ -73,8 +77,7 @@ class EquipmentItemForm
                     ->relationship('currentDepartment', 'dep_name')
                     ->nullable()
                     ->searchable()
-                    ->preload()
-                    ->hint(__('filament-panels::resources.equipments.hints.department_auto')),
+                    ->preload(),
                 Textarea::make('notes')
                     ->label(__('filament-panels::resources.equipments.columns.notes'))
                     ->columnSpanFull(),

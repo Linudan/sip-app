@@ -40,7 +40,7 @@ class User extends Authenticatable
         'phone',
         'telegram_username',
         'max_username',
-        'profile_photo_path',
+        'avatar_url',
         'last_login_at',
         'email_verified_at',
         'password',
@@ -64,7 +64,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $appends = [
-        'profile_photo_url',
+        'avatar',
     ];
 
     /**
@@ -127,12 +127,13 @@ class User extends Authenticatable
 
     // ==================== АКСЕССОРЫ ====================
 
-    /**
-     * Полное имя пользователя.
-     */
-    public function getFullNameAttribute(): string
+/**
+ * Фамилия Имя О. (например: Иванов Иван И.)
+ */
+    public function getFullNameWithInitialsAttribute(): string
     {
-        return trim($this->surname . ' ' . $this->name . ' ' . $this->patronymic);
+        $initials = $this->patronymic ? mb_substr($this->patronymic, 0, 1) . '.' : '';
+        return trim($this->surname . ' ' . $this->name . ($initials ? ' ' . $initials : ''));
     }
 
     /**
@@ -147,16 +148,12 @@ class User extends Authenticatable
             ->implode('');
     }
 
-    /**
-     * Получить URL аватара пользователя.
-     */
-    public function getProfilePhotoUrlAttribute(): string
+    // Аксессор для получения полного URL аватара
+    public function getAvatarAttribute(): string
     {
-        if ($this->profile_photo_path) {
-            return Storage::disk('public')->url($this->profile_photo_path);
+        if (! empty($this->attributes['avatar_url'])) {
+            return Storage::disk('public')->url($this->attributes['avatar_url']);
         }
-
-        // Fallback: аватар по умолчанию с инициалами
         return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&color=7F9CF5&background=EBF4FF';
     }
 }

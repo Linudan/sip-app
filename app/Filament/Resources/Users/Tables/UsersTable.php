@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Users\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -69,9 +70,9 @@ class UsersTable
                     ->sortable()
                     ->searchable()
                     ->toggleable(),
-                TextColumn::make('profile_photo_path')
-                    ->label(__('filament-panels::resources.users.columns.profile_photo_path'))
-                    ->placeholder(__('filament-panels::resources.users.placeholder.profile_photo_path'))
+                TextColumn::make('avatar_url')
+                    ->label(__('filament-panels::resources.users.columns.avatar_url'))
+                    ->placeholder(__('filament-panels::resources.users.placeholder.avatar_url'))
                     ->sortable()
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -110,6 +111,7 @@ class UsersTable
                 //
             ])
             ->recordActions([
+                ViewAction::make(),
                 EditAction::make(),
             ])
             ->toolbarActions([

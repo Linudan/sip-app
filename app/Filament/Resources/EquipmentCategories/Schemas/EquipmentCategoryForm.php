@@ -19,13 +19,21 @@ class EquipmentCategoryForm
                     ->label(__('filament-panels::resources.equipment-сategories.columns.slug'))
                     ->required(),
                 Textarea::make('description')
-                    ->label(__('filament-panels::resources.equipment-сategories.columns.parent_name'))
+                    ->label(__('filament-panels::resources.equipment-сategories.columns.description'))
                     ->columnSpanFull(),
                 Select::make('parent_id')
                     ->label(__('filament-panels::resources.equipment-сategories.columns.parent_name'))
-                    ->relationship('parent', 'name'),
-                TextInput::make('icon')
-                    ->label(__('filament-panels::resources.equipment-сategories.columns.icon')),
+                    ->relationship('parent', 'name')
+                    ->nullable()
+                    ->rules([
+                        function ($record) {
+                            return function ($attribute, $value, $fail) use ($record) {
+                                if ($record && $value == $record->id) {
+                                    $fail('Категория не может быть родительской для самой себя.');
+                                }
+                            };
+                        },
+                    ]),
             ]);
     }
 }

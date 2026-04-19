@@ -18,7 +18,12 @@ class TicketForm
                     ->required(),
                 Select::make('user_id')
                     ->label(__('filament-panels::resources.tikets.placeholder.user_name'))
-                    ->relationship('user', 'name')
+                    ->options(function () {
+                        return \App\Models\User::all()
+                            ->mapWithKeys(fn($user) => [$user->id => $user->full_name_with_initials])
+                            ->toArray();
+                    })
+                    ->searchable()
                     ->required(),
                 Select::make('category_id')
                     ->label(__('filament-panels::resources.tikets.placeholder.category_name'))
@@ -26,6 +31,7 @@ class TicketForm
                     ->required(),
                 Select::make('equipment_item_id')
                     ->label(__('filament-panels::resources.tikets.placeholder.equipment_item_name'))
+                    ->searchable()
                     ->relationship('equipmentItem', 'name'),
                 TextInput::make('title')
                     ->label(__('filament-panels::resources.tikets.placeholder.title'))

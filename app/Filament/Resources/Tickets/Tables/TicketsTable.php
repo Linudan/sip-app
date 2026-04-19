@@ -6,6 +6,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
+use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
@@ -28,11 +29,15 @@ class TicketsTable
                     ->toggleable()
                     ->sortable()
                     ->searchable(),
-                TextColumn::make('user.name')
+                TextColumn::make('user.full_name_with_initials')
                     ->label(__('filament-panels::resources.tikets.columns.user_name'))
                     ->placeholder(__('filament-panels::resources.tikets.placeholder.user_name'))
+                    ->sortable(query: function ($query, $direction) {
+                        return $query->join('users', 'tickets.user_id', '=', 'users.id')
+                            ->orderBy('users.surname', $direction)
+                            ->orderBy('users.name', $direction);
+                    })
                     ->toggleable()
-                    ->sortable()
                     ->searchable(),
                 TextColumn::make('category.name')
                     ->label(__('filament-panels::resources.tikets.columns.category_name'))
@@ -109,6 +114,7 @@ class TicketsTable
                 TrashedFilter::make(),
             ])
             ->recordActions([
+                ViewAction::make(),
                 EditAction::make(),
             ])
             ->toolbarActions([
