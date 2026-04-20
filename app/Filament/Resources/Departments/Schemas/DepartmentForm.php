@@ -13,6 +13,7 @@ class DepartmentForm
             ->components([
                 TextInput::make('dep_name')
                     ->required()
+                    ->columnSpanFull()
                     ->label(__('filament-panels::resources.departments.columns.dep_name')),
                 Textarea::make('description')
                     ->columnSpanFull()

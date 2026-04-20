@@ -13,6 +13,7 @@ class TicketCategoriesTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->striped()
             ->columns([
                 TextColumn::make('name')
                     ->label(__('filament-panels::resources.ticket-categories.columns.name'))

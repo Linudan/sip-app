@@ -1,6 +1,7 @@
 <?php
 namespace App\Filament\Resources\TicketCategories;
 
+use App\Filament\Resources\Departments\Pages\ViewTicketCategory;
 use App\Filament\Resources\TicketCategories\Pages\CreateTicketCategory;
 use App\Filament\Resources\TicketCategories\Pages\EditTicketCategory;
 use App\Filament\Resources\TicketCategories\Pages\ListTicketCategories;
@@ -78,6 +79,7 @@ class TicketCategoryResource extends Resource
         return [
             'index'  => ListTicketCategories::route('/'),
             'create' => CreateTicketCategory::route('/create'),
+            'view'   => ViewTicketCategory::route('/{record}'),
             'edit'   => EditTicketCategory::route('/{record}/edit'),
         ];
     }

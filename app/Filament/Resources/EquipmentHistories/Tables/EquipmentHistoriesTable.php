@@ -13,6 +13,7 @@ class EquipmentHistoriesTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->striped()
             ->columns([
                 TextColumn::make('user.name')
                     ->label(__('filament-panels::resources.equipment-histories.columns.user_name'))

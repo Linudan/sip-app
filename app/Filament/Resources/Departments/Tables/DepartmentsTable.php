@@ -13,6 +13,7 @@ class DepartmentsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->striped()
             ->columns([
                 TextColumn::make('dep_name')
                     ->label(__('filament-panels::resources.departments.columns.dep_name'))
@@ -41,7 +42,7 @@ class DepartmentsTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
+                ViewAction::make()->slideOver(),
                 EditAction::make(),
             ])
             ->toolbarActions([
@@ -49,6 +50,7 @@ class DepartmentsTable
                     DeleteBulkAction::make(),
                 ]),
             ])
+            ->recordAction('view')
             // Сообщения при пустой таблице
             ->emptyStateHeading(__('filament-panels::resources.share.empty_table_heading'))
             ->emptyStateDescription(__('filament-panels::resources.share.empty_table_description'));

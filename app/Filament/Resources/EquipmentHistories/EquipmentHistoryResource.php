@@ -1,6 +1,7 @@
 <?php
 namespace App\Filament\Resources\EquipmentHistories;
 
+use App\Filament\Resources\Departments\Pages\ViewEquipmentHistories;
 use App\Filament\Resources\EquipmentHistories\Pages\CreateEquipmentHistory;
 use App\Filament\Resources\EquipmentHistories\Pages\EditEquipmentHistory;
 use App\Filament\Resources\EquipmentHistories\Pages\ListEquipmentHistories;
@@ -78,6 +79,7 @@ class EquipmentHistoryResource extends Resource
         return [
             'index'  => ListEquipmentHistories::route('/'),
             'create' => CreateEquipmentHistory::route('/create'),
+            'view'   => ViewEquipmentHistories::route('/{record}'),
             'edit'   => EditEquipmentHistory::route('/{record}/edit'),
         ];
     }

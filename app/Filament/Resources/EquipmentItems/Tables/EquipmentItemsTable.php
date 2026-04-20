@@ -21,6 +21,7 @@ class EquipmentItemsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->striped()
             ->columns([
                 TextColumn::make('deleted_at')
                     ->label(__('filament-panels::resources.equipments.columns.deleted_at'))

@@ -1,6 +1,7 @@
 <?php
 namespace App\Filament\Resources\Users;
 
+use App\Filament\Resources\Departments\Pages\ViewUser;
 use App\Filament\Resources\Users\Pages\CreateUser;
 use App\Filament\Resources\Users\Pages\EditUser;
 use App\Filament\Resources\Users\Pages\ListUsers;
@@ -9,6 +10,7 @@ use App\Filament\Resources\Users\Tables\UsersTable;
 use App\Models\User;
 use BackedEnum;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\View;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
@@ -80,6 +82,7 @@ class UserResource extends Resource
         return [
             'index'  => ListUsers::route('/'),
             'create' => CreateUser::route('/create'),
+            'view'   => ViewUser::route('/{record}'),
             'edit'   => EditUser::route('/{record}/edit'),
         ];
     }

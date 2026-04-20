@@ -13,6 +13,7 @@ class EquipmentCategoriesTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->striped()
             ->columns([
                 TextColumn::make('name')
                     ->label(__('filament-panels::resources.equipment-сategories.columns.name'))

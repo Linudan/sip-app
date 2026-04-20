@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Attachments;
 use App\Filament\Resources\Attachments\Pages\CreateAttachment;
 use App\Filament\Resources\Attachments\Pages\EditAttachment;
 use App\Filament\Resources\Attachments\Pages\ListAttachments;
+use App\Filament\Resources\Attachments\Pages\ViewAttachment;
 use App\Filament\Resources\Attachments\Schemas\AttachmentForm;
 use App\Filament\Resources\Attachments\Tables\AttachmentsTable;
 use App\Models\Attachment;
@@ -84,6 +85,7 @@ class AttachmentResource extends Resource
         return [
             'index'  => ListAttachments::route('/'),
             'create' => CreateAttachment::route('/create'),
+            'view'   => ViewAttachment::route('/{record}'),
             'edit'   => EditAttachment::route('/{record}/edit'),
         ];
     }

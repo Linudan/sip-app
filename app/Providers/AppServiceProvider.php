@@ -4,7 +4,9 @@ namespace App\Providers;
 // Для плагина Laguage Switch
 
 use App\Models\EquipmentItem;
+use App\Models\Ticket;
 use App\Observers\EquipmentItemObserver;
+use App\Observers\TicketObserver;
 use BezhanSalleh\LanguageSwitch\LanguageSwitch;
 use Illuminate\Support\ServiceProvider;
 
@@ -40,7 +42,10 @@ class AppServiceProvider extends ServiceProvider
                 ]);
         });
 
+        // Observer для EquipmentItem
         EquipmentItem::observe(EquipmentItemObserver::class);
+        // Observer для Ticket
+        Ticket::observe(TicketObserver::class);
 
     }
 }

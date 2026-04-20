@@ -32,13 +32,14 @@ class TicketForm
                 Select::make('equipment_item_id')
                     ->label(__('filament-panels::resources.tikets.placeholder.equipment_item_name'))
                     ->searchable()
+                    // Подгрузка возможных значений
+                    ->preload()
                     ->relationship('equipmentItem', 'name'),
                 TextInput::make('title')
                     ->label(__('filament-panels::resources.tikets.placeholder.title'))
                     ->required(),
                 Textarea::make('description')
                     ->label(__('filament-panels::resources.tikets.placeholder.description'))
-                    ->required()
                     ->columnSpanFull(),
                 Select::make('priority')
                     ->label(__('filament-panels::resources.tikets.placeholder.priority'))

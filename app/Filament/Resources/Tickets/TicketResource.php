@@ -1,6 +1,7 @@
 <?php
 namespace App\Filament\Resources\Tickets;
 
+use App\Filament\Resources\Departments\Pages\ViewTicket;
 use App\Filament\Resources\Tickets\Pages\CreateTicket;
 use App\Filament\Resources\Tickets\Pages\EditTicket;
 use App\Filament\Resources\Tickets\Pages\ListTickets;
@@ -82,6 +83,7 @@ class TicketResource extends Resource
         return [
             'index'  => ListTickets::route('/'),
             'create' => CreateTicket::route('/create'),
+            'view'   => ViewTicket::route('/{record}'),
             'edit'   => EditTicket::route('/{record}/edit'),
         ];
     }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Filament\Resources\EquipmentCategories;
 
+use App\Filament\Resources\Departments\Pages\ViewEquipmentCategory;
 use App\Filament\Resources\EquipmentCategories\Pages\CreateEquipmentCategory;
 use App\Filament\Resources\EquipmentCategories\Pages\EditEquipmentCategory;
 use App\Filament\Resources\EquipmentCategories\Pages\ListEquipmentCategories;
@@ -79,6 +80,7 @@ class EquipmentCategoryResource extends Resource
         return [
             'index'  => ListEquipmentCategories::route('/'),
             'create' => CreateEquipmentCategory::route('/create'),
+            'view'   => ViewEquipmentCategory::route('/{record}'),
             'edit'   => EditEquipmentCategory::route('/{record}/edit'),
         ];
     }

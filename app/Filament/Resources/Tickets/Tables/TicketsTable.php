@@ -16,6 +16,7 @@ class TicketsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->striped()
             ->columns([
                 TextColumn::make('deleted_at')
                     ->label(__('filament-panels::resources.tikets.columns.deleted_at'))

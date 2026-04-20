@@ -12,6 +12,7 @@ class AttachmentsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->striped()
             ->columns([
                 TextColumn::make('attachable_type')
                     ->label(__('filament-panels::resources.attachments.columns.attachable_type'))
