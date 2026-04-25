@@ -8,7 +8,6 @@ return new class extends Migration
 {
     public function up(): void
     {
-        // Таблица users (с вашими полями, без current_team_id)
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -16,6 +15,7 @@ return new class extends Migration
             $table->string('patronymic')->nullable();
             $table->string('email')->unique();
             $table->string('phone')->nullable();
+            $table->string('internal_phone')->nullable();
             $table->string('telegram_username')->nullable();
             $table->string('max_username')->nullable();
             $table->unsignedBigInteger('department_id')->nullable();
@@ -28,6 +28,8 @@ return new class extends Migration
             $table->timestamp('two_factor_confirmed_at')->nullable();
             $table->rememberToken();
             $table->timestamp('last_login_at')->nullable();
+            // мягкое удаление
+            $table->softDeletes();
             $table->timestamps();
         });
 

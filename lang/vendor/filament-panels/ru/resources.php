@@ -40,6 +40,7 @@ return [
             'patronymic'                => 'Отчество',
             'email'                     => 'Почта',
             'phone'                     => 'Телефон',
+            'internal_phone' => 'Внутренний телефон',
             'telegram_username'         => 'Ник в телеграмме',
             'max_username'              => 'Ник в MAXe',
             'department'                => 'Отдел',
@@ -53,6 +54,7 @@ return [
             'last_login_at'             => 'Дата последней авторизации',
             'created_at'                => 'Дата регистрации',
             'updated_at'                => 'Дата редактирования профиля',
+            'deleted_at' => 'Дата уделения',
         ],
 
         // Placeholders
@@ -62,6 +64,7 @@ return [
             'patronymic'                => 'Отчество',
             'email'                     => 'Почта',
             'phone'                     => 'Телефон',
+            'internal_phone' => 'Внутренний телефон',
             'telegram_username'         => 'Ник в телеграмме',
             'max_username'              => 'Ник в MAXe',
             'department'                => 'Отдел',

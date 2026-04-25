@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
@@ -23,6 +24,7 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
     use HasRoles;
+    use SoftDeletes;
     use TwoFactorAuthenticatable;
 
     /**
@@ -38,6 +40,7 @@ class User extends Authenticatable
         'department_id',
         'position',
         'phone',
+        'internal_phone',
         'telegram_username',
         'max_username',
         'avatar_url',
@@ -148,7 +151,7 @@ class User extends Authenticatable
             ->implode('');
     }
 
-    // Аксессор для получения полного URL аватара
+    // Аксессор для получения полного URL аватара (нужно исправить)
     public function getAvatarAttribute(): string
     {
         if (! empty($this->attributes['avatar_url'])) {

@@ -1,11 +1,10 @@
 <?php
-
 namespace App\Filament\Resources\Users\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
 class UserForm
@@ -31,6 +30,11 @@ class UserForm
                     ->label(__('filament-panels::resources.users.columns.phone'))
                     ->placeholder('+7 (999) 999-99-99')
                     ->mask('+7 (999) 999-99-99'),
+                TextInput::make('internal_phone')
+                    ->label(__('filament-panels::resources.users.columns.internal_phone'))
+                    ->placeholder('+7 (8352) 62-27-38')
+                    ->mask('+7 (8352) 99-99-99')
+                    ->tel(),
                 TextInput::make('telegram_username')
                     ->label(__('filament-panels::resources.users.columns.telegram_username'))
                     ->placeholder('@telegram'),
@@ -51,8 +55,8 @@ class UserForm
                     ->label(__('filament-panels::resources.users.columns.email_verified_at')),
                 TextInput::make('password')
                     ->password()
-                    ->dehydrated(fn ($state) => filled($state))
-                    ->required(fn (string $context): bool => $context === 'create')
+                    ->dehydrated(fn($state) => filled($state))
+                    ->required(fn(string $context): bool => $context === 'create')
                     ->label(__('filament-panels::resources.users.columns.password'))
                     ->helperText('Оставьте пустым, чтобы не менять пароль (только при редактировании)'),
                 Textarea::make('two_factor_secret')
