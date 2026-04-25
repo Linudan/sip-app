@@ -13,7 +13,13 @@ class EquipmentHistoryForm
             ->components([
                 Select::make('user_id')
                     ->label(__('filament-panels::resources.equipment-histories.columns.user_name'))
-                    ->relationship('user', 'name'),
+                    ->options(function () {
+                        return \App\Models\User::all()
+                            ->mapWithKeys(fn($user) => [$user->id => $user->full_name_with_initials])
+                            ->toArray();
+                    })
+                    ->searchable()
+                    ->nullable(),
                 Select::make('equipment_item_id')
                     ->label(__('filament-panels::resources.equipment-histories.columns.equipment_item_name'))
                     ->relationship('equipmentItem', 'name')

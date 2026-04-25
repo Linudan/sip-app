@@ -8,6 +8,7 @@ use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\RecordActionsPosition;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
@@ -17,6 +18,7 @@ class TicketsTable
     {
         return $table
             ->striped()
+            ->recordActionsPosition(RecordActionsPosition::BeforeCells)
             ->columns([
                 TextColumn::make('deleted_at')
                     ->label(__('filament-panels::resources.tikets.columns.deleted_at'))
@@ -61,15 +63,37 @@ class TicketsTable
                 TextColumn::make('priority')
                     ->label(__('filament-panels::resources.tikets.columns.priority'))
                     ->placeholder(__('filament-panels::resources.tikets.placeholder.priority'))
-                    ->toggleable()
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'low'      => 'gray',
+                        'medium'   => 'info',
+                        'high'     => 'warning',
+                        'critical' => 'danger',
+                    })
+                    ->formatStateUsing(fn(string $state): string =>
+                        __('filament-panels::resources.tikets.enums.priority.' . $state)
+                    )
                     ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('status')
                     ->label(__('filament-panels::resources.tikets.columns.status'))
                     ->placeholder(__('filament-panels::resources.tikets.placeholder.status'))
-                    ->toggleable()
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'new'         => 'gray',
+                        'in_progress' => 'info',
+                        'pending'     => 'warning',
+                        'resolved'    => 'success',
+                        'closed'      => 'success',
+                        'cancelled'   => 'danger',
+                    })
+                    ->formatStateUsing(fn(string $state): string =>
+                        __('filament-panels::resources.tikets.enums.status.' . $state)
+                    )
                     ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('telegram_chat_link')
                     ->label(__('filament-panels::resources.tikets.columns.telegram_chat_link'))
                     ->placeholder(__('filament-panels::resources.tikets.placeholder.telegram_chat_link'))

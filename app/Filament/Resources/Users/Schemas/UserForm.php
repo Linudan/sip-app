@@ -24,14 +24,19 @@ class UserForm
                 TextInput::make('email')
                     ->email()
                     ->required()
-                    ->label(__('filament-panels::resources.users.columns.email')),
+                    ->label(__('filament-panels::resources.users.columns.email'))
+                    ->placeholder('user@example.com'),
                 TextInput::make('phone')
                     ->tel()
-                    ->label(__('filament-panels::resources.users.columns.phone')),
+                    ->label(__('filament-panels::resources.users.columns.phone'))
+                    ->placeholder('+7 (999) 999-99-99')
+                    ->mask('+7 (999) 999-99-99'),
                 TextInput::make('telegram_username')
-                    ->label(__('filament-panels::resources.users.columns.telegram_username')),
+                    ->label(__('filament-panels::resources.users.columns.telegram_username'))
+                    ->placeholder('@telegram'),
                 TextInput::make('max_username')
-                    ->label(__('filament-panels::resources.users.columns.max_username')),
+                    ->label(__('filament-panels::resources.users.columns.max_username'))
+                    ->placeholder('@max_username'),
                 Select::make('department_id')
                     ->relationship('department', 'dep_name')
                     ->preload()

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Observers;
 
 use App\Models\Ticket;
@@ -9,15 +8,20 @@ class TicketObserver
     /**
      * Handle the Ticket "created" event.
      */
-    public function created(Ticket $ticket): void
+    public function creating(Ticket $ticket): void
     {
-        //
+        if (empty($ticket->ticket_number)) {
+            $date = now()->format('dmy');                  // 250426
+            $lastId = Ticket::withTrashed()->max('id') ?? 0;
+            $nextNumber = $lastId + 1;
+            $ticket->ticket_number = sprintf('TICKET-%03d-%s', $nextNumber, $date);
+        }
     }
 
     /**
      * Handle the Ticket "updated" event.
      */
-        public function updating(Ticket $ticket): void
+    public function updating(Ticket $ticket): void
     {
         // Если статус меняется на 'closed' и closed_at ещё не установлено
         if ($ticket->isDirty('status') && $ticket->status === 'closed' && is_null($ticket->closed_at)) {

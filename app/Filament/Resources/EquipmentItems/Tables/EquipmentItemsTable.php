@@ -13,6 +13,7 @@ use Filament\Actions\ViewAction;
 use Filament\Forms\Components\Select;
 use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\RecordActionsPosition;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
@@ -22,6 +23,7 @@ class EquipmentItemsTable
     {
         return $table
             ->striped()
+            ->recordActionsPosition(RecordActionsPosition::BeforeCells)
             ->columns([
                 TextColumn::make('deleted_at')
                     ->label(__('filament-panels::resources.equipments.columns.deleted_at'))
@@ -58,6 +60,16 @@ class EquipmentItemsTable
                     ->searchable(),
                 TextColumn::make('status')
                     ->label(__('filament-panels::resources.equipments.columns.status'))
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'in_use'      => 'success',
+                        'in_stock'    => 'gray',
+                        'in_repair'   => 'warning',
+                        'written_off' => 'danger',
+                    })
+                    ->formatStateUsing(fn(string $state): string =>
+                        __('filament-panels::resources.equipments.enums.status.' . $state)
+                    )
                     ->sortable()
                     ->toggleable()
                     ->searchable(),

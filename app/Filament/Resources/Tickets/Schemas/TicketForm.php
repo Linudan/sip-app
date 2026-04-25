@@ -14,8 +14,9 @@ class TicketForm
         return $schema
             ->components([
                 TextInput::make('ticket_number')
+                    ->disabled()
                     ->label(__('filament-panels::resources.tikets.placeholder.ticket_number'))
-                    ->required(),
+                    ->helperText('Генерируется автоматически'),
                 Select::make('user_id')
                     ->label(__('filament-panels::resources.tikets.placeholder.user_name'))
                     ->options(function () {
@@ -69,6 +70,7 @@ class TicketForm
                 TextInput::make('max_chat_link')
                     ->label(__('filament-panels::resources.tikets.placeholder.max_chat_link')),
                 DateTimePicker::make('resolved_at')
+                    ->disabled()
                     ->label(__('filament-panels::resources.tikets.placeholder.resolved_at')),
                 DateTimePicker::make('closed_at')
                     ->label(__('filament-panels::resources.tikets.placeholder.closed_at')),

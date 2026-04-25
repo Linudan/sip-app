@@ -15,19 +15,36 @@ class EquipmentHistoriesTable
         return $table
             ->striped()
             ->columns([
-                TextColumn::make('user.name')
+                TextColumn::make('user.full_name_with_initials')
                     ->label(__('filament-panels::resources.equipment-histories.columns.user_name'))
-                    ->placeholder(__('filament-panels::resources.departequipment-historiesments.placeholder.user_name'))
+                    ->placeholder(__('filament-panels::resources.equipment-histories.placeholder.user_name'))
+                    ->sortable(query: function ($query, $direction) {
+                        return $query->join('users', 'equipment_histories.user_id', '=', 'users.id')
+                            ->orderBy('users.surname', $direction)
+                            ->orderBy('users.name', $direction);
+                    })
                     ->toggleable()
                     ->searchable(),
                 TextColumn::make('equipmentItem.name')
                     ->label(__('filament-panels::resources.equipment-histories.columns.equipment_item_name'))
-                    ->placeholder(__('filament-panels::resources.departequipment-historiesments.placeholder.equipment_item_name'))
+                    ->placeholder(__('filament-panels::resources.equipment-histories.placeholder.equipment_item_name'))
                     ->toggleable()
                     ->searchable(),
                 TextColumn::make('action')
                     ->label(__('filament-panels::resources.equipment-histories.columns.action'))
-                    ->placeholder(__('filament-panels::resources.departequipment-historiesments.placeholder.action'))
+                    ->placeholder(__('filament-panels::resources.equipment-histories.placeholder.action'))
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'assigned'       => 'success',
+                        'returned'       => 'warning',
+                        'repaired'       => 'info',
+                        'status_changed' => 'primary',
+                        'created'        => 'gray',
+                        'updated'        => 'gray',
+                    })
+                    ->formatStateUsing(fn(string $state): string =>
+                        __('filament-panels::resources.equipment-histories.enums.action.' . $state)
+                    )
                     ->toggleable()
                     ->searchable(),
                 TextColumn::make('created_at')

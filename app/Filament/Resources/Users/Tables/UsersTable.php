@@ -6,6 +6,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\RecordActionsPosition;
 use Filament\Tables\Table;
 
 class UsersTable
@@ -14,6 +15,7 @@ class UsersTable
     {
         return $table
             ->striped()
+            ->recordActionsPosition(RecordActionsPosition::BeforeCells)
             ->columns([
                 TextColumn::make('name')
                     ->label(__('filament-panels::resources.users.columns.name'))
