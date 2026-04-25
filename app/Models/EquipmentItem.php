@@ -1,7 +1,13 @@
 <?php
-
 namespace App\Models;
 
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\Writer\SvgWriter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -36,6 +42,21 @@ class EquipmentItem extends Model
             'purchase_date'  => 'date',
             'warranty_until' => 'date',
         ];
+    }
+
+    // Метод для работы с qr-кодами
+    public function getQrCodeImageAttribute(): string
+    {
+        $data = $this->qr_code_hash ?? $this->inventory_number ?? $this->id;
+
+        $renderer = new ImageRenderer(
+            new RendererStyle(150),
+            new SvgImageBackEnd()
+        );
+
+        $writer = new Writer($renderer);
+
+        return 'data:image/svg+xml;base64,' . base64_encode($writer->writeString($data));
     }
 
     // ==================== СВЯЗИ ====================

@@ -2,6 +2,7 @@
 namespace App\Filament\Resources\EquipmentItems;
 
 use App\Filament\Resources\Departments\Pages\ViewEquipmentItem as PagesViewEquipmentItem;
+use App\Filament\Resources\EquipmentItem\Pages\ViewEquipmentItem as EquipmentItemPagesViewEquipmentItem;
 use App\Filament\Resources\EquipmentItems\Pages\ViewEquipmentItem;
 use App\Filament\Resources\EquipmentItems\Pages\CreateEquipmentItem;
 use App\Filament\Resources\EquipmentItems\Pages\EditEquipmentItem;
@@ -85,7 +86,7 @@ class EquipmentItemResource extends Resource
         return [
             'index'  => ListEquipmentItems::route('/'),
             'create' => CreateEquipmentItem::route('/create'),
-            'view'   => PagesViewEquipmentItem::route('/{record}'),
+            'view'   => ViewEquipmentItem::route('/{record}'),
             'edit'   => EditEquipmentItem::route('/{record}/edit'),
         ];
     }

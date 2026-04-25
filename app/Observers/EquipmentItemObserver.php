@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\EquipmentHistory;
 use App\Models\EquipmentItem;
+use Psy\Util\Str;
 
 class EquipmentItemObserver
 {
@@ -36,6 +37,13 @@ class EquipmentItemObserver
             ]);
         }
     }
+
+    public function creating(EquipmentItem $equipmentItem): void
+{
+    if (empty($equipmentItem->qr_code_hash)) {
+        $equipmentItem->qr_code_hash = Str::random(32);
+    }
+}
 
     public function created(EquipmentItem $equipmentItem): void
     {
