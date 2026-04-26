@@ -3,6 +3,7 @@ namespace App\Filament\Resources\EquipmentItems\Schemas;
 
 use App\Models\User;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -29,7 +30,7 @@ class EquipmentItemForm
                     ->label(__('filament-panels::resources.equipments.columns.manufacturer')),
                 TextInput::make('model')
                     ->label(__('filament-panels::resources.equipments.columns.model')),
-                Textarea::make('specifications')
+                KeyValue::make('specifications')
                     ->label(__('filament-panels::resources.equipments.columns.specifications'))
                     ->columnSpanFull(),
                 Select::make('status')

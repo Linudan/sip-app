@@ -1,10 +1,10 @@
 <?php
 namespace App\Filament\Resources\EquipmentHistories;
 
-use App\Filament\Resources\Departments\Pages\ViewEquipmentHistories;
 use App\Filament\Resources\EquipmentHistories\Pages\CreateEquipmentHistory;
 use App\Filament\Resources\EquipmentHistories\Pages\EditEquipmentHistory;
 use App\Filament\Resources\EquipmentHistories\Pages\ListEquipmentHistories;
+use App\Filament\Resources\EquipmentHistories\Pages\ViewEquipmentHistories;
 use App\Filament\Resources\EquipmentHistories\Schemas\EquipmentHistoryForm;
 use App\Filament\Resources\EquipmentHistories\Tables\EquipmentHistoriesTable;
 use App\Models\EquipmentHistory;
