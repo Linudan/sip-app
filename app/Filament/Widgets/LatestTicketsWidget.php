@@ -24,15 +24,15 @@ class LatestTicketsWidget extends BaseWidget
             ->paginated(false)
             ->columns([
                 Tables\Columns\TextColumn::make('ticket_number')
-                    ->label('№ заявки')
+                    ->label(__('filament-panels::resources.tikets.last_tikets_widget.ticket_number'))
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
-                    ->label('Тема')
+                    ->label(__('filament-panels::resources.tikets.last_tikets_widget.title'))
                     ->limit(40),
                 Tables\Columns\TextColumn::make('user.full_name_with_initials')
-                    ->label('Пользователь'),
+                    ->label(__('filament-panels::resources.tikets.last_tikets_widget.user_name')),
                 Tables\Columns\TextColumn::make('status')
-                    ->label('Статус')
+                    ->label(__('filament-panels::resources.tikets.last_tikets_widget.status'))
                     ->badge()
                     ->color(fn(string $state): string => match ($state) {
                         'new'         => 'gray',
@@ -47,12 +47,12 @@ class LatestTicketsWidget extends BaseWidget
                         __('filament-panels::resources.tikets.enums.status.' . $state)
                     ),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Создана')
+                    ->label(__('filament-panels::resources.tikets.last_tikets_widget.resolved_at'))
                     ->dateTime('d.m.Y H:i'),
             ])
             ->actions([
                 Action::make('view')
-                    ->label('Открыть')
+                    ->label(__('filament-panels::resources.equipments.actions.open'))
                     ->url(fn(Ticket $record): string => route('filament.admin.resources.tickets.view', $record))
                     ->icon('heroicon-o-eye'),
             ])

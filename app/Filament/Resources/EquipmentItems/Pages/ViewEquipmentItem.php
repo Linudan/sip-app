@@ -26,7 +26,7 @@ class ViewEquipmentItem extends ViewRecord
     {
         return $schema
             ->schema([
-                Section::make('Основная информация')
+                Section::make(__('filament-panels::resources.equipments.view_equipments_cards.basic_information'))
                     ->icon('heroicon-o-computer-desktop')
                     ->collapsible()
                     ->compact()
@@ -68,7 +68,7 @@ class ViewEquipmentItem extends ViewRecord
                     ]),
 
                 // Секция "Подробные характеристики" с универсальным отображением JSON/текста
-                Section::make('Подробные характеристики')
+                Section::make(__('filament-panels::resources.equipments.view_equipments_cards.detailed_specifications'))
                     ->icon('heroicon-o-document-chart-bar')
                     ->collapsible()
                     ->collapsed(true)
@@ -97,7 +97,7 @@ class ViewEquipmentItem extends ViewRecord
                             ->columnSpanFull(),
                     ]),
 
-                Section::make('Финансовые данные')
+                Section::make(__('filament-panels::resources.equipments.view_equipments_cards.financial_data'))
                     ->icon('heroicon-o-banknotes')
                     ->collapsible()
                     ->compact()
@@ -117,7 +117,7 @@ class ViewEquipmentItem extends ViewRecord
                             ->placeholder('—'),
                     ]),
 
-                Section::make('Где находится')
+                Section::make(__('filament-panels::resources.equipments.view_equipments_cards.location'))
                     ->icon('heroicon-o-map-pin')
                     ->collapsible()
                     ->compact()
@@ -125,13 +125,13 @@ class ViewEquipmentItem extends ViewRecord
                     ->schema([
                         TextEntry::make('currentUser.full_name_with_initials')
                             ->label(__('filament-panels::resources.equipments.columns.current_user'))
-                            ->placeholder('Не привязан'),
+                            ->placeholder('—'),
                         TextEntry::make('currentDepartment.dep_name')
                             ->label(__('filament-panels::resources.equipments.columns.current_department'))
-                            ->placeholder('Не указан'),
+                            ->placeholder('—'),
                     ]),
 
-                Section::make('Дополнительно')
+                Section::make(__('filament-panels::resources.equipments.view_equipments_cards.additionally'))
                     ->icon('heroicon-o-document-text')
                     ->collapsible()
                     ->compact()
@@ -139,7 +139,7 @@ class ViewEquipmentItem extends ViewRecord
                         TextEntry::make('notes')
                             ->label(__('filament-panels::resources.equipments.columns.notes'))
                             ->markdown()
-                            ->placeholder('Нет примечаний')
+                            ->placeholder('—')
                             ->columnSpanFull(),
                         ImageEntry::make('qr_code_image')
                             ->label('QR-код')
@@ -150,12 +150,12 @@ class ViewEquipmentItem extends ViewRecord
                         TextEntry::make('qr_code_hash')
                             ->label(__('filament-panels::resources.equipments.columns.qr_code_hash'))
                             ->copyable()
-                            ->placeholder('Не задан')
+                            ->placeholder('—')
                             ->visible(fn($record) => blank($record->qr_code_image))
                             ->columnSpanFull(),
                     ]),
 
-                Section::make('Системная информация')
+                Section::make(__('filament-panels::resources.equipments.view_equipments_cards.system_information'))
                     ->icon('heroicon-o-clock')
                     ->collapsible()
                     ->compact()

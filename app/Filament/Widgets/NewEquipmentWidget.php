@@ -24,13 +24,13 @@ class NewEquipmentWidget extends BaseWidget
             ->paginated(false)
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Наименование')
+                    ->label(__('filament-panels::resources.equipments.new_eq_widget.name'))
                     ->sortable(),
                 Tables\Columns\TextColumn::make('inventory_number')
-                    ->label('Инв. номер')
+                    ->label(__('filament-panels::resources.equipments.new_eq_widget.inventory_number'))
                     ->sortable(),
                 Tables\Columns\TextColumn::make('status')
-                    ->label('Статус')
+                    ->label(__('filament-panels::resources.equipments.new_eq_widget.status'))
                     ->badge()
                     ->color(fn(string $state): string => match ($state) {
                         'in_stock'    => 'gray',
@@ -42,16 +42,16 @@ class NewEquipmentWidget extends BaseWidget
                         __('filament-panels::resources.equipments.enums.status.' . $state)
                     ),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Добавлено')
+                    ->label(__('filament-panels::resources.equipments.new_eq_widget.purchase_date'))
                     ->dateTime('d.m.Y H:i'),
             ])
             ->actions([
                 Action::make('view')
-                    ->label('Открыть')
+                    ->label(__('filament-panels::resources.equipments.actions.open'))
                     ->url(fn(EquipmentItem $record): string => route('filament.admin.resources.equipment-items.view', $record))
                     ->icon('heroicon-o-eye'),
             ])
-            ->heading('Новое оборудование')
-            ->emptyStateHeading('Нет оборудования');
+            ->heading(__('filament-panels::resources.equipments.new_eq_widget.table_name'))
+            ->emptyStateHeading(__('filament-panels::resources.equipments.new_eq_widget.empty'));
     }
 }

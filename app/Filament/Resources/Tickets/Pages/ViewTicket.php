@@ -25,7 +25,7 @@ class ViewTicket extends ViewRecord
         return $schema
             ->schema([
                 // Карточка 1: Основная информация
-                Section::make('Основная информация')
+                Section::make(__('filament-panels::resources.tikets.view_tikets_cards.basic_information'))
                     ->icon('heroicon-o-ticket')
                     ->collapsible()
                     ->compact()
@@ -66,7 +66,7 @@ class ViewTicket extends ViewRecord
                     ]),
 
                 // Карточка 2: Описание
-                Section::make('Описание')
+                Section::make(__('filament-panels::resources.tikets.view_tikets_cards.descrption'))
                     ->icon('heroicon-o-document-text')
                     ->collapsible()
                     ->compact()
@@ -79,7 +79,7 @@ class ViewTicket extends ViewRecord
                     ]),
 
                 // Карточка 3: Пользователь и оборудование
-                Section::make('Пользователь и оборудование')
+                Section::make(__('filament-panels::resources.tikets.view_tikets_cards.user_and_equipment'))
                     ->icon('heroicon-o-user')
                     ->collapsible()
                     ->compact()
@@ -97,7 +97,7 @@ class ViewTicket extends ViewRecord
                     ]),
 
                 // Карточка 4: Назначенные специалисты
-                Section::make('Назначенные специалисты')
+                Section::make(__('filament-panels::resources.tikets.view_tikets_cards.assigned_users'))
                     ->icon('heroicon-o-users')
                     ->collapsible()
                     ->compact()
@@ -122,7 +122,7 @@ class ViewTicket extends ViewRecord
                     ]),
 
                 // Карточка 5: Ссылки на чаты
-                Section::make('Чаты и связь')
+                Section::make(__('filament-panels::resources.tikets.view_tikets_cards.communication'))
                     ->icon('heroicon-o-chat-bubble-left-right')
                     ->collapsible()
                     ->compact()
@@ -141,7 +141,7 @@ class ViewTicket extends ViewRecord
                     ]),
 
                 // Карточка 6: Временные метки и завершение
-                Section::make('Временные метки')
+                Section::make(__('filament-panels::resources.tikets.view_tikets_cards.time'))
                     ->icon('heroicon-o-calendar')
                     ->collapsible()
                     ->compact()
@@ -164,7 +164,7 @@ class ViewTicket extends ViewRecord
                     ]),
 
                 // Карточка 7: Рейтинг и отзыв
-                Section::make('Рейтинг и отзыв')
+                Section::make(__('filament-panels::resources.tikets.view_tikets_cards.rating_and_review'))
                     ->icon('heroicon-o-star')
                     ->collapsible()
                     ->collapsed(true)

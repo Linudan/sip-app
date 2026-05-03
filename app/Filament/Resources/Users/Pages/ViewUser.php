@@ -27,7 +27,7 @@ class ViewUser extends ViewRecord
         return $schema
             ->schema([
                 // Карточка 1: Личная информация
-                Section::make('Личная информация')
+                Section::make(__('filament-panels::resources.users.view_cards.personal_information'))
                     ->icon('heroicon-o-user')
                     ->columns(2)
                     ->schema([
@@ -59,7 +59,7 @@ class ViewUser extends ViewRecord
                     ]),
 
                 // Карточка 2: Контакты и соцсети
-                Section::make('Контакты')
+                Section::make(__('filament-panels::resources.users.view_cards.contacts'))
                     ->icon('heroicon-o-envelope')
                     ->columns(2)
                     ->schema([
@@ -90,7 +90,7 @@ class ViewUser extends ViewRecord
                     ]),
 
                 // Карточка 3: Отдел (связь)
-                Section::make('Отдел')
+                Section::make(__('filament-panels::resources.users.view_cards.department'))
                     ->icon('heroicon-o-building-office')
                     ->schema([
                         TextEntry::make('department.dep_name')
@@ -101,7 +101,7 @@ class ViewUser extends ViewRecord
                     ]),
 
                 // Карточка 4: Безопасность и 2FA
-                Section::make('Безопасность')
+                Section::make(__('filament-panels::resources.users.view_cards.security'))
                     ->icon('heroicon-o-shield-check')
                     ->collapsible()
                     ->collapsed(true)
@@ -128,7 +128,7 @@ class ViewUser extends ViewRecord
                     ]),
 
                 // Карточка 5: Активность
-                Section::make('Активность')
+                Section::make(__('filament-panels::resources.users.view_cards.activity'))
                     ->icon('heroicon-o-clock')
                     ->columns(2)
                     ->schema([

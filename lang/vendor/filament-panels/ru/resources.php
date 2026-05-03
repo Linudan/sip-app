@@ -79,6 +79,15 @@ return [
             'created_at'                => 'Дата регистрации',
             'updated_at'                => 'Дата редактирования профиля',
         ],
+
+        // View Users Cards
+        "view_cards" => [
+            'personal_information' => 'Личная информация',
+            'contacts' => 'Контакты',
+            'department' => 'Отдел',
+            'security' => 'Безопасность',
+            'activity' => 'Активность'
+        ]
     ],
 
     // Переводы для ресурса Equipments (Оборудование)
@@ -137,10 +146,33 @@ return [
         "actions"          => [
             'assign' => 'Назначить пользователю',
             'return' => 'Вернуть на склад',
+            'open' => 'Открыть',
         ],
 
         "modals"           => [
             'assign_user' => 'Выберите пользователя',
+        ],
+
+        "new_eq_widget" => [
+            'table_name' => 'Новое оборудование',
+            'name'               => 'Hаименование',
+            'inventory_number'   => 'Инвентарный номер',
+            'status'             => 'Статус',
+            'purchase_date'      => 'Дата покупки',
+            'empty' => 'Нет оборудования',
+        ],
+
+        "stat_widget" => [
+            'total' => 'Всего оборудования',
+            'total_desc' => 'Единиц техники',
+            'in_stock' => 'В наличии',
+            'in_stock_desc' => 'Свободное',
+            'in_use' => 'В использовании',
+            'in_use_desc' => 'Выдано пользователям',
+            'in_repair' => 'В ремонте',
+            'in_repair_desc' => 'Требует внимания',
+            'written_off' => 'Списано',
+            'written_off_desc' => 'Выведено из эксплуатации',
         ],
 
         "messages"         => [
@@ -157,6 +189,16 @@ return [
                 'written_off' => 'Списано',
             ],
         ],
+
+        // View Equipments Cards
+        "view_equipments_cards" => [
+            'basic_information' => 'Основная информация',
+            'detailed_specifications' => 'Подробные характеристики',
+            'location' => 'Местоположение',
+            'financial_data' => 'Финансовые данные',
+            'additionally' => 'Дополнительно',
+            'system_information' => 'Системная информация',
+        ]
     ],
 
     // Переводы для ресурса Equipment Categories (Категории оборудования)
@@ -296,6 +338,39 @@ return [
                 'cancelled'   => 'Отменённая',
             ],
         ],
+
+        "stat_widget" => [
+            'total' => 'Всего заявок',
+            'total_desc' => 'Общее количество',
+            'new' => 'Новые',
+            'new_desc' => 'Ожидают обработки',
+            'in_progress' => 'В работе',
+            'in_progress_desc' => 'Активные заявки',
+            'resolved' => 'Решённые',
+            'resolved_desc' => 'Ожидают закрытия',
+            'closed' => 'Закрытые',
+            'closed_desc' => 'Завершённые',
+        ],
+
+        "last_tikets_widget" => [
+            'table_name' => 'Последние поступившие заявки ',
+            'ticket_number'       => 'Номер заявки',
+            'title'               => 'Проблема',
+            'user_name'           => 'Пользователь',
+            'status'              => 'Статус',
+            'resolved_at'         => 'Создана',
+        ],
+
+        // View Tikets Cards
+        "view_tikets_cards" => [
+            'basic_information' => 'Основная информация',
+            'descrption' => 'Описание',
+            'user_and_equipment' => 'Пользователь и оборудование',
+            'assigned_users' => 'Назначенные специалисты',
+            'communication' => 'Чаты и связь',
+            'time' => 'Временные метки',
+            'rating_and_review' => 'Рейтинг и отзыв',
+        ]
 
     ],
 

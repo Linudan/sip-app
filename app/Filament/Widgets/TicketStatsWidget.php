@@ -21,24 +21,24 @@ class TicketStatsWidget extends BaseWidget
         $closed = Ticket::where('status', 'closed')->count();
 
         return [
-            Stat::make('Всего заявок', $total)
-                ->description('Общее количество')
+            Stat::make(__('filament-panels::resources.tikets.stat_widget.total'), $total)
+                ->description(__('filament-panels::resources.tikets.stat_widget.total_desc'))
                 ->descriptionIcon('heroicon-m-document-text')
                 ->color('primary'),
-            Stat::make('Новые', $new)
-                ->description('Ожидают обработки')
+            Stat::make(__('filament-panels::resources.tikets.stat_widget.new'), $new)
+                ->description(__('filament-panels::resources.tikets.stat_widget.new_desc'))
                 ->descriptionIcon('heroicon-m-clock')
                 ->color('warning'),
-            Stat::make('В работе', $inProgress)
-                ->description('Активные заявки')
+            Stat::make(__('filament-panels::resources.tikets.stat_widget.in_progress'), $inProgress)
+                ->description(__('filament-panels::resources.tikets.stat_widget.in_progress_desc'))
                 ->descriptionIcon('heroicon-m-cog-6-tooth')
                 ->color('info'),
-            Stat::make('Решённые', $resolved)
-                ->description('Ожидают закрытия')
+            Stat::make(__('filament-panels::resources.tikets.stat_widget.resolved'), $resolved)
+                ->description(__('filament-panels::resources.tikets.stat_widget.resolved_desc'))
                 ->descriptionIcon('heroicon-m-check-circle')
                 ->color('success'),
-            Stat::make('Закрытые', $closed)
-                ->description('Завершённые')
+            Stat::make(__('filament-panels::resources.tikets.stat_widget.closed'), $closed)
+                ->description(__('filament-panels::resources.tikets.stat_widget.closed_desc'))
                 ->descriptionIcon('heroicon-m-archive-box')
                 ->color('gray'),
         ];
