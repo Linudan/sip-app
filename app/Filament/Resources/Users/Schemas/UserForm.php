@@ -24,7 +24,15 @@ class UserForm
                     ->email()
                     ->required()
                     ->label(__('filament-panels::resources.users.columns.email'))
-                    ->placeholder('user@example.com'),
+                    ->placeholder('user@example.com')
+                    ->validationMessages([
+                        'unique' => __('filament-panels::resources.users.validation.email_unique'),
+                    ])
+                    ->unique(
+                        table: 'users',
+                        column: 'email',
+                        ignoreRecord: true,
+                    ),
                 TextInput::make('phone')
                     ->label(__('filament-panels::resources.users.columns.phone'))
                     ->placeholder('+7 (999) 999-99-99')

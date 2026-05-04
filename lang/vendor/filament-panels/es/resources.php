@@ -102,6 +102,10 @@ return [
             'security'             => 'Seguridad',
             'activity'             => 'Actividad',
         ],
+
+        "validation"       => [
+            "email_unique" => "Ya existe un usuario con este correo electrónico.",
+        ],
     ],
 
     "equipments"           => [
