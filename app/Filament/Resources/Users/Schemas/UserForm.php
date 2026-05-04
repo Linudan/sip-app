@@ -26,21 +26,25 @@ class UserForm
                     ->label(__('filament-panels::resources.users.columns.email'))
                     ->placeholder('user@example.com'),
                 TextInput::make('phone')
-                    ->tel()
                     ->label(__('filament-panels::resources.users.columns.phone'))
                     ->placeholder('+7 (999) 999-99-99')
-                    ->mask('+7 (999) 999-99-99'),
+                    ->tel()
+                    ->mask('+7 (999) 999-99-99')
+                    ->regex('/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/'),
                 TextInput::make('internal_phone')
                     ->label(__('filament-panels::resources.users.columns.internal_phone'))
-                    ->placeholder('+7 (8352) 62-27-38')
-                    ->mask('+7 (8352) 99-99-99')
-                    ->tel(),
+                    ->placeholder('4524')
+                    ->mask('4522')
+                    ->tel()
+                    ->helperText('Ведите последние две цифры')
+                    ->regex('/^45\d{2}$/'),
                 TextInput::make('telegram_username')
                     ->label(__('filament-panels::resources.users.columns.telegram_username'))
                     ->placeholder('@telegram'),
                 TextInput::make('max_username')
                     ->label(__('filament-panels::resources.users.columns.max_username'))
-                    ->placeholder('@max_username'),
+                    ->placeholder('хеш')
+                    ->helperText('В МАКС-е это не имя пользователя а хеш'),
                 Select::make('department_id')
                     ->relationship('department', 'dep_name')
                     ->preload()

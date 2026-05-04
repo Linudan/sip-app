@@ -52,6 +52,8 @@ class UsersTable
                 TextColumn::make('phone')
                     ->label(__('filament-panels::resources.users.columns.phone'))
                     ->placeholder(__('filament-panels::resources.users.placeholder.phone'))
+                    ->color('primary')
+                    ->url(fn($record) => "tel:{$record->phone}")
                     ->sortable()
                     ->searchable()
                     ->toggleable(),
@@ -64,12 +66,18 @@ class UsersTable
                 TextColumn::make('telegram_username')
                     ->label(__('filament-panels::resources.users.columns.telegram_username'))
                     ->placeholder(__('filament-panels::resources.users.placeholder.telegram_username'))
+                    ->url(fn($record) => $record->telegram_username ? 'https://t.me/' . ltrim($record->telegram_username, '@') : null)
+                    ->color('primary')
+                    ->openUrlInNewTab()
                     ->sortable()
                     ->searchable()
                     ->toggleable(),
                 TextColumn::make('max_username')
                     ->label(__('filament-panels::resources.users.columns.max_username'))
                     ->placeholder(__('filament-panels::resources.users.placeholder.max_username'))
+                    ->url(fn($record) => $record->max_username ? 'https://max.ru/u/' . $record->max_username : null)
+                    ->color('primary')
+                    ->openUrlInNewTab()
                     ->sortable()
                     ->searchable()
                     ->toggleable(),

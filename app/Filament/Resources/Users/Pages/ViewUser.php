@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Resources\Users\Pages;
 
 use App\Filament\Resources\Users\UserResource;
@@ -49,12 +48,12 @@ class ViewUser extends ViewRecord
                             ->circular()
                             ->size(64)
                             ->placeholder('—')
-                            ->visible(fn ($record) => filled($record->avatar_url)),
+                            ->visible(fn($record) => filled($record->avatar_url)),
                         TextEntry::make('avatar_url')
                             ->label(__('filament-panels::resources.users.columns.avatar_url'))
                             ->badge()
                             ->color('gray')
-                            ->visible(fn ($record) => blank($record->avatar_url))
+                            ->visible(fn($record) => blank($record->avatar_url))
                             ->placeholder('—'),
                     ]),
 
@@ -66,12 +65,13 @@ class ViewUser extends ViewRecord
                         TextEntry::make('email')
                             ->label(__('filament-panels::resources.users.columns.email'))
                             ->icon('heroicon-o-envelope')
-                            ->url(fn ($record) => "mailto:{$record->email}")
+                            ->url(fn($record) => "mailto:{$record->email}")
                             ->placeholder('—'),
                         TextEntry::make('phone')
                             ->label(__('filament-panels::resources.users.columns.phone'))
                             ->icon('heroicon-o-phone')
-                            ->url(fn ($record) => "tel:{$record->phone}")
+                            ->url(fn($record) => "tel:{$record->phone}")
+                            ->color('primary')
                             ->placeholder('—'),
                         TextEntry::make('internal_phone')
                             ->label(__('filament-panels::resources.users.columns.internal_phone'))
@@ -80,12 +80,17 @@ class ViewUser extends ViewRecord
                         TextEntry::make('telegram_username')
                             ->label(__('filament-panels::resources.users.columns.telegram_username'))
                             ->icon('heroicon-o-chat-bubble-left-right')
-                            ->url(fn ($record) => "https://t.me/{$record->telegram_username}")
+                            ->url(fn($record) => "https://t.me/" . ltrim($record->telegram_username, '@'))
                             ->openUrlInNewTab()
+                            ->color('primary')
                             ->placeholder('—'),
                         TextEntry::make('max_username')
                             ->label(__('filament-panels::resources.users.columns.max_username'))
                             ->icon('heroicon-o-user-group')
+                            ->url(fn($record) => "https://max.ru/u/" . ltrim($record->max_username, '@')) // добавляем ссылку
+                            ->openUrlInNewTab()
+                            ->color('primary')
+                            ->helperText('В МАКС-е это не имя пользователя а хеш')
                             ->placeholder('—'),
                     ]),
 
@@ -118,7 +123,7 @@ class ViewUser extends ViewRecord
                         TextEntry::make('two_factor_secret')
                             ->label(__('filament-panels::resources.users.columns.two_factor_secret'))
                             ->limit(20)
-                            ->tooltip(fn ($state) => $state)
+                            ->tooltip(fn($state) => $state)
                             ->placeholder('—'),
                         TextEntry::make('two_factor_recovery_codes')
                             ->label(__('filament-panels::resources.users.columns.two_factor_recovery_codes'))
