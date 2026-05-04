@@ -88,9 +88,8 @@ class UsersTable
                     ->sortable()
                     ->searchable()
                     ->toggleable(),
-                TextColumn::make('position')
+                TextColumn::make('position.name')
                     ->label(__('filament-panels::resources.users.columns.position'))
-                    ->placeholder(__('filament-panels::resources.users.placeholder.position'))
                     ->sortable()
                     ->searchable()
                     ->toggleable(),

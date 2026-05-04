@@ -50,8 +50,12 @@ class UserForm
                     ->preload()
                     ->searchable()
                     ->label(__('filament-panels::resources.users.columns.department')),
-                TextInput::make('position')
-                    ->label(__('filament-panels::resources.users.columns.position')),
+                Select::make('position_id')
+                    ->label(__('filament-panels::resources.users.columns.position'))
+                    ->relationship('position', 'name')
+                    ->preload()
+                    ->searchable()
+                    ->nullable(),
                 TextInput::make('avatar_url')
                     ->label(__('filament-panels::resources.users.columns.avatar_url'))
                     ->helperText('Не меняйте если хотите использовать простой аватар'),

@@ -39,7 +39,7 @@ class ViewUser extends ViewRecord
                         TextEntry::make('patronymic')
                             ->label(__('filament-panels::resources.users.columns.patronymic'))
                             ->placeholder('—'),
-                        TextEntry::make('position')
+                        TextEntry::make('position.name')
                             ->label(__('filament-panels::resources.users.columns.position'))
                             ->placeholder('—'),
                         // Аватар – как изображение, если есть URL

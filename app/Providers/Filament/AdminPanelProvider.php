@@ -36,6 +36,8 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             // Включение режима SPA
             ->spa()
+            // Включение возможности складования панели навигации
+            ->sidebarCollapsibleOnDesktop()
             // Настройка шрифта, возможно изменить
             ->font("Montserrat")
             // Панель профиля (стандартная Filament)

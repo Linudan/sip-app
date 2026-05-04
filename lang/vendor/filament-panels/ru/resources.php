@@ -15,7 +15,7 @@ return [
             'description' => "Описание",
             'created_at'  => 'Дата создания',
             'updated_at'  => 'Дата редактирования',
-            'deleted_at'         => 'Дата удаления',
+            'deleted_at'  => 'Дата удаления',
         ],
 
         // Placeholders
@@ -24,7 +24,30 @@ return [
             'description' => "Описание",
             'created_at'  => 'Дата создания',
             'updated_at'  => 'Дата редактирования',
-            'deleted_at'         => 'Дата удаления',
+            'deleted_at'  => 'Дата удаления',
+        ],
+    ],
+
+    // Переводы для ресурса Positions (Должности)
+    "positions"            => [
+        'navigation_label' => "Должности",
+        'label'            => "Должность",
+        'plural_label'     => "Должности",
+        'singular_label'   => "Должность",
+        'table_title'      => "Таблица должностей",
+        "columns"          => [
+            'name'        => 'Название должности',
+            'description' => 'Описание',
+            'created_at'  => 'Дата создания',
+            'updated_at'  => 'Дата редактирования',
+            'deleted_at'  => 'Дата удаления',
+        ],
+        "placeholder"      => [
+            'name'        => 'Название должности',
+            'description' => 'Описание',
+            'created_at'  => 'Дата создания',
+            'updated_at'  => 'Дата редактирования',
+            'deleted_at'  => 'Дата удаления',
         ],
     ],
 
@@ -42,12 +65,12 @@ return [
             'patronymic'                => 'Отчество',
             'email'                     => 'Почта',
             'phone'                     => 'Телефон',
-            'internal_phone' => 'Внутренний телефон',
+            'internal_phone'            => 'Внутренний телефон',
             'telegram_username'         => 'Ник в телеграмме',
             'max_username'              => 'Ник в MAXe',
             'department'                => 'Отдел',
             'position'                  => 'Должность',
-            'avatar_url'        => 'Путь до фото профиля',
+            'avatar_url'                => 'Путь до фото профиля',
             'email_verified_at'         => 'Дата подтверждения почты',
             'password'                  => 'Пароль',
             'two_factor_secret'         => 'Код двухфакторной аутентификации',
@@ -56,7 +79,7 @@ return [
             'last_login_at'             => 'Дата последней авторизации',
             'created_at'                => 'Дата регистрации',
             'updated_at'                => 'Дата редактирования профиля',
-            'deleted_at' => 'Дата уделения',
+            'deleted_at'                => 'Дата уделения',
         ],
 
         // Placeholders
@@ -66,12 +89,12 @@ return [
             'patronymic'                => 'Отчество',
             'email'                     => 'Почта',
             'phone'                     => 'Телефон',
-            'internal_phone' => 'Внутренний телефон',
+            'internal_phone'            => 'Внутренний телефон',
             'telegram_username'         => 'Ник в телеграмме',
             'max_username'              => 'Ник в MAXe',
             'department'                => 'Отдел',
             'position'                  => 'Должность',
-            'avatar_url'        => 'Путь до фото профиля',
+            'avatar_url'                => 'Путь до фото профиля',
             'email_verified_at'         => 'Дата подтверждения почты',
             'password'                  => 'Пароль',
             'two_factor_secret'         => 'Код двухфакторной аутентификации',
@@ -83,24 +106,24 @@ return [
         ],
 
         // View Users Cards
-        "view_cards" => [
+        "view_cards"       => [
             'personal_information' => 'Личная информация',
-            'contacts' => 'Контакты',
-            'department' => 'Отдел',
-            'security' => 'Безопасность',
-            'activity' => 'Активность'
-        ]
+            'contacts'             => 'Контакты',
+            'department'           => 'Отдел',
+            'security'             => 'Безопасность',
+            'activity'             => 'Активность',
+        ],
     ],
 
     // Переводы для ресурса Equipments (Оборудование)
     "equipments"           => [
-        'navigation_label' => "Оборудование",
-        'label'            => "Оборудование",
-        'plural_label'     => "Оборудование",
-        'singular_label'   => "Оборудование",
-        'table_title'      => "Таблица оборудования",
+        'navigation_label'      => "Оборудование",
+        'label'                 => "Оборудование",
+        'plural_label'          => "Оборудование",
+        'singular_label'        => "Оборудование",
+        'table_title'           => "Таблица оборудования",
         // Перевод столбцов таблицы
-        "columns"          => [
+        "columns"               => [
             'deleted_at'         => 'Дата удаления',
             'category_name'      => "Категория",
             'name'               => 'Hазвание',
@@ -124,7 +147,7 @@ return [
         ],
 
         // Placeholders
-        "placeholder"      => [
+        "placeholder"           => [
             'deleted_at'         => 'Дата удаления',
             'category_name'      => "Категория",
             'name'               => 'Hазвание',
@@ -145,45 +168,45 @@ return [
             'updated_at'         => 'Дата редактирования',
         ],
 
-        "actions"          => [
+        "actions"               => [
             'assign' => 'Назначить пользователю',
             'return' => 'Вернуть на склад',
-            'open' => 'Открыть',
+            'open'   => 'Открыть',
         ],
 
-        "modals"           => [
+        "modals"                => [
             'assign_user' => 'Выберите пользователя',
         ],
 
-        "new_eq_widget" => [
-            'table_name' => 'Новое оборудование',
-            'name'               => 'Hаименование',
-            'inventory_number'   => 'Инвентарный номер',
-            'status'             => 'Статус',
-            'purchase_date'      => 'Дата покупки',
-            'empty' => 'Нет оборудования',
+        "new_eq_widget"         => [
+            'table_name'       => 'Новое оборудование',
+            'name'             => 'Hаименование',
+            'inventory_number' => 'Инвентарный номер',
+            'status'           => 'Статус',
+            'purchase_date'    => 'Дата покупки',
+            'empty'            => 'Нет оборудования',
         ],
 
-        "stat_widget" => [
-            'total' => 'Всего оборудования',
-            'total_desc' => 'Единиц техники',
-            'in_stock' => 'В наличии',
-            'in_stock_desc' => 'Свободное',
-            'in_use' => 'В использовании',
-            'in_use_desc' => 'Выдано пользователям',
-            'in_repair' => 'В ремонте',
-            'in_repair_desc' => 'Требует внимания',
-            'written_off' => 'Списано',
+        "stat_widget"           => [
+            'total'            => 'Всего оборудования',
+            'total_desc'       => 'Единиц техники',
+            'in_stock'         => 'В наличии',
+            'in_stock_desc'    => 'Свободное',
+            'in_use'           => 'В использовании',
+            'in_use_desc'      => 'Выдано пользователям',
+            'in_repair'        => 'В ремонте',
+            'in_repair_desc'   => 'Требует внимания',
+            'written_off'      => 'Списано',
             'written_off_desc' => 'Выведено из эксплуатации',
         ],
 
-        "messages"         => [
+        "messages"              => [
             'already_assigned' => 'Оборудование уже назначено другому пользователю!',
             'assigned_success' => 'Оборудование успешно назначено.',
             'returned_success' => 'Оборудование возвращено на склад.',
         ],
 
-        'enums'            => [
+        'enums'                 => [
             'status' => [
                 'in_use'      => 'Используется',
                 'in_stock'    => 'В наличии/на складе',
@@ -194,13 +217,13 @@ return [
 
         // View Equipments Cards
         "view_equipments_cards" => [
-            'basic_information' => 'Основная информация',
+            'basic_information'       => 'Основная информация',
             'detailed_specifications' => 'Подробные характеристики',
-            'location' => 'Местоположение',
-            'financial_data' => 'Финансовые данные',
-            'additionally' => 'Дополнительно',
-            'system_information' => 'Системная информация',
-        ]
+            'location'                => 'Местоположение',
+            'financial_data'          => 'Финансовые данные',
+            'additionally'            => 'Дополнительно',
+            'system_information'      => 'Системная информация',
+        ],
     ],
 
     // Переводы для ресурса Equipment Categories (Категории оборудования)
@@ -215,7 +238,7 @@ return [
         "columns"          => [
             'name'        => 'Название',
             'slug'        => 'URL-префикс',
-            'description'         => 'Описание',
+            'description' => 'Описание',
             'parent_name' => 'Родительская категория',
             'created_at'  => 'Дата создания',
             'updated_at'  => 'Дата редактирования',
@@ -225,7 +248,7 @@ return [
         "placeholder"      => [
             'name'        => 'Название',
             'slug'        => 'URL-префикс',
-            'description'         => 'Описание',
+            'description' => 'Описание',
             'parent_name' => 'Родительская категория',
             'created_at'  => 'Дата создания',
             'updated_at'  => 'Дата редактирования',
@@ -275,14 +298,14 @@ return [
 
     // Переводы для ресурса Tikets (Заявки)
     "tikets"               => [
-        'navigation_label' => "Заявки",
-        'label'            => "Заявки",
-        'plural_label'     => "Заявки",
-        'singular_label'   => "Заявка",
-        'table_title'      => "Таблица заявок",
+        'navigation_label'   => "Заявки",
+        'label'              => "Заявки",
+        'plural_label'       => "Заявки",
+        'singular_label'     => "Заявка",
+        'table_title'        => "Таблица заявок",
 
         // Перевод столбцов таблицы
-        "columns"          => [
+        "columns"            => [
             'deleted_at'          => 'Дата удаления',
             'ticket_number'       => 'Номер заявки',
             'user_name'           => 'Имя пользователя',
@@ -302,7 +325,7 @@ return [
         ],
 
         // Placeholders
-        "placeholder"      => [
+        "placeholder"        => [
             'deleted_at'          => 'Дата удаления',
             'ticket_number'       => 'Номер заявки',
             'user_name'           => 'Имя пользователя',
@@ -323,7 +346,7 @@ return [
         ],
 
         // Enums
-        'enums'            => [
+        'enums'              => [
             // Priority
             'priority' => [
                 'low'      => 'Низкий',
@@ -341,38 +364,38 @@ return [
             ],
         ],
 
-        "stat_widget" => [
-            'total' => 'Всего заявок',
-            'total_desc' => 'Общее количество',
-            'new' => 'Новые',
-            'new_desc' => 'Ожидают обработки',
-            'in_progress' => 'В работе',
+        "stat_widget"        => [
+            'total'            => 'Всего заявок',
+            'total_desc'       => 'Общее количество',
+            'new'              => 'Новые',
+            'new_desc'         => 'Ожидают обработки',
+            'in_progress'      => 'В работе',
             'in_progress_desc' => 'Активные заявки',
-            'resolved' => 'Решённые',
-            'resolved_desc' => 'Ожидают закрытия',
-            'closed' => 'Закрытые',
-            'closed_desc' => 'Завершённые',
+            'resolved'         => 'Решённые',
+            'resolved_desc'    => 'Ожидают закрытия',
+            'closed'           => 'Закрытые',
+            'closed_desc'      => 'Завершённые',
         ],
 
         "last_tikets_widget" => [
-            'table_name' => 'Последние поступившие заявки ',
-            'ticket_number'       => 'Номер заявки',
-            'title'               => 'Проблема',
-            'user_name'           => 'Пользователь',
-            'status'              => 'Статус',
-            'resolved_at'         => 'Создана',
+            'table_name'    => 'Последние поступившие заявки ',
+            'ticket_number' => 'Номер заявки',
+            'title'         => 'Проблема',
+            'user_name'     => 'Пользователь',
+            'status'        => 'Статус',
+            'resolved_at'   => 'Создана',
         ],
 
         // View Tikets Cards
-        "view_tikets_cards" => [
-            'basic_information' => 'Основная информация',
-            'descrption' => 'Описание',
+        "view_tikets_cards"  => [
+            'basic_information'  => 'Основная информация',
+            'descrption'         => 'Описание',
             'user_and_equipment' => 'Пользователь и оборудование',
-            'assigned_users' => 'Назначенные специалисты',
-            'communication' => 'Чаты и связь',
-            'time' => 'Временные метки',
-            'rating_and_review' => 'Рейтинг и отзыв',
-        ]
+            'assigned_users'     => 'Назначенные специалисты',
+            'communication'      => 'Чаты и связь',
+            'time'               => 'Временные метки',
+            'rating_and_review'  => 'Рейтинг и отзыв',
+        ],
 
     ],
 

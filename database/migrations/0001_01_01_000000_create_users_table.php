@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('telegram_username')->nullable();
             $table->string('max_username')->nullable();
             $table->unsignedBigInteger('department_id')->nullable();
-            $table->string('position')->nullable();
+            $table->foreignId('position_id')->nullable()->constrained('positions')->nullOnDelete();
             $table->string('avatar_url', 2048)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

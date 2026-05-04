@@ -38,7 +38,7 @@ class User extends Authenticatable
         'patronymic',
         'email',
         'department_id',
-        'position',
+        'position_id',
         'phone',
         'internal_phone',
         'telegram_username',
@@ -92,6 +92,11 @@ class User extends Authenticatable
     public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class);
+    }
+
+    public function position()
+    {
+        return $this->belongsTo(Position::class);
     }
 
     /**

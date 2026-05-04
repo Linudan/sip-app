@@ -13,14 +13,36 @@ return [
             'description' => "Descripción",
             'created_at'  => 'Creado el',
             'updated_at'  => 'Actualizado el',
-            'deleted_at'                => 'Eliminado el',
+            'deleted_at'  => 'Eliminado el',
         ],
         "placeholder"      => [
             'dep_name'    => "Departamento",
             'description' => "Descripción",
             'created_at'  => 'Creado el',
             'updated_at'  => 'Actualizado el',
-            'deleted_at'                => 'Eliminado el',
+            'deleted_at'  => 'Eliminado el',
+        ],
+    ],
+
+    "positions"            => [
+        'navigation_label' => "Cargos",
+        'label'            => "Cargo",
+        'plural_label'     => "Cargos",
+        'singular_label'   => "Cargo",
+        'table_title'      => "Tabla de cargos",
+        "columns"          => [
+            'name'        => 'Nombre del cargo',
+            'description' => 'Descripción',
+            'created_at'  => 'Creado el',
+            'updated_at'  => 'Actualizado el',
+            'deleted_at'  => 'Eliminado el',
+        ],
+        "placeholder"      => [
+            'name'        => 'Nombre del cargo',
+            'description' => 'Descripción',
+            'created_at'  => 'Creado el',
+            'updated_at'  => 'Actualizado el',
+            'deleted_at'  => 'Eliminado el',
         ],
     ],
 
@@ -73,7 +95,7 @@ return [
             'created_at'                => 'Registrado el',
             'updated_at'                => 'Perfil actualizado el',
         ],
-        "view_cards" => [
+        "view_cards"       => [
             'personal_information' => 'Información personal',
             'contacts'             => 'Contactos',
             'department'           => 'Departamento',
@@ -83,12 +105,12 @@ return [
     ],
 
     "equipments"           => [
-        'navigation_label' => "Equipos",
-        'label'            => "Equipo",
-        'plural_label'     => "Equipos",
-        'singular_label'   => "Equipo",
-        'table_title'      => "Tabla de equipos",
-        "columns"          => [
+        'navigation_label'      => "Equipos",
+        'label'                 => "Equipo",
+        'plural_label'          => "Equipos",
+        'singular_label'        => "Equipo",
+        'table_title'           => "Tabla de equipos",
+        "columns"               => [
             'deleted_at'         => 'Eliminado el',
             'category_name'      => "Categoría",
             'name'               => 'Nombre',
@@ -110,7 +132,7 @@ return [
             'created_at'         => 'Creado el',
             'updated_at'         => 'Actualizado el',
         ],
-        "placeholder"      => [
+        "placeholder"           => [
             'deleted_at'         => 'Eliminado el',
             'category_name'      => "Categoría",
             'name'               => 'Nombre',
@@ -130,15 +152,15 @@ return [
             'created_at'         => 'Creado el',
             'updated_at'         => 'Actualizado el',
         ],
-        "actions"          => [
+        "actions"               => [
             'assign' => 'Asignar a usuario',
             'return' => 'Devolver al almacén',
             'open'   => 'Abrir',
         ],
-        "modals"           => [
+        "modals"                => [
             'assign_user' => 'Seleccionar usuario',
         ],
-        "new_eq_widget" => [
+        "new_eq_widget"         => [
             'table_name'       => 'Equipos nuevos',
             'name'             => 'Nombre',
             'inventory_number' => 'Número de inventario',
@@ -146,7 +168,7 @@ return [
             'purchase_date'    => 'Fecha de compra',
             'empty'            => 'No hay equipos',
         ],
-        "stat_widget" => [
+        "stat_widget"           => [
             'total'            => 'Total de equipos',
             'total_desc'       => 'Unidades de equipo',
             'in_stock'         => 'En stock',
@@ -158,12 +180,12 @@ return [
             'written_off'      => 'Dado de baja',
             'written_off_desc' => 'Desincorporado',
         ],
-        "messages"         => [
+        "messages"              => [
             'already_assigned' => '¡El equipo ya está asignado a otro usuario!',
             'assigned_success' => 'Equipo asignado correctamente.',
             'returned_success' => 'Equipo devuelto al almacén.',
         ],
-        'enums'            => [
+        'enums'                 => [
             'status' => [
                 'in_use'      => 'En uso',
                 'in_stock'    => 'En stock',
@@ -172,12 +194,12 @@ return [
             ],
         ],
         "view_equipments_cards" => [
-            'basic_information'      => 'Información básica',
-            'detailed_specifications'=> 'Especificaciones detalladas',
-            'location'               => 'Ubicación',
-            'financial_data'         => 'Datos financieros',
-            'additionally'           => 'Adicional',
-            'system_information'     => 'Información del sistema',
+            'basic_information'       => 'Información básica',
+            'detailed_specifications' => 'Especificaciones detalladas',
+            'location'                => 'Ubicación',
+            'financial_data'          => 'Datos financieros',
+            'additionally'            => 'Adicional',
+            'system_information'      => 'Información del sistema',
         ],
     ],
 
@@ -239,12 +261,12 @@ return [
     ],
 
     "tikets"               => [
-        'navigation_label' => "Solicitudes",
-        'label'            => "Solicitud",
-        'plural_label'     => "Solicitudes",
-        'singular_label'   => "Solicitud",
-        'table_title'      => "Tabla de solicitudes",
-        "columns"          => [
+        'navigation_label'   => "Solicitudes",
+        'label'              => "Solicitud",
+        'plural_label'       => "Solicitudes",
+        'singular_label'     => "Solicitud",
+        'table_title'        => "Tabla de solicitudes",
+        "columns"            => [
             'deleted_at'          => 'Eliminado el',
             'ticket_number'       => 'Número de solicitud',
             'user_name'           => 'Nombre de usuario',
@@ -261,7 +283,7 @@ return [
             'created_at'          => 'Creado el',
             'updated_at'          => 'Actualizado el',
         ],
-        "placeholder"      => [
+        "placeholder"        => [
             'deleted_at'          => 'Eliminado el',
             'ticket_number'       => 'Número de solicitud',
             'user_name'           => 'Nombre de usuario',
@@ -280,7 +302,7 @@ return [
             'created_at'          => 'Creado el',
             'updated_at'          => 'Actualizado el',
         ],
-        'enums'            => [
+        'enums'              => [
             'priority' => [
                 'low'      => 'Baja',
                 'medium'   => 'Media',
@@ -296,7 +318,7 @@ return [
                 'cancelled'   => 'Cancelada',
             ],
         ],
-        "stat_widget" => [
+        "stat_widget"        => [
             'total'            => 'Total de solicitudes',
             'total_desc'       => 'Cantidad total',
             'new'              => 'Nuevas',
@@ -309,21 +331,21 @@ return [
             'closed_desc'      => 'Completadas',
         ],
         "last_tikets_widget" => [
-            'table_name'      => 'Últimas solicitudes',
-            'ticket_number'   => 'Número de solicitud',
-            'title'           => 'Problema',
-            'user_name'       => 'Usuario',
-            'status'          => 'Estado',
-            'resolved_at'     => 'Creada el',
+            'table_name'    => 'Últimas solicitudes',
+            'ticket_number' => 'Número de solicitud',
+            'title'         => 'Problema',
+            'user_name'     => 'Usuario',
+            'status'        => 'Estado',
+            'resolved_at'   => 'Creada el',
         ],
-        "view_tikets_cards" => [
-            'basic_information'    => 'Información básica',
-            'descrption'           => 'Descripción',
-            'user_and_equipment'   => 'Usuario y equipo',
-            'assigned_users'       => 'Especialistas asignados',
-            'communication'        => 'Chats y comunicación',
-            'time'                 => 'Marcas de tiempo',
-            'rating_and_review'    => 'Calificación y comentarios',
+        "view_tikets_cards"  => [
+            'basic_information'  => 'Información básica',
+            'descrption'         => 'Descripción',
+            'user_and_equipment' => 'Usuario y equipo',
+            'assigned_users'     => 'Especialistas asignados',
+            'communication'      => 'Chats y comunicación',
+            'time'               => 'Marcas de tiempo',
+            'rating_and_review'  => 'Calificación y comentarios',
         ],
     ],
 

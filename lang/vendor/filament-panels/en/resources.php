@@ -24,6 +24,28 @@ return [
         ],
     ],
 
+    "positions"            => [
+        'navigation_label' => "Positions",
+        'label'            => "Position",
+        'plural_label'     => "Positions",
+        'singular_label'   => "Position",
+        'table_title'      => "Positions table",
+        "columns"          => [
+            'name'        => 'Position name',
+            'description' => 'Description',
+            'created_at'  => 'Created at',
+            'updated_at'  => 'Updated at',
+            'deleted_at'  => 'Deleted at',
+        ],
+        "placeholder"      => [
+            'name'        => 'Position name',
+            'description' => 'Description',
+            'created_at'  => 'Created at',
+            'updated_at'  => 'Updated at',
+            'deleted_at'  => 'Deleted at',
+        ],
+    ],
+
     "users"                => [
         'navigation_label' => "Users",
         'label'            => "User",
