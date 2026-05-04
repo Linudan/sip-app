@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('dep_name')->unique();
             $table->text('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

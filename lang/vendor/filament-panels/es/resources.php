@@ -13,12 +13,14 @@ return [
             'description' => "Descripción",
             'created_at'  => 'Creado el',
             'updated_at'  => 'Actualizado el',
+            'deleted_at'                => 'Eliminado el',
         ],
         "placeholder"      => [
             'dep_name'    => "Departamento",
             'description' => "Descripción",
             'created_at'  => 'Creado el',
             'updated_at'  => 'Actualizado el',
+            'deleted_at'                => 'Eliminado el',
         ],
     ],
 

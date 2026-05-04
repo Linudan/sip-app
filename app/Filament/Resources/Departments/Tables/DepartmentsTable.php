@@ -4,8 +4,11 @@ namespace App\Filament\Resources\Departments\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
 class DepartmentsTable
@@ -15,6 +18,11 @@ class DepartmentsTable
         return $table
             ->striped()
             ->columns([
+                TextColumn::make('deleted_at')
+                    ->label(__('filament-panels::resources.departments.columns.deleted_at'))
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('dep_name')
                     ->label(__('filament-panels::resources.departments.columns.dep_name'))
                     ->placeholder(__('filament-panels::resources.departments.placeholder.dep_name'))
@@ -39,7 +47,7 @@ class DepartmentsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                TrashedFilter::make(),
             ])
             ->recordActions([
                 ViewAction::make()->slideOver(),
@@ -48,6 +56,8 @@ class DepartmentsTable
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    ForceDeleteBulkAction::make(),
+                    RestoreBulkAction::make(),
                 ]),
             ])
             ->recordAction('view')

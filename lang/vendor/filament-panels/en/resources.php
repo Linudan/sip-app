@@ -13,12 +13,14 @@ return [
             'description' => "Description",
             'created_at'  => 'Created at',
             'updated_at'  => 'Updated at',
+            'deleted_at'  => 'Deleted at',
         ],
         "placeholder"      => [
             'dep_name'    => "Department",
             'description' => "Description",
             'created_at'  => 'Created at',
             'updated_at'  => 'Updated at',
+            'deleted_at'  => 'Deleted at',
         ],
     ],
 
@@ -71,7 +73,7 @@ return [
             'created_at'                => 'Registered at',
             'updated_at'                => 'Profile updated at',
         ],
-        "view_cards" => [
+        "view_cards"       => [
             'personal_information' => 'Personal information',
             'contacts'             => 'Contacts',
             'department'           => 'Department',
@@ -81,12 +83,12 @@ return [
     ],
 
     "equipments"           => [
-        'navigation_label' => "Equipment",
-        'label'            => "Equipment",
-        'plural_label'     => "Equipment",
-        'singular_label'   => "Equipment",
-        'table_title'      => "Equipment table",
-        "columns"          => [
+        'navigation_label'      => "Equipment",
+        'label'                 => "Equipment",
+        'plural_label'          => "Equipment",
+        'singular_label'        => "Equipment",
+        'table_title'           => "Equipment table",
+        "columns"               => [
             'deleted_at'         => 'Deleted at',
             'category_name'      => "Category",
             'name'               => 'Name',
@@ -108,7 +110,7 @@ return [
             'created_at'         => 'Created at',
             'updated_at'         => 'Updated at',
         ],
-        "placeholder"      => [
+        "placeholder"           => [
             'deleted_at'         => 'Deleted at',
             'category_name'      => "Category",
             'name'               => 'Name',
@@ -128,15 +130,15 @@ return [
             'created_at'         => 'Created at',
             'updated_at'         => 'Updated at',
         ],
-        "actions"          => [
+        "actions"               => [
             'assign' => 'Assign to user',
             'return' => 'Return to stock',
             'open'   => 'Open',
         ],
-        "modals"           => [
+        "modals"                => [
             'assign_user' => 'Select user',
         ],
-        "new_eq_widget" => [
+        "new_eq_widget"         => [
             'table_name'       => 'New equipment',
             'name'             => 'Name',
             'inventory_number' => 'Inventory number',
@@ -144,7 +146,7 @@ return [
             'purchase_date'    => 'Purchase date',
             'empty'            => 'No equipment',
         ],
-        "stat_widget" => [
+        "stat_widget"           => [
             'total'            => 'Total equipment',
             'total_desc'       => 'Units of equipment',
             'in_stock'         => 'In stock',
@@ -156,12 +158,12 @@ return [
             'written_off'      => 'Written off',
             'written_off_desc' => 'Decommissioned',
         ],
-        "messages"         => [
+        "messages"              => [
             'already_assigned' => 'Equipment is already assigned to another user!',
             'assigned_success' => 'Equipment successfully assigned.',
             'returned_success' => 'Equipment returned to stock.',
         ],
-        'enums'            => [
+        'enums'                 => [
             'status' => [
                 'in_use'      => 'In use',
                 'in_stock'    => 'In stock',
@@ -170,12 +172,12 @@ return [
             ],
         ],
         "view_equipments_cards" => [
-            'basic_information'      => 'Basic information',
-            'detailed_specifications'=> 'Detailed specifications',
-            'location'               => 'Location',
-            'financial_data'         => 'Financial data',
-            'additionally'           => 'Additional',
-            'system_information'     => 'System information',
+            'basic_information'       => 'Basic information',
+            'detailed_specifications' => 'Detailed specifications',
+            'location'                => 'Location',
+            'financial_data'          => 'Financial data',
+            'additionally'            => 'Additional',
+            'system_information'      => 'System information',
         ],
     ],
 
@@ -237,12 +239,12 @@ return [
     ],
 
     "tikets"               => [
-        'navigation_label' => "Tickets",
-        'label'            => "Ticket",
-        'plural_label'     => "Tickets",
-        'singular_label'   => "Ticket",
-        'table_title'      => "Tickets table",
-        "columns"          => [
+        'navigation_label'   => "Tickets",
+        'label'              => "Ticket",
+        'plural_label'       => "Tickets",
+        'singular_label'     => "Ticket",
+        'table_title'        => "Tickets table",
+        "columns"            => [
             'deleted_at'          => 'Deleted at',
             'ticket_number'       => 'Ticket number',
             'user_name'           => 'User name',
@@ -259,7 +261,7 @@ return [
             'created_at'          => 'Created at',
             'updated_at'          => 'Updated at',
         ],
-        "placeholder"      => [
+        "placeholder"        => [
             'deleted_at'          => 'Deleted at',
             'ticket_number'       => 'Ticket number',
             'user_name'           => 'User name',
@@ -278,7 +280,7 @@ return [
             'created_at'          => 'Created at',
             'updated_at'          => 'Updated at',
         ],
-        'enums'            => [
+        'enums'              => [
             'priority' => [
                 'low'      => 'Low',
                 'medium'   => 'Medium',
@@ -294,7 +296,7 @@ return [
                 'cancelled'   => 'Cancelled',
             ],
         ],
-        "stat_widget" => [
+        "stat_widget"        => [
             'total'            => 'Total tickets',
             'total_desc'       => 'Total count',
             'new'              => 'New',
@@ -307,21 +309,21 @@ return [
             'closed_desc'      => 'Completed',
         ],
         "last_tikets_widget" => [
-            'table_name'      => 'Latest tickets',
-            'ticket_number'   => 'Ticket number',
-            'title'           => 'Issue',
-            'user_name'       => 'User',
-            'status'          => 'Status',
-            'resolved_at'     => 'Created at',
+            'table_name'    => 'Latest tickets',
+            'ticket_number' => 'Ticket number',
+            'title'         => 'Issue',
+            'user_name'     => 'User',
+            'status'        => 'Status',
+            'resolved_at'   => 'Created at',
         ],
-        "view_tikets_cards" => [
-            'basic_information'    => 'Basic information',
-            'descrption'           => 'Description',
-            'user_and_equipment'   => 'User and equipment',
-            'assigned_users'       => 'Assigned specialists',
-            'communication'        => 'Chats & communication',
-            'time'                 => 'Timestamps',
-            'rating_and_review'    => 'Rating and review',
+        "view_tikets_cards"  => [
+            'basic_information'  => 'Basic information',
+            'descrption'         => 'Description',
+            'user_and_equipment' => 'User and equipment',
+            'assigned_users'     => 'Assigned specialists',
+            'communication'      => 'Chats & communication',
+            'time'               => 'Timestamps',
+            'rating_and_review'  => 'Rating and review',
         ],
     ],
 

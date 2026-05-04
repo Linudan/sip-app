@@ -15,6 +15,7 @@ return [
             'description' => "Описание",
             'created_at'  => 'Дата создания',
             'updated_at'  => 'Дата редактирования',
+            'deleted_at'         => 'Дата удаления',
         ],
 
         // Placeholders
@@ -23,6 +24,7 @@ return [
             'description' => "Описание",
             'created_at'  => 'Дата создания',
             'updated_at'  => 'Дата редактирования',
+            'deleted_at'         => 'Дата удаления',
         ],
     ],
 
