@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Livewire\MyPersonalInfo;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -19,7 +20,6 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
-
 
 class UserPanelProvider extends PanelProvider
 {
@@ -60,6 +60,9 @@ class UserPanelProvider extends PanelProvider
             ->plugins([
                 // Плагин для авторизации и регистрации
                 BreezyCore::make()
+                    ->myProfileComponents([
+                        'personal_info' => MyPersonalInfo::class,
+                    ])
                     ->myProfile(
                         // пункт "Профиль" в меню пользователя
                         shouldRegisterUserMenu: true,
@@ -70,8 +73,11 @@ class UserPanelProvider extends PanelProvider
                         // префикс
                         // slug: 'profile'
                     )
+                    // Включение сессий
+                    ->enableBrowserSessions()
                     // Требование к двухфакторной аутентификации
                     ->enableTwoFactorAuthentication(force: false)
+
             ])
             ->middleware([
                 EncryptCookies::class,

@@ -66,6 +66,7 @@ class AdminPanelProvider extends PanelProvider
             ->plugins([
                 BreezyCore::make()
                     ->myProfile(shouldRegisterNavigation: false)
+                    ->enableBrowserSessions()
                     ->enableTwoFactorAuthentication(false)
             ])
             ->middleware([
