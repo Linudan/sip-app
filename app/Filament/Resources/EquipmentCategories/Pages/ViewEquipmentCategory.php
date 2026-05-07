@@ -1,5 +1,5 @@
 <?php
-namespace App\Filament\Resources\Departments\Pages;
+namespace App\Filament\Resources\EquipmentCategories\Pages;
 
 use App\Filament\Resources\EquipmentCategories\EquipmentCategoryResource;
 use Filament\Actions;

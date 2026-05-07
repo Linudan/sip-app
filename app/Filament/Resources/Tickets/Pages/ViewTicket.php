@@ -1,5 +1,5 @@
 <?php
-namespace App\Filament\Resources\Departments\Pages;
+namespace App\Filament\Resources\Tickets\Pages;
 
 use App\Filament\Resources\Tickets\TicketResource;
 use Filament\Actions;
