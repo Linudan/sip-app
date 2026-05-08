@@ -64,11 +64,6 @@ class TicketForm
                         'cancelled'   => __('filament-panels::resources.tikets.enums.status.cancelled'),
                     ])
                     ->default('new'),
-                TextInput::make('telegram_chat_link')
-                    ->label(__('filament-panels::resources.tikets.placeholder.telegram_chat_link'))
-                    ->tel(),
-                TextInput::make('max_chat_link')
-                    ->label(__('filament-panels::resources.tikets.placeholder.max_chat_link')),
                 DateTimePicker::make('resolved_at')
                     ->disabled()
                     ->label(__('filament-panels::resources.tikets.placeholder.resolved_at')),

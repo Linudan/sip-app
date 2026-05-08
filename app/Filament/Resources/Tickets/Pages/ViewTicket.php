@@ -121,26 +121,7 @@ class ViewTicket extends ViewRecord
                             ->columnSpanFull(),
                     ]),
 
-                // Карточка 5: Ссылки на чаты
-                Section::make(__('filament-panels::resources.tikets.view_tikets_cards.communication'))
-                    ->icon('heroicon-o-chat-bubble-left-right')
-                    ->collapsible()
-                    ->compact()
-                    ->columns(2)
-                    ->schema([
-                        TextEntry::make('telegram_chat_link')
-                            ->label(__('filament-panels::resources.tikets.columns.telegram_chat_link'))
-                            ->url(fn($state) => $state)
-                            ->openUrlInNewTab()
-                            ->placeholder('—'),
-                        TextEntry::make('max_chat_link')
-                            ->label(__('filament-panels::resources.tikets.columns.max_chat_link'))
-                            ->url(fn($state) => $state)
-                            ->openUrlInNewTab()
-                            ->placeholder('—'),
-                    ]),
-
-                // Карточка 6: Временные метки и завершение
+                // Карточка 5: Временные метки и завершение
                 Section::make(__('filament-panels::resources.tikets.view_tikets_cards.time'))
                     ->icon('heroicon-o-calendar')
                     ->collapsible()
@@ -163,7 +144,7 @@ class ViewTicket extends ViewRecord
                             ->dateTime('d.m.Y H:i'),
                     ]),
 
-                // Карточка 7: Рейтинг и отзыв
+                // Карточка 6: Рейтинг и отзыв
                 Section::make(__('filament-panels::resources.tikets.view_tikets_cards.rating_and_review'))
                     ->icon('heroicon-o-star')
                     ->collapsible()

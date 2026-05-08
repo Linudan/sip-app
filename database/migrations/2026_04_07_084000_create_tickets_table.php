@@ -19,8 +19,6 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->enum('priority', ['low', 'medium', 'high', 'critical'])->default('medium');
             $table->enum('status', ['new', 'in_progress', 'pending', 'resolved', 'closed', 'cancelled'])->default('new');
-            $table->string('telegram_chat_link')->nullable();
-            $table->string('max_chat_link')->nullable();
             $table->timestamp('resolved_at')->nullable();
             $table->timestamp('closed_at')->nullable();
             $table->unsignedTinyInteger('user_rating')->nullable(); // 1-5

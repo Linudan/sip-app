@@ -34,7 +34,7 @@ class UserPanelProvider extends PanelProvider
             // Включение режима SPA
             ->spa()
             // Настройка шрифта, возможно изменить
-            ->font("Montserrat")
+            ->font("IBM Plex Sans")
             // явный домашний URL
             ->homeUrl('/user-panel')
             // Cтраница входа Breezy
@@ -47,7 +47,7 @@ class UserPanelProvider extends PanelProvider
             ->emailVerification()
             // Настройка цветов
             ->colors([
-                'primary' => Color::Green,
+                'primary' => Color::Emerald,
             ])
             ->discoverResources(in: app_path('Filament/User/Resources'), for: 'App\Filament\User\Resources')
             ->discoverPages(in: app_path('Filament/User/Pages'), for: 'App\Filament\User\Pages')

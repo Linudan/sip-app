@@ -33,14 +33,14 @@ class MyTicketForm
                     ->label(__('filament-panels::user-panel.my_tickets.form.title'))
                     ->required()
                     ->maxLength(255),
-                Textarea::make('description')
-                    ->label(__('filament-panels::user-panel.my_tickets.form.description'))
-                    ->rows(5),
                 Select::make('category_id')
                     ->label(__('filament-panels::user-panel.my_tickets.form.category_id'))
                     ->options(TicketCategory::pluck('name', 'id'))
                     ->required()
                     ->searchable(),
+                Textarea::make('description')
+                    ->label(__('filament-panels::user-panel.my_tickets.form.description'))
+                    ->rows(5),
                 Select::make('equipment_item_id')
                     ->label(__('filament-panels::user-panel.my_tickets.form.equipment_item_id'))
                     ->options($equipmentQuery->pluck('name', 'id'))
@@ -56,14 +56,6 @@ class MyTicketForm
                     ])
                     ->default('medium')
                     ->required(),
-                TextInput::make('telegram_chat_link')
-                    ->label(__('filament-panels::user-panel.my_tickets.form.telegram_chat_link'))
-                    ->url()
-                    ->nullable(),
-                TextInput::make('max_chat_link')
-                    ->label(__('filament-panels::user-panel.my_tickets.form.max_chat_link'))
-                    ->url()
-                    ->nullable(),
             ]);
     }
 }

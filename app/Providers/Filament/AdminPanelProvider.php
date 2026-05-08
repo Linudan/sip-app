@@ -39,7 +39,7 @@ class AdminPanelProvider extends PanelProvider
             // Включение возможности складования панели навигации
             ->sidebarCollapsibleOnDesktop()
             // Настройка шрифта, возможно изменить
-            ->font("Montserrat")
+            ->font("IBM Plex Sans")
             // Панель профиля (стандартная Filament)
             ->profile()
             // явный домашний URL

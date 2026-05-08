@@ -94,16 +94,6 @@ class TicketsTable
                     ->sortable()
                     ->searchable()
                     ->toggleable(),
-                TextColumn::make('telegram_chat_link')
-                    ->label(__('filament-panels::resources.tikets.columns.telegram_chat_link'))
-                    ->placeholder(__('filament-panels::resources.tikets.placeholder.telegram_chat_link'))
-                    ->toggleable()
-                    ->searchable(),
-                TextColumn::make('max_chat_link')
-                    ->label(__('filament-panels::resources.tikets.columns.max_chat_link'))
-                    ->placeholder(__('filament-panels::resources.tikets.placeholder.max_chat_link'))
-                    ->toggleable()
-                    ->searchable(),
                 TextColumn::make('resolved_at')
                     ->label(__('filament-panels::resources.tikets.columns.resolved_at'))
                     ->placeholder(__('filament-panels::resources.tikets.placeholder.resolved_at'))
