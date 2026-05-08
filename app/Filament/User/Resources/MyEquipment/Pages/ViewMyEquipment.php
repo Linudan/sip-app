@@ -14,39 +14,38 @@ class ViewMyEquipment extends ViewRecord
 
     protected function getHeaderActions(): array
     {
-        return [
-            // Никаких действий — только просмотр
-        ];
+        return [];
     }
 
     public function infolist(Schema $schema): Schema
     {
         return $schema
             ->schema([
-                Section::make('Основная информация')
+                Section::make(__('filament-panels::user-panel.my_equipment.view.basic_info'))
                     ->columns(2)
                     ->schema([
                         TextEntry::make('category.name')
-                            ->label('Категория')
+                            ->label(__('filament-panels::user-panel.my_equipment.table.category'))
                             ->placeholder('—'),
                         TextEntry::make('name')
-                            ->label('Наименование')
+                            ->label(__('filament-panels::user-panel.my_equipment.table.name'))
                             ->placeholder('—'),
                         TextEntry::make('inventory_number')
-                            ->label('Инвентарный номер')
+                            ->label(__('filament-panels::user-panel.my_equipment.table.inventory_number'))
                             ->placeholder('—'),
                         TextEntry::make('serial_number')
-                            ->label('Серийный номер')
+                            ->label(__('filament-panels::user-panel.my_equipment.table.serial_number'))
                             ->placeholder('—'),
                         TextEntry::make('manufacturer')
-                            ->label('Производитель')
+                            ->label(__('filament-panels::user-panel.my_equipment.table.manufacturer'))
                             ->placeholder('—'),
                         TextEntry::make('model')
-                            ->label('Модель')
+                            ->label(__('filament-panels::user-panel.my_equipment.table.model'))
                             ->placeholder('—'),
                         TextEntry::make('status')
-                            ->label('Статус')
+                            ->label(__('filament-panels::user-panel.my_equipment.table.status'))
                             ->badge()
+                            ->formatStateUsing(fn(string $state): string => __("filament-panels::user-panel.statuses.{$state}"))
                             ->color(fn(string $state): string => match ($state) {
                                 'in_use'      => 'success',
                                 'in_stock'    => 'gray',
@@ -54,20 +53,20 @@ class ViewMyEquipment extends ViewRecord
                                 'written_off' => 'danger',
                             }),
                     ]),
-                Section::make('Местоположение')
+                Section::make(__('filament-panels::user-panel.my_equipment.view.location'))
                     ->columns(2)
                     ->schema([
                         TextEntry::make('currentUser.full_name_with_initials')
-                            ->label('Текущий пользователь')
+                            ->label(__('filament-panels::user-panel.my_equipment.view.current_user'))
                             ->placeholder('—'),
                         TextEntry::make('currentDepartment.dep_name')
-                            ->label('Отдел')
+                            ->label(__('filament-panels::user-panel.my_equipment.view.department'))
                             ->placeholder('—'),
                     ]),
-                Section::make('Дополнительно')
+                Section::make(__('filament-panels::user-panel.my_equipment.view.additional'))
                     ->schema([
                         TextEntry::make('notes')
-                            ->label('Примечания')
+                            ->label(__('filament-panels::user-panel.my_equipment.view.notes'))
                             ->markdown()
                             ->placeholder('—'),
                     ]),

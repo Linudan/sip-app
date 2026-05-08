@@ -2,6 +2,9 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\User\Widgets\UserInfoWidget;
+use App\Filament\User\Widgets\UserLatestTicketsWidget;
+use App\Filament\User\Widgets\UserTicketStatsWidget;
 use App\Livewire\MyPersonalInfo;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -55,6 +58,8 @@ class UserPanelProvider extends PanelProvider
             ->widgets([
                 AccountWidget::class,
                 FilamentInfoWidget::class,
+                UserTicketStatsWidget::class,
+                UserLatestTicketsWidget::class,
             ])
             // Подключение плагинов
             ->plugins([

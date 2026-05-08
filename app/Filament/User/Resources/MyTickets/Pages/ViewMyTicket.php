@@ -21,21 +21,22 @@ class ViewMyTicket extends ViewRecord
     {
         return $schema
             ->schema([
-                Section::make('Информация о заявке')
+                Section::make(__('filament-panels::user-panel.my_tickets.view.ticket_info'))
                     ->columns(2)
                     ->schema([
                         TextEntry::make('ticket_number')
-                            ->label('Номер заявки')
+                            ->label(__('filament-panels::user-panel.my_tickets.table.ticket_number'))
                             ->placeholder('—'),
                         TextEntry::make('title')
-                            ->label('Тема')
+                            ->label(__('filament-panels::user-panel.my_tickets.table.title'))
                             ->placeholder('—'),
                         TextEntry::make('category.name')
-                            ->label('Категория')
+                            ->label(__('filament-panels::user-panel.my_tickets.table.category'))
                             ->placeholder('—'),
                         TextEntry::make('priority')
-                            ->label('Приоритет')
+                            ->label(__('filament-panels::user-panel.my_tickets.table.priority'))
                             ->badge()
+                            ->formatStateUsing(fn(string $state): string => __("filament-panels::user-panel.priorities.{$state}"))
                             ->color(fn(string $state): string => match ($state) {
                                 'low'      => 'gray',
                                 'medium'   => 'info',
@@ -43,8 +44,9 @@ class ViewMyTicket extends ViewRecord
                                 'critical' => 'danger',
                             }),
                         TextEntry::make('status')
-                            ->label('Статус')
+                            ->label(__('filament-panels::user-panel.my_tickets.table.status'))
                             ->badge()
+                            ->formatStateUsing(fn(string $state): string => __("filament-panels::user-panel.statuses.{$state}"))
                             ->color(fn(string $state): string => match ($state) {
                                 'new'         => 'gray',
                                 'in_progress' => 'info',
@@ -54,39 +56,39 @@ class ViewMyTicket extends ViewRecord
                                 'cancelled'   => 'danger',
                             }),
                         TextEntry::make('created_at')
-                            ->label('Создана')
+                            ->label(__('filament-panels::user-panel.my_tickets.view.created_at'))
                             ->dateTime('d.m.Y H:i')
                             ->placeholder('—'),
                         TextEntry::make('resolved_at')
-                            ->label('Решена')
+                            ->label(__('filament-panels::user-panel.my_tickets.view.resolved_at'))
                             ->dateTime('d.m.Y H:i')
                             ->placeholder('—'),
                         TextEntry::make('closed_at')
-                            ->label('Закрыта')
+                            ->label(__('filament-panels::user-panel.my_tickets.view.closed_at'))
                             ->dateTime('d.m.Y H:i')
                             ->placeholder('—'),
                     ]),
-                Section::make('Описание')
+                Section::make(__('filament-panels::user-panel.my_tickets.view.description'))
                     ->schema([
                         TextEntry::make('description')
                             ->label('')
                             ->markdown()
                             ->placeholder('—'),
                     ]),
-                Section::make('Оборудование')
+                Section::make(__('filament-panels::user-panel.my_tickets.view.equipment'))
                     ->schema([
                         TextEntry::make('equipmentItem.name')
-                            ->label('Оборудование')
+                            ->label(__('filament-panels::user-panel.my_tickets.form.equipment_item_id'))
                             ->placeholder('Не указано'),
                     ]),
-                Section::make('Обратная связь')
+                Section::make(__('filament-panels::user-panel.my_tickets.view.feedback'))
                     ->columns(2)
                     ->schema([
                         TextEntry::make('user_rating')
-                            ->label('Оценка')
+                            ->label(__('filament-panels::user-panel.my_tickets.view.rating'))
                             ->formatStateUsing(fn($state) => $state ? str_repeat('★', $state) . str_repeat('☆', 5 - $state) : '—'),
                         TextEntry::make('user_feedback')
-                            ->label('Отзыв')
+                            ->label(__('filament-panels::user-panel.my_tickets.view.review'))
                             ->markdown()
                             ->placeholder('—'),
                     ]),

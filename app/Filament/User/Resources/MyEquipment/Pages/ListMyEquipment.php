@@ -13,7 +13,6 @@ class ListMyEquipment extends ListRecords
 {
     protected static string $resource = MyEquipmentResource::class;
 
-    // Убираем кнопку "Создать"
     protected function getHeaderActions(): array
     {
         return [];
@@ -25,10 +24,10 @@ class ListMyEquipment extends ListRecords
         $departmentId = Auth::user()->department_id;
 
         return [
-            'my' => Tab::make('Моё оборудование')
+            'my' => Tab::make(__('filament-panels::user-panel.my_equipment.tabs.my'))
                 ->modifyQueryUsing(fn(Builder $query) => $query->where('current_user_id', $userId))
                 ->badge(EquipmentItem::where('current_user_id', $userId)->count()),
-            'department' => Tab::make('Оборудование отдела')
+            'department' => Tab::make(__('filament-panels::user-panel.my_equipment.tabs.department'))
                 ->modifyQueryUsing(fn(Builder $query) => $query
                     ->where('current_department_id', $departmentId)
                     ->whereNull('current_user_id')

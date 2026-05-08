@@ -18,13 +18,21 @@ class MyEquipmentResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ComputerDesktop;
 
-    protected static ?string $navigationLabel = 'Оборудование';
+        public static function getNavigationLabel(): string
+    {
+        return __('filament-panels::user-panel.my_equipment.navigation_label');
+    }
 
-    protected static ?string $pluralLabel = 'Оборудование';
+    public static function getPluralLabel(): string
+    {
+        return __('filament-panels::user-panel.my_equipment.plural_label');
+    }
 
-    protected static ?string $slug = 'my-equipment';
+    public static function getSingularLabel(): string
+    {
+        return __('filament-panels::user-panel.my_equipment.singular_label');
+    }
 
-    // Запрещаем создание и редактирование
     public static function canCreate(): bool
     {
         return false;
@@ -35,7 +43,6 @@ class MyEquipmentResource extends Resource
         return false;
     }
 
-    // Глобальный фильтр: только своё оборудование и оборудование отдела без пользователя
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()

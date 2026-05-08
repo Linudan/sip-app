@@ -13,24 +13,25 @@ class MyTicketsTable
         return $table
             ->columns([
                 TextColumn::make('ticket_number')
-                    ->label('Номер')
+                    ->label(__('filament-panels::user-panel.my_tickets.table.ticket_number'))
                     ->searchable(),
                 TextColumn::make('title')
-                    ->label('Тема')
+                    ->label(__('filament-panels::user-panel.my_tickets.table.title'))
                     ->searchable(),
                 TextColumn::make('category.name')
-                    ->label('Категория'),
+                    ->label(__('filament-panels::user-panel.my_tickets.table.category')),
                 TextColumn::make('priority')
-                    ->label('Приоритет')
+                    ->label(__('filament-panels::user-panel.my_tickets.table.priority'))
                     ->badge()
                     ->color(fn(string $state): string => match ($state) {
                         'low'      => 'gray',
                         'medium'   => 'info',
                         'high'     => 'warning',
                         'critical' => 'danger',
-                    }),
+                    })
+                    ->formatStateUsing(fn(string $state): string => __("filament-panels::user-panel.priorities.{$state}")),
                 TextColumn::make('status')
-                    ->label('Статус')
+                    ->label(__('filament-panels::user-panel.my_tickets.table.status'))
                     ->badge()
                     ->color(fn(string $state): string => match ($state) {
                         'new'         => 'gray',
@@ -39,9 +40,10 @@ class MyTicketsTable
                         'resolved'    => 'success',
                         'closed'      => 'success',
                         'cancelled'   => 'danger',
-                    }),
+                    })
+                    ->formatStateUsing(fn(string $state): string => __("filament-panels::user-panel.statuses.{$state}")),
                 TextColumn::make('created_at')
-                    ->label('Создана')
+                    ->label(__('filament-panels::user-panel.my_tickets.table.created_at'))
                     ->dateTime('d.m.Y H:i'),
             ])
             ->filters([])
