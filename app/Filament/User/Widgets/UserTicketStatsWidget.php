@@ -30,17 +30,21 @@ class UserTicketStatsWidget extends BaseWidget
 
         return [
             Stat::make(__('filament-panels::user-panel.widgets.ticket_stats.total'), $total)
-                ->color('primary')
-                ->descriptionIcon('heroicon-m-document-text'),
+                ->description(__('filament-panels::user-panel.widgets.ticket_stats.total_desc'))
+                ->descriptionIcon('heroicon-m-document-text')
+                ->color('primary'),
             Stat::make(__('filament-panels::user-panel.widgets.ticket_stats.active'), $active)
-                ->color('warning')
-                ->descriptionIcon('heroicon-m-clock'),
+                ->description(__('filament-panels::user-panel.widgets.ticket_stats.active_desc'))
+                ->descriptionIcon('heroicon-m-clock')
+                ->color('warning'),
             Stat::make(__('filament-panels::user-panel.widgets.ticket_stats.resolved'), $resolved)
-                ->color('success')
-                ->descriptionIcon('heroicon-m-check-circle'),
+                ->description(__('filament-panels::user-panel.widgets.ticket_stats.resolved_desc'))
+                ->descriptionIcon('heroicon-m-check-circle')
+                ->color('success'),
             Stat::make(__('filament-panels::user-panel.widgets.ticket_stats.closed'), $closed)
-                ->color('gray')
-                ->descriptionIcon('heroicon-m-archive-box'),
+                ->description(__('filament-panels::user-panel.widgets.ticket_stats.closed_desc'))
+                ->descriptionIcon('heroicon-m-archive-box')
+                ->color('danger'),
         ];
     }
 }

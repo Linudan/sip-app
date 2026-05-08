@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Filament\User\Widgets;
 
 use App\Models\Ticket;
 use Filament\Actions\Action;
-use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget as BaseWidget;
@@ -12,21 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 class UserLatestTicketsWidget extends BaseWidget
 {
-    protected static ?int $sort = 2;
+    protected static ?int $sort                = 2;
     protected int|string|array $columnSpan = 'full';
 
-    // Добавляем кнопку в заголовок виджета
-    protected function getHeaderActions(): array
+    // Явно задаём заголовок (можно оставить и через heading в table, но так надёжнее)
+    protected function getHeading(): ?string
     {
-        return [
-            Action::make('create')
-                ->label(__('filament-panels::user-panel.my_tickets.actions.create'))
-                ->url(route('filament.user.resources.my-tickets.create'))
-                ->icon('heroicon-o-plus')
-                ->color('primary'),
-        ];
+        return __('filament-panels::user-panel.widgets.latest_tickets.title');
     }
-
 
     public function table(Table $table): Table
     {
@@ -72,12 +63,19 @@ class UserLatestTicketsWidget extends BaseWidget
             ])
             ->actions([
                 Action::make('view')
-                    ->label('Открыть')
+                    ->label(__('filament-panels::user-panel.widgets.latest_tickets.actions.view'))
                     ->url(fn(Ticket $record): string => route('filament.user.resources.my-tickets.view', $record))
                     ->icon('heroicon-o-eye')
                     ->openUrlInNewTab(false),
             ])
-            ->heading(__('filament-panels::user-panel.widgets.latest_tickets.title'))
+            ->headerActions([
+                Action::make('create')
+                    ->label(__('filament-panels::user-panel.my_tickets.actions.create'))
+                    ->url(route('filament.user.resources.my-tickets.create'))
+                    ->icon('heroicon-o-plus')
+                    ->color('primary'),
+            ])
+            ->heading(__('filament-panels::user-panel.widgets.latest_tickets.title')) // можно убрать, если используем getHeading
             ->emptyStateHeading(__('filament-panels::user-panel.widgets.latest_tickets.empty_message'));
     }
 }
