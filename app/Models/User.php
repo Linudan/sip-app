@@ -126,6 +126,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Оборудование, закреплённое за пользователем.
+     */
+    public function equipmentItems(): HasMany
+    {
+        return $this->hasMany(EquipmentItem::class, 'current_user_id');
+    }
+
+    /**
      * Вложения, загруженные пользователем.
      */
     public function uploadedAttachments(): HasMany

@@ -1,6 +1,9 @@
 <?php
 namespace App\Filament\Resources\Users;
 
+use App\Filament\Resources\UserResource\RelationManagers\AssignedTicketsRelationManager;
+use App\Filament\Resources\UserResource\RelationManagers\EquipmentItemsRelationManager;
+use App\Filament\Resources\UserResource\RelationManagers\TicketsRelationManager;
 use App\Filament\Resources\Users\Pages\CreateUser;
 use App\Filament\Resources\Users\Pages\EditUser;
 use App\Filament\Resources\Users\Pages\ListUsers;
@@ -83,7 +86,8 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-
+            EquipmentItemsRelationManager::class,
+            TicketsRelationManager::class,
         ];
     }
 

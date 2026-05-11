@@ -22,6 +22,16 @@ return [
             'updated_at'  => 'Updated at',
             'deleted_at'  => 'Deleted at',
         ],
+
+        'users' => [
+            'label' => 'Users',
+            'columns' => [
+                'full_name' => 'Full name',
+                'email' => 'Email',
+                'phone' => 'Phone',
+                'position' => 'Position',
+            ],
+        ],
     ],
 
     "positions"            => [

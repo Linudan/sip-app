@@ -1,6 +1,7 @@
 <?php
 namespace App\Filament\Resources\Departments;
 
+use App\Filament\Resources\DepartmentResource\RelationManagers\UsersRelationManager;
 use App\Filament\Resources\Departments\Pages\CreateDepartment;
 use App\Filament\Resources\Departments\Pages\EditDepartment;
 use App\Filament\Resources\Departments\Pages\ListDepartments;
@@ -70,7 +71,7 @@ class DepartmentResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            UsersRelationManager::class,
         ];
     }
 
