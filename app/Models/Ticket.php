@@ -39,7 +39,7 @@ class Ticket extends Model
 
     protected static function booted()
 {
-    parent::booted(); // если есть другие вызовы
+    parent::booted();
 
     static::deleting(function ($ticket) {
         // Удаляем все вложения, привязанные к заявке

@@ -48,6 +48,18 @@ class TicketsTable
                     ->toggleable()
                     ->sortable()
                     ->searchable(),
+                TextColumn::make('assignedUsers')
+                    ->label(__('filament-panels::resources.tikets.assignments.label'))
+                    ->html()
+                    ->getStateUsing(function ($record) {
+                        return $record->assignedUsers->map(function ($user) {
+                            $name = $user->full_name_with_initials ?? $user->name;
+                            if ($user->pivot->is_primary) {
+                                return '<strong>' . e($name) . '</strong>';
+                            }
+                            return e($name);
+                        })->implode(', ');
+                    }),
                 TextColumn::make('equipmentItem.name')
                     ->label(__('filament-panels::resources.tikets.columns.equipment_item_name'))
                     ->placeholder(__('filament-panels::resources.tikets.placeholder.equipment_item_name'))

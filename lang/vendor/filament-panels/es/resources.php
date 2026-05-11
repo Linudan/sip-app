@@ -351,6 +351,16 @@ return [
             'time'               => 'Marcas de tiempo',
             'rating_and_review'  => 'Calificación y comentarios',
         ],
+
+        'assignments'        => [
+            'label'            => 'Asignados',
+            'singular'         => 'Asignado',
+            'primary'          => 'Asignado principal',
+            'assigned_at'      => 'Asignado el',
+            'add_action'       => 'Agregar asignado',
+            'already_assigned' => 'Este asignado ya está asignado',
+            'added_success'    => 'Asignado agregado correctamente',
+        ],
     ],
 
     "ticket-categories"    => [

@@ -1,6 +1,7 @@
 <?php
 namespace App\Filament\Resources\Tickets;
 
+use App\Filament\Resources\TicketResource\RelationManagers\TicketAssignmentsRelationManager;
 use App\Filament\Resources\Tickets\Pages\ViewTicket;
 use App\Filament\Resources\Tickets\Pages\CreateTicket;
 use App\Filament\Resources\Tickets\Pages\EditTicket;
@@ -74,7 +75,7 @@ class TicketResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            TicketAssignmentsRelationManager::class,
         ];
     }
 

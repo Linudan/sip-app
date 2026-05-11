@@ -351,6 +351,16 @@ return [
             'time'               => 'Timestamps',
             'rating_and_review'  => 'Rating and review',
         ],
+
+        'assignments'        => [
+            'label'            => 'Assignees',
+            'singular'         => 'Assignee',
+            'primary'          => 'Primary assignee',
+            'assigned_at'      => 'Assigned at',
+            'add_action'       => 'Add assignee',
+            'already_assigned' => 'This assignee is already assigned',
+            'added_success'    => 'Assignee added successfully',
+        ],
     ],
 
     "ticket-categories"    => [

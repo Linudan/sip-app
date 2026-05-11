@@ -401,6 +401,17 @@ return [
             'rating_and_review'  => 'Рейтинг и отзыв',
         ],
 
+        // Assignments
+        'assignments' => [
+            'label' => 'Исполнители',
+            'singular' => 'Исполнитель',
+            'primary' => 'Основной исполнитель',
+            'assigned_at' => 'Назначен',
+            'add_action' => 'Добавить исполнителя',
+            'already_assigned' => 'Этот исполнитель уже назначен',
+            'added_success' => 'Исполнитель добавлен',
+        ],
+
     ],
 
     // Переводы для ресурса Ticket Categories (Категории заявок)
