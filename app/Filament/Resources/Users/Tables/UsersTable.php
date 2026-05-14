@@ -1,6 +1,7 @@
 <?php
 namespace App\Filament\Resources\Users\Tables;
 
+use App\Exports\UserExport;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -11,6 +12,8 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\RecordActionsPosition;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use pxlrbt\FilamentExcel\Actions\ExportAction;
+use pxlrbt\FilamentExcel\Actions\ExportBulkAction;
 
 class UsersTable
 {
@@ -137,11 +140,33 @@ class UsersTable
                 ViewAction::make(),
                 EditAction::make(),
             ])
+            ->headerActions([
+                ExportAction::make()
+                    ->label('Экспорт')
+                    ->color('gray')
+                    ->exports([
+                        UserExport::make()
+                            ->fromTable()
+                            ->except(['deleted_at', 'updated_at', 'email_verified_at', 'two_factor_confirmed_at', 'last_login_at']) // исключаем технические поля
+                            ->withFilename(fn() => 'Пользователи_' . date('Y-m-d'))
+                            ->askForWriterType(),
+                    ]),
+            ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                     ForceDeleteBulkAction::make(),
                     RestoreBulkAction::make(),
+                    ExportBulkAction::make()
+                        ->label('Экспорт выбранных')
+                        ->color('gray')
+                        ->exports([
+                            UserExport::make()
+                                ->fromTable()
+                                ->except(['deleted_at', 'updated_at', 'email_verified_at', 'two_factor_confirmed_at', 'last_login_at'])
+                                ->withFilename(fn() => 'Пользователи_' . date('Y-m-d'))
+                                ->askForWriterType()
+                        ]),
                 ]),
             ])
             // Сообщения при пустой таблице

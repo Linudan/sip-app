@@ -1,6 +1,7 @@
 <?php
 namespace App\Filament\Resources\Tickets\Tables;
 
+use App\Exports\TicketExport;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -11,6 +12,8 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\RecordActionsPosition;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use pxlrbt\FilamentExcel\Actions\ExportAction;
+use pxlrbt\FilamentExcel\Actions\ExportBulkAction;
 
 class TicketsTable
 {
@@ -144,11 +147,35 @@ class TicketsTable
                 ViewAction::make(),
                 EditAction::make(),
             ])
+            ->headerActions([
+                // Экспорт всей таблицы (кнопка в заголовке)
+                ExportAction::make()
+                    ->label('Экспорт')
+                    ->color('gray')
+                    ->exports([
+                        TicketExport::make()
+                            ->fromTable()
+                            ->except(['resolved_at', 'closed_at', 'deleted_at', 'updated_at'])
+                            ->withFilename(fn() => 'Заявки_' . date('Y-m-d'))
+                            // предложить формат (xlsx, csv, ...)
+                            ->askForWriterType()
+                    ]),
+            ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                     ForceDeleteBulkAction::make(),
                     RestoreBulkAction::make(),
+                    ExportBulkAction::make()
+                        ->color('gray')
+                        ->label('Экспорт выбранных')
+                        ->exports([
+                            TicketExport::make()
+                                ->fromTable()
+                                ->except(['resolved_at', 'closed_at', 'deleted_at', 'updated_at'])
+                                ->withFilename(fn () => 'Заявки_' . date('Y-m-d'))
+                                ->askForWriterType()
+                        ]),
                 ]),
             ])
             // Сообщения при пустой таблице

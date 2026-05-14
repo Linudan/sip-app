@@ -1,12 +1,15 @@
 <?php
 namespace App\Filament\Resources\EquipmentCategories\Tables;
 
+use App\Exports\EquipmentCategoryExport;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use pxlrbt\FilamentExcel\Actions\ExportAction;
+use pxlrbt\FilamentExcel\Actions\ExportBulkAction;
 
 class EquipmentCategoriesTable
 {
@@ -57,9 +60,31 @@ class EquipmentCategoriesTable
                 ViewAction::make(),
                 EditAction::make(),
             ])
+            ->headerActions([
+                ExportAction::make()
+                    ->label('Экспорт')
+                    ->color('gray')
+                    ->exports([
+                        EquipmentCategoryExport::make()
+                            ->fromTable()
+                            ->except(['deleted_at', 'updated_at', 'icon', 'slug'])
+                            ->withFilename(fn() => 'Категории оборудования_' . date('Y-m-d'))
+                            ->askForWriterType(),
+                    ]),
+            ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    ExportBulkAction::make()
+                        ->label('Экспорт выбранных')
+                        ->color('gray')
+                        ->exports([
+                            EquipmentCategoryExport::make()
+                                ->fromTable()
+                                ->except(['deleted_at', 'updated_at', 'icon', 'slug'])
+                                ->withFilename(fn() => 'Категории оборудования_' . date('Y-m-d'))
+                                ->askForWriterType()
+                        ]),
                 ]),
             ])
             // Сообщения при пустой таблице

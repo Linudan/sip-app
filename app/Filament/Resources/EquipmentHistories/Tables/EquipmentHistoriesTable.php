@@ -1,12 +1,15 @@
 <?php
 namespace App\Filament\Resources\EquipmentHistories\Tables;
 
+use App\Exports\EquipmentHistoryExport;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use pxlrbt\FilamentExcel\Actions\ExportAction;
+use pxlrbt\FilamentExcel\Actions\ExportBulkAction;
 
 class EquipmentHistoriesTable
 {
@@ -67,9 +70,31 @@ class EquipmentHistoriesTable
                 ViewAction::make(),
                 EditAction::make(),
             ])
+            ->headerActions([
+                ExportAction::make()
+                    ->label('Экспорт')
+                    ->color('gray')
+                    ->exports([
+                        EquipmentHistoryExport::make()
+                            ->fromTable()
+                            ->except(['updated_at'])
+                            ->withFilename(fn() => 'История оборудования_' . date('Y-m-d'))
+                            ->askForWriterType(),
+                    ]),
+            ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    ExportBulkAction::make()
+                        ->label('Экспорт выбранных')
+                        ->color('gray')
+                        ->exports([
+                            EquipmentHistoryExport::make()
+                            ->fromTable()
+                            ->except(['updated_at'])
+                            ->withFilename(fn() => 'История оборудования_' . date('Y-m-d'))
+                            ->askForWriterType(),
+                    ]),
                 ]),
             ])
             // Сообщения при пустой таблице

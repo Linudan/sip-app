@@ -1,6 +1,7 @@
 <?php
 namespace App\Filament\Resources\EquipmentItems\Tables;
 
+use App\Exports\EquipmentItemExport;
 use App\Models\EquipmentItem;
 use App\Models\User;
 use Filament\Actions\Action;
@@ -16,6 +17,8 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\RecordActionsPosition;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use pxlrbt\FilamentExcel\Actions\ExportAction;
+use pxlrbt\FilamentExcel\Actions\ExportBulkAction;
 
 class EquipmentItemsTable
 {
@@ -116,6 +119,18 @@ class EquipmentItemsTable
             ->filters([
                 TrashedFilter::make(),
             ])
+            ->headerActions([
+                ExportAction::make()
+                    ->label('Экспорт')
+                    ->color('gray')
+                    ->exports([
+                        EquipmentItemExport::make()
+                            ->fromTable()
+                            ->except(['deleted_at', 'updated_at', 'specifications', 'qr_code_hash', 'created_at'])
+                            ->withFilename(fn() => 'Оборудование_' . date('Y-m-d'))
+                            ->askForWriterType(),
+                    ]),
+            ])
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
@@ -174,6 +189,16 @@ class EquipmentItemsTable
                     DeleteBulkAction::make(),
                     ForceDeleteBulkAction::make(),
                     RestoreBulkAction::make(),
+                    ExportBulkAction::make()
+                        ->label('Экспорт выбранных')
+                        ->color('gray')
+                        ->exports([
+                            EquipmentItemExport::make()
+                            ->fromTable()
+                            ->except(['deleted_at', 'updated_at', 'specifications', 'qr_code_hash', 'created_at'])
+                            ->withFilename(fn() => 'Оборудование_' . date('Y-m-d'))
+                            ->askForWriterType(),
+                        ]),
                 ]),
             ])
             ->emptyStateHeading(__('filament-panels::resources.share.empty_table_heading'))

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Positions\Tables;
 
+use App\Exports\PositionExport;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -11,6 +12,8 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use pxlrbt\FilamentExcel\Actions\ExportAction;
+use pxlrbt\FilamentExcel\Actions\ExportBulkAction;
 
 class PositionsTable
 {
@@ -53,11 +56,33 @@ class PositionsTable
                 ViewAction::make()->slideOver(),
                 EditAction::make(),
             ])
+            ->headerActions([
+                ExportAction::make()
+                    ->label('Экспорт')
+                    ->color('gray')
+                    ->exports([
+                        PositionExport::make()
+                            ->fromTable()
+                            ->except(['deleted_at', 'updated_at'])
+                            ->withFilename(fn() => 'Должности_' . date('Y-m-d'))
+                            ->askForWriterType(),
+                    ]),
+            ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                     ForceDeleteBulkAction::make(),
                     RestoreBulkAction::make(),
+                    ExportBulkAction::make()
+                        ->label('Экспорт выбранных')
+                        ->color('gray')
+                        ->exports([
+                            PositionExport::make()
+                                ->fromTable()
+                                ->except(['deleted_at', 'updated_at'])
+                                ->withFilename(fn() => 'Должности_' . date('Y-m-d'))
+                                ->askForWriterType()
+                        ]),
                 ]),
             ])
             ->recordAction('view')

@@ -1,12 +1,15 @@
 <?php
 namespace App\Filament\Resources\TicketCategories\Tables;
 
+use App\Exports\TicketCategoryExport;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use pxlrbt\FilamentExcel\Actions\ExportAction;
+use pxlrbt\FilamentExcel\Actions\ExportBulkAction;
 
 class TicketCategoriesTable
 {
@@ -46,9 +49,31 @@ class TicketCategoriesTable
                 ViewAction::make(),
                 EditAction::make(),
             ])
+            ->headerActions([
+                ExportAction::make()
+                    ->label('Экспорт')
+                    ->color('gray')
+                    ->exports([
+                        TicketCategoryExport::make()
+                            ->fromTable()
+                            ->except(['deleted_at', 'updated_at', 'slug'])
+                            ->withFilename(fn() => 'Категории заявок_' . date('Y-m-d'))
+                            ->askForWriterType(),
+                    ]),
+            ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    ExportBulkAction::make()
+                        ->label('Экспорт выбранных')
+                        ->color('gray')
+                        ->exports([
+                            TicketCategoryExport::make()
+                            ->fromTable()
+                            ->except(['deleted_at', 'updated_at', 'slug'])
+                            ->withFilename(fn() => 'Категории заявок_' . date('Y-m-d'))
+                            ->askForWriterType(),
+                    ]),
                 ]),
             ])
             // Сообщения при пустой таблице

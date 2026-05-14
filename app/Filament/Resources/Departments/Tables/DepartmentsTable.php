@@ -1,6 +1,7 @@
 <?php
 namespace App\Filament\Resources\Departments\Tables;
 
+use App\Exports\DepartmentExport;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -10,6 +11,8 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use pxlrbt\FilamentExcel\Actions\ExportAction;
+use pxlrbt\FilamentExcel\Actions\ExportBulkAction;
 
 class DepartmentsTable
 {
@@ -53,11 +56,33 @@ class DepartmentsTable
                 ViewAction::make()->slideOver(),
                 EditAction::make(),
             ])
+            ->headerActions([
+                ExportAction::make()
+                    ->label('Экспорт')
+                    ->color('gray')
+                    ->exports([
+                        DepartmentExport::make()
+                            ->fromTable()
+                            ->except(['deleted_at', 'updated_at'])
+                            ->withFilename(fn() => 'Отделы_' . date('Y-m-d'))
+                            ->askForWriterType(),
+                    ]),
+            ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                     ForceDeleteBulkAction::make(),
                     RestoreBulkAction::make(),
+                    ExportBulkAction::make()
+                        ->label('Экспорт выбранных')
+                        ->color('gray')
+                        ->exports([
+                            DepartmentExport::make()
+                                ->fromTable()
+                                ->except(['deleted_at', 'updated_at'])
+                                ->withFilename(fn() => 'Отделы_' . date('Y-m-d'))
+                                ->askForWriterType()
+                        ]),
                 ]),
             ])
             ->recordAction('view')

@@ -1,11 +1,14 @@
 <?php
 namespace App\Filament\Resources\Attachments\Tables;
 
+use App\Exports\AttachmentExport;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use pxlrbt\FilamentExcel\Actions\ExportAction;
+use pxlrbt\FilamentExcel\Actions\ExportBulkAction;
 
 class AttachmentsTable
 {
@@ -71,9 +74,31 @@ class AttachmentsTable
             ->recordActions([
                 EditAction::make(),
             ])
+            ->headerActions([
+                ExportAction::make()
+                    ->label('Экспорт')
+                    ->color('gray')
+                    ->exports([
+                        AttachmentExport::make()
+                            ->fromTable()
+                            ->except(['deleted_at', 'updated_at'])
+                            ->withFilename(fn() => 'Вложения_' . date('Y-m-d'))
+                            ->askForWriterType(),
+                    ]),
+            ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    ExportBulkAction::make()
+                        ->label('Экспорт выбранных')
+                        ->color('gray')
+                        ->exports([
+                            AttachmentExport::make()
+                            ->fromTable()
+                            ->except(['deleted_at', 'updated_at'])
+                            ->withFilename(fn() => 'Вложения_' . date('Y-m-d'))
+                            ->askForWriterType(),
+                    ]),
                 ]),
             ])
             // Сообщения при пустой таблице
