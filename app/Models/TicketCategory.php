@@ -11,6 +11,6 @@ class TicketCategory extends Model
     // Категория имеет множество заявок
     public function tickets(): HasMany
     {
-        return $this->hasMany(Ticket::class);
+        return $this->hasMany(Ticket::class, 'category_id');
     }
 }

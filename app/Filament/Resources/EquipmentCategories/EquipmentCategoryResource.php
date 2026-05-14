@@ -7,6 +7,7 @@ use App\Filament\Resources\EquipmentCategories\Pages\EditEquipmentCategory;
 use App\Filament\Resources\EquipmentCategories\Pages\ListEquipmentCategories;
 use App\Filament\Resources\EquipmentCategories\Schemas\EquipmentCategoryForm;
 use App\Filament\Resources\EquipmentCategories\Tables\EquipmentCategoriesTable;
+use App\Filament\Resources\UserResource\RelationManagers\EquipmentItemsRelationManager;
 use App\Models\EquipmentCategory;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -71,7 +72,7 @@ class EquipmentCategoryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            EquipmentItemsRelationManager::class
         ];
     }
 

@@ -25,6 +25,6 @@ class EquipmentCategory extends Model
     // В одной категории множество оборудования
     public function equipmentItems(): HasMany
     {
-        return $this->hasMany(EquipmentItem::class);
+            return $this->hasMany(EquipmentItem::class, 'category_id');
     }
 }
