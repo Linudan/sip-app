@@ -18,8 +18,8 @@ class Position extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->logAll(); // Будет логировать все изменения атрибутов
-            // ->logOnlyDirty() // Логирование только измененных полей
+            // ->logAll(); // Будет логировать все изменения атрибутов
+            ->logOnlyDirty(); // Логирование только измененных полей
             // ->logOnly(['name', 'email']); // Или только указанные поля
     }
 

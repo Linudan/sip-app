@@ -34,8 +34,8 @@ class User extends Authenticatable
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->logAll(); // Будет логировать все изменения атрибутов
-            // ->logOnlyDirty() // Логирование только измененных полей
+            // ->logAll() // Будет логировать все изменения атрибутов
+            ->logOnlyDirty();
             // ->logOnly(['name', 'email']); // Или только указанные поля
     }
 
