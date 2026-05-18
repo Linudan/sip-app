@@ -13,6 +13,16 @@ class ViewUser extends ViewRecord
 {
     protected static string $resource = UserResource::class;
 
+    public function getTitle(): string
+    {
+        $record   = $this->getRecord();
+        $fullName = trim($record->name . ' ' . $record->surname);
+        // Можно также добавить patronymic, если нужно
+        // $fullName = trim("{$record->name} {$record->surname} {$record->patronymic}");
+
+        return "Просмотр: {$fullName}";
+    }
+
     protected function getHeaderActions(): array
     {
         return [

@@ -1,7 +1,6 @@
 <?php
 namespace App\Filament\Resources\Users;
 
-use App\Filament\Resources\UserResource\RelationManagers\AssignedTicketsRelationManager;
 use App\Filament\Resources\UserResource\RelationManagers\EquipmentItemsRelationManager;
 use App\Filament\Resources\UserResource\RelationManagers\TicketsRelationManager;
 use App\Filament\Resources\Users\Pages\CreateUser;
@@ -24,6 +23,12 @@ class UserResource extends Resource
     protected static ?string $model = User::class;
 
     protected static ?int $navigationSort = 1;
+
+    // Поля для поиска GlobalSearchModal
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'email', 'phone'];
+    }
 
     // Динамическая надпись в навигации
     public static function getNavigationLabel(): string

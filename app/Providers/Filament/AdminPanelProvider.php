@@ -7,6 +7,7 @@ use App\Filament\Widgets\LatestTicketsWidget;
 use App\Filament\Widgets\NewEquipmentWidget;
 use App\Filament\Widgets\TicketStatsWidget;
 use App\Filament\Widgets\UsefulLinksWidget;
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -71,6 +72,7 @@ class AdminPanelProvider extends PanelProvider
                     ->enableTwoFactorAuthentication(false),
                 FilamentSpatieLaravelBackupPlugin::make()
                     ->authorize(fn(): bool => auth()->user()?->hasRole(['admin', 'it_specialist'])),
+                GlobalSearchModalPlugin::make(),
             ])
             ->middleware([
                 EncryptCookies::class,
