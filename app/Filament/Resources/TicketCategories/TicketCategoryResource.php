@@ -14,10 +14,24 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 
 class TicketCategoryResource extends Resource
 {
     protected static ?string $model = TicketCategory::class;
+
+    // Включение глобального поиска (GlobalSearchModal) для ресурса
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name'];
+    }
+
+    // Изменение Title-а при поиске (чтобы не выводилось просто название)
+    public static function getGlobalSearchResultTitle(Model $record): string
+    {
+        // Теперь $record гарантированно является экземпляром, но тип параметра — Model
+        return $record->name;
+    }
 
     // Динамическая надпись
     public static function getNavigationLabel(): string

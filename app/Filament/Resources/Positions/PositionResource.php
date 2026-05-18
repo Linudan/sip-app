@@ -1,6 +1,7 @@
 <?php
 namespace App\Filament\Resources\Positions;
 
+use App\Filament\Resources\PositionResource\RelationManagers\UsersRelationManager;
 use App\Filament\Resources\Positions\Pages\CreatePosition;
 use App\Filament\Resources\Positions\Pages\EditPosition;
 use App\Filament\Resources\Positions\Pages\ListPositions;
@@ -13,12 +14,27 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 
 class PositionResource extends Resource
 {
     protected static ?string $model = Position::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Briefcase;
+
+    // Включение глобального поиска (GlobalSearchModal) для ресурса
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name'];
+    }
+
+    // Изменение Title-а при поиске (чтобы не выводилось просто название)
+    public static function getGlobalSearchResultTitle(Model $record): string
+    {
+        // Теперь $record гарантированно является экземпляром, но тип параметра — Model
+        return $record->name;
+    }
+
 
     public static function getNavigationLabel(): string
     {
@@ -62,7 +78,9 @@ class PositionResource extends Resource
 
     public static function getRelations(): array
     {
-        return [];
+        return [
+            UsersRelationManager::class,
+        ];
     }
 
     public static function getPages(): array

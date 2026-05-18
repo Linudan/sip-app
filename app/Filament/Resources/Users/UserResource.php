@@ -16,6 +16,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class UserResource extends Resource
@@ -24,10 +25,17 @@ class UserResource extends Resource
 
     protected static ?int $navigationSort = 1;
 
-    // Поля для поиска GlobalSearchModal
+    // Включение глобального поиска (GlobalSearchModal) для ресурса
     public static function getGloballySearchableAttributes(): array
     {
-        return ['name', 'email', 'phone'];
+        return ['name', 'surname', 'patronymic', 'email'];
+    }
+
+    // Изменение Title-а при поиске (чтобы не выводилось просто название)
+    public static function getGlobalSearchResultTitle(Model $record): string
+    {
+        // Теперь $record гарантированно является экземпляром User, но тип параметра — Model
+        return trim($record->surname . ' ' . $record->name . ' ' . $record->patronymic);
     }
 
     // Динамическая надпись в навигации

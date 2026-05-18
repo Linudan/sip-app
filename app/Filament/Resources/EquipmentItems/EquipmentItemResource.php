@@ -16,6 +16,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class EquipmentItemResource extends Resource
@@ -23,6 +24,19 @@ class EquipmentItemResource extends Resource
     protected static ?string $model = EquipmentItem::class;
 
     protected static ?int $navigationSort = 3;
+
+    // Включение глобального поиска (GlobalSearchModal) для ресурса
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'inventory_number', 'serial_number', 'manufacturer', 'model', 'status'];
+    }
+
+    // Изменение Title-а при поиске (чтобы не выводилось просто название)
+    public static function getGlobalSearchResultTitle(Model $record): string
+    {
+        // Теперь $record гарантированно является экземпляром, но тип параметра — Model
+        return $record->name;
+    }
 
     // Динамическая надпись в навигации
     public static function getNavigationLabel(): string

@@ -13,6 +13,8 @@ class ViewUser extends ViewRecord
 {
     protected static string $resource = UserResource::class;
 
+
+    // Конфигурация названия страницы
     public function getTitle(): string
     {
         $record   = $this->getRecord();
