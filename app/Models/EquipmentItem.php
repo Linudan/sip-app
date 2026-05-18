@@ -12,10 +12,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Models\Concerns\LogsActivity;
+use Spatie\Activitylog\Support\LogOptions;
 
 class EquipmentItem extends Model
 {
     use SoftDeletes;
+    use LogsActivity;
 
     protected $fillable = [
         'category_id',
@@ -34,6 +37,15 @@ class EquipmentItem extends Model
         'notes',
         'qr_code_hash',
     ];
+
+    // Включение ресурса в логирование
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logAll(); // Будет логировать все изменения атрибутов
+            // ->logOnlyDirty() // Логирование только измененных полей
+            // ->logOnly(['name', 'email']); // Или только указанные поля
+    }
 
     protected function casts(): array
     {

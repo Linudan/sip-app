@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Models\Concerns\LogsActivity;
+use Spatie\Activitylog\Support\LogOptions;
 
 class Ticket extends Model
 {
     use SoftDeletes;
+    use LogsActivity;
 
     /**
      * Атрибуты, доступные для массового заполнения.
@@ -23,6 +26,15 @@ class Ticket extends Model
         'telegram_chat_link', 'max_chat_link',
         'resolved_at', 'closed_at', 'user_rating', 'user_feedback',
     ];
+
+    // Включение ресурса в логирование
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logAll(); // Будет логировать все изменения атрибутов
+            // ->logOnlyDirty() // Логирование только измененных полей
+            // ->logOnly(['name', 'email']); // Или только указанные поля
+    }
 
     /**
      * Приведение типов атрибутов.

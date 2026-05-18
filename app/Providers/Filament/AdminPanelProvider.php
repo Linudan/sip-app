@@ -2,11 +2,14 @@
 
 namespace App\Providers\Filament;
 
+use AlizHarb\ActivityLog\ActivityLogPlugin;
+use AlizHarb\ActivityLog\Widgets\ActivityHeatmapWidget;
+use AlizHarb\ActivityLog\Widgets\ActivityStatsWidget;
+use AlizHarb\ActivityLog\Widgets\LatestActivityWidget;
 use App\Filament\Widgets\EquipmentStatsWidget;
 use App\Filament\Widgets\LatestTicketsWidget;
 use App\Filament\Widgets\NewEquipmentWidget;
 use App\Filament\Widgets\TicketStatsWidget;
-use App\Filament\Widgets\UsefulLinksWidget;
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -57,6 +60,11 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
+                // Виджеты плагина Activity Log
+                ActivityStatsWidget::class,
+                ActivityHeatmapWidget::class,
+
+                // Мои виджеты
                 AccountWidget::class,
                 FilamentInfoWidget::class,
                 LatestTicketsWidget::class,
@@ -73,6 +81,7 @@ class AdminPanelProvider extends PanelProvider
                 FilamentSpatieLaravelBackupPlugin::make()
                     ->authorize(fn(): bool => auth()->user()?->hasRole(['admin', 'it_specialist'])),
                 GlobalSearchModalPlugin::make(),
+                ActivityLogPlugin::make(),
             ])
             ->middleware([
                 EncryptCookies::class,

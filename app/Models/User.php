@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\Models\Concerns\LogsActivity;
+use Spatie\Activitylog\Support\LogOptions;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -26,6 +28,16 @@ class User extends Authenticatable
     use HasRoles;
     use SoftDeletes;
     use TwoFactorAuthenticatable;
+    use LogsActivity;
+
+    // Включение ресурса в логирование
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logAll(); // Будет логировать все изменения атрибутов
+            // ->logOnlyDirty() // Логирование только измененных полей
+            // ->logOnly(['name', 'email']); // Или только указанные поля
+    }
 
     /**
      * The attributes that are mass assignable.
