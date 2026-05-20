@@ -5,6 +5,7 @@ use App\Models\User;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -30,6 +31,33 @@ class EquipmentItemForm
                     ->label(__('filament-panels::resources.equipments.columns.manufacturer')),
                 TextInput::make('model')
                     ->label(__('filament-panels::resources.equipments.columns.model')),
+                SpatieMediaLibraryFileUpload::make('attachments')
+                    ->collection('equipment_attachments')
+                    ->multiple()
+                    ->downloadable()
+                    ->openable()
+                    ->reorderable()
+                    ->maxFiles(10)
+                    ->maxSize(10240) // 10 MB
+                    ->acceptedFileTypes([
+                        // Изображения
+                        'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml', 'image/bmp',
+                        // Документы
+                        'application/pdf',
+                        'application/msword',
+                        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                        'application/vnd.ms-excel',
+                        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                        'application/vnd.ms-powerpoint',
+                        'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+                        'text/plain',
+                        'application/rtf',
+                        'application/vnd.oasis.opendocument.text',
+                        'application/vnd.oasis.opendocument.spreadsheet',
+                        'application/vnd.oasis.opendocument.presentation',
+                        'text/markdown', 'text/x-markdown',
+                    ])
+                    ->helperText('Разрешённые форматы: изображения, документы (PDF, DOC, XLS, PPT, TXT, RTF, ODT, ODS, ODP) и Markdown. Макс. размер 10 МБ.'),
                 KeyValue::make('specifications')
                     ->label(__('filament-panels::resources.equipments.columns.specifications'))
                     ->columnSpanFull(),

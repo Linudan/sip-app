@@ -4,7 +4,6 @@ namespace App\Filament\Resources\EquipmentItems\Pages;
 use App\Filament\Resources\EquipmentItems\EquipmentItemResource;
 use Filament\Actions;
 use Filament\Infolists\Components\ImageEntry;
-use Filament\Infolists\Components\KeyValueEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Pages\ViewRecord;
 use Filament\Schemas\Components\Section;
@@ -22,7 +21,7 @@ class ViewEquipmentItem extends ViewRecord
         ];
     }
 
-        public function infolist(Schema $schema): Schema
+    public function infolist(Schema $schema): Schema
     {
         return $schema
             ->schema([
@@ -71,7 +70,6 @@ class ViewEquipmentItem extends ViewRecord
                 Section::make(__('filament-panels::resources.equipments.view_equipments_cards.detailed_specifications'))
                     ->icon('heroicon-o-document-chart-bar')
                     ->collapsible()
-                    ->collapsed(true)
                     ->compact()
                     ->schema([
                         TextEntry::make('specifications')
@@ -82,7 +80,7 @@ class ViewEquipmentItem extends ViewRecord
                                 }
                                 // Если state уже массив (из каста), или строка JSON
                                 $data = is_string($state) ? json_decode($state, true) : $state;
-                                if (is_array($data) && !empty($data)) {
+                                if (is_array($data) && ! empty($data)) {
                                     $html = '<div class="grid grid-cols-2 gap-2">';
                                     foreach ($data as $key => $value) {
                                         $html .= '<div><strong>' . e($key) . '</strong></div><div>' . e($value) . '</div>';
@@ -152,6 +150,29 @@ class ViewEquipmentItem extends ViewRecord
                             ->copyable()
                             ->placeholder('—')
                             ->visible(fn($record) => blank($record->qr_code_image))
+                            ->columnSpanFull(),
+                    ]),
+
+                Section::make('Вложения')
+                    ->icon('heroicon-o-paper-clip')
+                    ->collapsible()
+                    ->compact()
+                    ->schema([
+                        TextEntry::make('attachments_list')
+                            ->label('')
+                            ->getStateUsing(function ($record) {
+                                $media = $record->getMedia('equipment_attachments');
+                                if ($media->isEmpty()) {
+                                    return 'Нет прикреплённых файлов';
+                                }
+                                $html = '<ul class="list-disc pl-5">';
+                                foreach ($media as $item) {
+                                    $html .= '<li><a href="' . $item->getUrl() . '" target="_blank">' . e($item->file_name) . '</a></li>';
+                                }
+                                $html .= '</ul>';
+                                return $html;
+                            })
+                            ->html()
                             ->columnSpanFull(),
                     ]),
 

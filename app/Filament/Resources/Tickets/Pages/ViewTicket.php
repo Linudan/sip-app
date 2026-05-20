@@ -22,6 +22,7 @@ class ViewTicket extends ViewRecord
 
     public function infolist(Schema $schema): Schema
     {
+
         return $schema
             ->schema([
                 // Карточка 1: Основная информация
@@ -158,6 +159,29 @@ class ViewTicket extends ViewRecord
                             ->label(__('filament-panels::resources.tikets.columns.user_feedback'))
                             ->markdown()
                             ->placeholder('Нет отзыва')
+                            ->columnSpanFull(),
+                    ]),
+                // Карточка 7: Вложения
+                Section::make('Вложения')
+                    ->icon('heroicon-o-paper-clip')
+                    ->collapsible()
+                    ->compact()
+                    ->schema([
+                        TextEntry::make('attachments_list')
+                            ->label('')
+                            ->getStateUsing(function ($record) {
+                                $media = $record->getMedia('tickets_attachments');
+                                if ($media->isEmpty()) {
+                                    return 'Нет прикреплённых файлов';
+                                }
+                                $html = '<ul class="list-disc pl-5">';
+                                foreach ($media as $item) {
+                                    $html .= '<li><a href="' . $item->getUrl() . '" target="_blank">' . e($item->file_name) . '</a></li>';
+                                }
+                                $html .= '</ul>';
+                                return $html;
+                            })
+                            ->html()
                             ->columnSpanFull(),
                     ]),
             ]);

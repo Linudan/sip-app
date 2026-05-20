@@ -1,19 +1,23 @@
 <?php
 namespace App\Models;
 
+use App\MediaLibrary\PathGenerators\TicketAttachmentPathGenerator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Models\Concerns\LogsActivity;
 use Spatie\Activitylog\Support\LogOptions;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Ticket extends Model
+class Ticket extends Model implements HasMedia
 {
     use SoftDeletes;
+    // Для логирования
     use LogsActivity;
+    // Для spatie-laravel-media-library
+    use InteractsWithMedia;
 
     /**
      * Атрибуты, доступные для массового заполнения.
@@ -31,10 +35,25 @@ class Ticket extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            // ->logAll(); // Будет логировать все изменения атрибутов
+                          // ->logAll(); // Будет логировать все изменения атрибутов
             ->logOnlyDirty(); // Логирование только измененных полей
-            // ->logOnly(['name', 'email']); // Или только указанные поля
+                          // ->logOnly(['name', 'email']); // Или только указанные поля
     }
+
+    // Подключение плагина spatie-laravel-media-library к модели
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('tickets_attachments')
+            ->useDisk('public');                    // можно указать любой диск
+    }
+
+    // Удаление вложений при удалении заявки
+    protected static function booted()
+{
+    static::deleting(function ($ticket) {
+        $ticket->clearMediaCollection('tickets_attachments');
+    });
+}
 
     /**
      * Приведение типов атрибутов.
@@ -48,18 +67,6 @@ class Ticket extends Model
             'closed_at'   => 'datetime',
         ];
     }
-
-    protected static function booted()
-{
-    parent::booted();
-
-    static::deleting(function ($ticket) {
-        // Удаляем все вложения, привязанные к заявке
-        $ticket->attachments()->each(function ($attachment) {
-            $attachment->delete();
-        });
-    });
-}
 
     // ==================== СВЯЗИ ====================
 
@@ -95,13 +102,5 @@ class Ticket extends Model
         return $this->belongsToMany(User::class, 'ticket_assignments')
             ->withPivot('assigned_at', 'is_primary')
             ->withTimestamps();
-    }
-
-    /**
-     * Вложения, прикреплённые к заявке (полиморфная связь).
-     */
-    public function attachments(): MorphMany
-    {
-        return $this->morphMany(Attachment::class, 'attachable');
     }
 }

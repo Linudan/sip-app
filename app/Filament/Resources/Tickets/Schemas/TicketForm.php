@@ -3,6 +3,7 @@ namespace App\Filament\Resources\Tickets\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -33,12 +34,49 @@ class TicketForm
                 Select::make('equipment_item_id')
                     ->label(__('filament-panels::resources.tikets.placeholder.equipment_item_name'))
                     ->searchable()
-                    // Подгрузка возможных значений
+                // Подгрузка возможных значений
                     ->preload()
                     ->relationship('equipmentItem', 'name'),
                 TextInput::make('title')
                     ->label(__('filament-panels::resources.tikets.placeholder.title'))
                     ->required(),
+                SpatieMediaLibraryFileUpload::make('attachments')
+                // Создание коллекции
+                    ->collection('tickets_attachments')
+                // Загрузка нескольких файлов одновременно
+                    ->multiple()
+                // Загрузка только изображений
+                // ->image()
+                // Возможность скачать
+                    ->downloadable()
+                // Возможность открыть
+                    ->openable()
+                // Возможность изменения порядка файлов
+                    ->reorderable()
+                // Создание нескольких разделов
+                    ->responsiveImages()
+                    ->maxFiles(10)   // максимальное количество файлов
+                    ->maxSize(10240) // 10 MB
+                    ->acceptedFileTypes([
+                        // Изображения
+                        'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml', 'image/bmp',
+                        // Документы
+                        'application/pdf',
+                        'application/msword',
+                        'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
+                        'application/vnd.ms-excel',
+                        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // .xlsx
+                        'application/vnd.ms-powerpoint',
+                        'application/vnd.openxmlformats-officedocument.presentationml.presentation', // .pptx
+                        'text/plain',                                                                // для .txt, .md (если не отдельно)
+                        'application/rtf',
+                        'application/vnd.oasis.opendocument.text',         // .odt
+                        'application/vnd.oasis.opendocument.spreadsheet',  // .ods
+                        'application/vnd.oasis.opendocument.presentation', // .odp
+                                                                           // Markdown (если хотите явно)
+                        'text/markdown', 'text/x-markdown',
+                    ])
+                    ->helperText('Разрешённые форматы: изображения, документы (PDF, DOC, XLS, PPT, TXT, RTF, ODT, ODS, ODP) и Markdown. Макс. размер 10 МБ.'),
                 Textarea::make('description')
                     ->label(__('filament-panels::resources.tikets.placeholder.description'))
                     ->columnSpanFull(),

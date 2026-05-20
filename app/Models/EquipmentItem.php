@@ -1,24 +1,24 @@
 <?php
 namespace App\Models;
 
-use BaconQrCode\Renderer\Image\SvgImageBackEnd;
 use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
-use Endroid\QrCode\Builder\Builder;
-use Endroid\QrCode\Encoding\Encoding;
-use Endroid\QrCode\Writer\SvgWriter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Models\Concerns\LogsActivity;
 use Spatie\Activitylog\Support\LogOptions;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class EquipmentItem extends Model
+class EquipmentItem extends Model implements HasMedia
 {
     use SoftDeletes;
     use LogsActivity;
+    use InteractsWithMedia;
 
     protected $fillable = [
         'category_id',
@@ -42,9 +42,28 @@ class EquipmentItem extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            // ->logAll(); // Будет логировать все изменения атрибутов
+                          // ->logAll(); // Будет логировать все изменения атрибутов
             ->logOnlyDirty(); // Логирование только измененных полей
-            // ->logOnly(['name', 'email']); // Или только указанные поля
+                          // ->logOnly(['name', 'email']); // Или только указанные поля
+    }
+
+    /**
+     * Регистрация коллекции для вложений оборудования.
+     */
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('equipment_attachments')
+            ->useDisk('public');
+    }
+
+    /**
+     * Автоматически удаляем все файлы при удалении модели.
+     */
+    protected static function booted()
+    {
+        static::deleting(function ($equipment) {
+            $equipment->clearMediaCollection('equipment_attachments');
+        });
     }
 
     protected function casts(): array
