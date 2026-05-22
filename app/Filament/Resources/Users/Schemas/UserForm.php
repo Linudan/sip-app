@@ -42,10 +42,10 @@ class UserForm
                 TextInput::make('internal_phone')
                     ->label(__('filament-panels::resources.users.columns.internal_phone'))
                     ->placeholder('4524')
-                    ->mask('4522')
+                    ->mask('4599')
                     ->tel()
-                    ->helperText('Ведите последние две цифры')
-                    ->regex('/^45\d{2}$/'),
+                    ->helperText('Введите последние две цифры') // уточните текст, если нужно
+                    ->regex('/^45\d{2}$/'),                                             // дополнительная валидация (опционально)
                 TextInput::make('telegram_username')
                     ->label(__('filament-panels::resources.users.columns.telegram_username'))
                     ->placeholder('@telegram'),

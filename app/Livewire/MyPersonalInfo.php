@@ -93,7 +93,7 @@ class MyPersonalInfo extends PersonalInfo
         return TextInput::make('internal_phone')
             ->label('Внутренний телефон')
             ->tel()
-            ->mask('4522')
+            ->mask('4599')
             ->regex('/^45\d{2}$/')
             ->helperText('Введите две последние цифры (первые две уже 45).');
     }
