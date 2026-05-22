@@ -20,6 +20,14 @@ class UserForm
                     ->label(__('filament-panels::resources.users.columns.surname')),
                 TextInput::make('patronymic')
                     ->label(__('filament-panels::resources.users.columns.patronymic')),
+                Select::make('roles')
+                    ->label(__('filament-panels::resources.roles.role_label'))
+                    ->relationship('roles', 'name')
+                    ->multiple(false)
+                    ->preload()
+                    ->searchable()
+                    ->getOptionLabelFromRecordUsing(fn($record) => __("filament-panels::resources.roles.{$record->name}"))
+                    ->visible(fn() => auth()->user()->hasRole('admin')),
                 TextInput::make('email')
                     ->email()
                     ->required()

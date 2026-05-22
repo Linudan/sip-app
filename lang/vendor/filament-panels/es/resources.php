@@ -437,4 +437,11 @@ return [
         'empty_table_heading'     => 'No hay registros en la tabla',
         'empty_table_description' => 'Comience creando su primer registro',
     ],
+
+    'roles'                => [
+        'admin'         => 'Admin',
+        'it_specialist' => 'IT Specialist',
+        'user'          => 'User',
+        'role_label'    => 'Role',
+    ],
 ];

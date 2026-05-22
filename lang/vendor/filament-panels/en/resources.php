@@ -23,13 +23,13 @@ return [
             'deleted_at'  => 'Deleted at',
         ],
 
-        'users' => [
-            'label' => 'Users',
+        'users'            => [
+            'label'   => 'Users',
             'columns' => [
                 'full_name' => 'Full name',
-                'email' => 'Email',
-                'phone' => 'Phone',
-                'position' => 'Position',
+                'email'     => 'Email',
+                'phone'     => 'Phone',
+                'position'  => 'Position',
             ],
         ],
     ],
@@ -429,12 +429,19 @@ return [
         "tikets_group_label"     => "Ticket management",
         "equipments_group_label" => "Equipment management",
         "users_group_label"      => "User management",
-        "settings_group_label" => "Settings",
-        "audit_group_label" => "Activity Log",
+        "settings_group_label"   => "Settings",
+        "audit_group_label"      => "Activity Log",
     ],
 
     "share"                => [
         'empty_table_heading'     => 'No records in the table',
         'empty_table_description' => 'Start by creating your first record',
+    ],
+
+    'roles'                => [
+        'admin'         => 'Admin',
+        'it_specialist' => 'IT Specialist',
+        'user'          => 'User',
+        'role_label'    => 'Role',
     ],
 ];

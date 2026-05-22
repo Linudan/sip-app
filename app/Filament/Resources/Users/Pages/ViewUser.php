@@ -13,7 +13,6 @@ class ViewUser extends ViewRecord
 {
     protected static string $resource = UserResource::class;
 
-
     // Конфигурация названия страницы
     public function getTitle(): string
     {
@@ -50,6 +49,16 @@ class ViewUser extends ViewRecord
                             ->placeholder('—'),
                         TextEntry::make('patronymic')
                             ->label(__('filament-panels::resources.users.columns.patronymic'))
+                            ->placeholder('—'),
+                        TextEntry::make('roles.name')
+                            ->label(__('filament-panels::resources.roles.role_label'))
+                            ->badge()
+                            ->color(fn(string $state): string => match ($state) {
+                                'admin'         => 'danger',
+                                'it_specialist' => 'warning',
+                                default         => 'gray',
+                            })
+                            ->formatStateUsing(fn($state) => __("filament-panels::resources.roles.{$state}"))
                             ->placeholder('—'),
                         TextEntry::make('position.name')
                             ->label(__('filament-panels::resources.users.columns.position'))

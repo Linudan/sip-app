@@ -46,6 +46,18 @@ class UsersTable
                     ->sortable()
                     ->searchable()
                     ->toggleable(),
+                TextColumn::make('roles.name')
+                    ->label(__('filament-panels::resources.roles.role_label'))
+                    ->badge()
+                    ->color(fn($state) => match ($state) {
+                        'admin'         => 'danger',
+                        'it_specialist' => 'warning',
+                        default         => 'gray',
+                    })
+                    ->formatStateUsing(fn($state) => __("filament-panels::resources.roles.{$state}"))
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('email')
                     ->label(__('filament-panels::resources.users.columns.email'))
                     ->placeholder(__('filament-panels::resources.users.placeholder.email'))
@@ -165,7 +177,7 @@ class UsersTable
                                 ->fromTable()
                                 ->except(['deleted_at', 'updated_at', 'email_verified_at', 'two_factor_confirmed_at', 'last_login_at'])
                                 ->withFilename(fn() => 'Пользователи_' . date('Y-m-d'))
-                                ->askForWriterType()
+                                ->askForWriterType(),
                         ]),
                 ]),
             ])

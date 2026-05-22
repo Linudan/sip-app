@@ -27,13 +27,13 @@ return [
             'deleted_at'  => 'Дата удаления',
         ],
 
-        'users' => [
-            'label' => 'Пользователи',
+        'users'            => [
+            'label'   => 'Пользователи',
             'columns' => [
                 'full_name' => 'ФИО',
-                'email' => 'Email',
-                'phone' => 'Телефон',
-                'position' => 'Должность',
+                'email'     => 'Email',
+                'phone'     => 'Телефон',
+                'position'  => 'Должность',
             ],
         ],
     ],
@@ -412,14 +412,14 @@ return [
         ],
 
         // Assignments
-        'assignments' => [
-            'label' => 'Исполнители',
-            'singular' => 'Исполнитель',
-            'primary' => 'Основной исполнитель',
-            'assigned_at' => 'Назначен',
-            'add_action' => 'Добавить исполнителя',
+        'assignments'        => [
+            'label'            => 'Исполнители',
+            'singular'         => 'Исполнитель',
+            'primary'          => 'Основной исполнитель',
+            'assigned_at'      => 'Назначен',
+            'add_action'       => 'Добавить исполнителя',
             'already_assigned' => 'Этот исполнитель уже назначен',
-            'added_success' => 'Исполнитель добавлен',
+            'added_success'    => 'Исполнитель добавлен',
         ],
 
     ],
@@ -490,14 +490,22 @@ return [
         "tikets_group_label"     => "Управление заявками",
         "equipments_group_label" => "Управление оборудованием",
         "users_group_label"      => "Управление пользователями",
-        "settings_group_label" => "Настройки",
-        "audit_group_label" => "Аудит действий",
+        "settings_group_label"   => "Настройки",
+        "audit_group_label"      => "Аудит действий",
     ],
 
     // Общие переводы
     "share"                => [
         'empty_table_heading'     => 'В таблице нет записей',
         'empty_table_description' => 'Начните с создания первой записи',
+    ],
+
+    // Переводы ролей
+    'roles'                => [
+        'admin'         => 'Администратор',
+        'it_specialist' => 'IT-специалист',
+        'user'          => 'Пользователь',
+        'role_label'    => 'Роль',
     ],
 
 ];
