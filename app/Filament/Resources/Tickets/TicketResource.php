@@ -22,7 +22,7 @@ class TicketResource extends Resource
 {
     protected static ?string $model = Ticket::class;
 
-    protected static ?int $navigationSort = 2;
+    // ---НАСТРОЙКА ПЛАГИНА ГЛОБАЛЬНОГО ПОИСКА---
 
     // Включение глобального поиска (GlobalSearchModal) для ресурса
     public static function getGloballySearchableAttributes(): array
@@ -37,12 +37,28 @@ class TicketResource extends Resource
         return $record->title;
     }
 
-    // Динамическая надпись
+    // ---ЗАВЕРШЕНИЕ НАСТРОЙКИ ПЛАГИНА ГЛОБАЛЬНОГО ПОИСКА---
+
+
+    // ---НАСТРОЙКА НАВИГАЦИИ---
+
+    // Группа навигации
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament-panels::resources.groups.tikets_group_label');
+    }
+
+    // Динамическая надпись в навигации
     public static function getNavigationLabel(): string
     {
 
         return __('filament-panels::resources.tikets.navigation_label');
     }
+
+    // Иконка в навигации
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::ClipboardDocument;
+
+    // ---ЗАВЕРШЕНИЕ НАСТРОЙКИ НАВИГАЦИИ---
 
     // Динамическаое название таблицы во единственном числе
     public static function getSingularLabel(): string
@@ -65,15 +81,6 @@ class TicketResource extends Resource
     public function getTitle(): string
     {
         return __('filament-panels::resources.tikets.table_title');
-    }
-
-    // Иконка
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::ClipboardDocument;
-
-    // Динамическая надпись
-    public static function getNavigationGroup(): ?string
-    {
-        return __('filament-panels::resources.groups.tikets_group_label');
     }
 
     public static function form(Schema $schema): Schema

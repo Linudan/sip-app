@@ -20,6 +20,8 @@ class DepartmentResource extends Resource
 {
     protected static ?string $model = Department::class;
 
+    // ---НАСТРОЙКА ПЛАГИНА ГЛОБАЛЬНОГО ПОИСКА---
+
     // Включение глобального поиска (GlobalSearchModal) для ресурса
     public static function getGloballySearchableAttributes(): array
     {
@@ -33,12 +35,29 @@ class DepartmentResource extends Resource
         return $record->dep_name;
     }
 
+    // ---ЗАВЕРШЕНИЕ НАСТРОЙКИ ПЛАГИНА ГЛОБАЛЬНОГО ПОИСКА---
+
+
+    // ---НАСТРОЙКА НАВИГАЦИИ---
+
+    // Группа навигации
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament-panels::resources.groups.users_group_label');
+    }
+
     // Динамическая надпись в навигации
     public static function getNavigationLabel(): string
     {
 
         return __('filament-panels::resources.departments.navigation_label');
     }
+
+    // Иконка в навигации
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::BuildingOffice2;
+
+    // ---ЗАВЕРШЕНИЕ НАСТРОЙКИ НАВИГАЦИИ---
+
 
     // Динамическаое название таблицы во единственном числе
     public static function getSingularLabel(): string
@@ -63,14 +82,6 @@ class DepartmentResource extends Resource
         return __('filament-panels::resources.departments.table_title');
     }
 
-    // Иконка
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::BuildingOffice2;
-
-    // Динамическая надпись
-    public static function getNavigationGroup(): ?string
-    {
-        return __('filament-panels::resources.groups.users_group_label');
-    }
 
     public static function form(Schema $schema): Schema
     {

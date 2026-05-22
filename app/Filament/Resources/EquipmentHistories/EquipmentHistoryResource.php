@@ -18,12 +18,25 @@ class EquipmentHistoryResource extends Resource
 {
     protected static ?string $model = EquipmentHistory::class;
 
-    // Динамическая надпись
+    // ---НАСТРОЙКА НАВИГАЦИИ---
+
+    // Группа навигации
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament-panels::resources.groups.equipments_group_label');
+    }
+
+    // Динамическая надпись в навигации
     public static function getNavigationLabel(): string
     {
 
         return __('filament-panels::resources.equipment-histories.navigation_label');
     }
+
+    // Иконка в навигации
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::InboxStack;
+
+    // ---ЗАВЕРШЕНИЕ НАСТРОЙКИ НАВИГАЦИИ---
 
     // Динамическаое название таблицы во единственном числе
     public static function getSingularLabel(): string
@@ -46,15 +59,6 @@ class EquipmentHistoryResource extends Resource
     public function getTitle(): string
     {
         return __('filament-panels::resources.equipment-histories.table_title');
-    }
-
-    // Иконка
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::InboxStack;
-
-    // Динамическая надпись
-    public static function getNavigationGroup(): ?string
-    {
-        return __('filament-panels::resources.groups.equipments_group_label');
     }
 
     public static function form(Schema $schema): Schema

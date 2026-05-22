@@ -429,6 +429,8 @@ return [
         "tikets_group_label"     => "Ticket management",
         "equipments_group_label" => "Equipment management",
         "users_group_label"      => "User management",
+        "settings_group_label" => "Settings",
+        "audit_group_label" => "Activity Log",
     ],
 
     "share"                => [

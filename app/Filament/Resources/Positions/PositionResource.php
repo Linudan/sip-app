@@ -20,7 +20,7 @@ class PositionResource extends Resource
 {
     protected static ?string $model = Position::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::Briefcase;
+    // ---НАСТРОЙКА ПЛАГИНА ГЛОБАЛЬНОГО ПОИСКА---
 
     // Включение глобального поиска (GlobalSearchModal) для ресурса
     public static function getGloballySearchableAttributes(): array
@@ -35,11 +35,29 @@ class PositionResource extends Resource
         return $record->name;
     }
 
+    // ---ЗАВЕРШЕНИЕ НАСТРОЙКИ ПЛАГИНА ГЛОБАЛЬНОГО ПОИСКА---
 
+
+    // ---НАСТРОЙКА НАВИГАЦИИ---
+
+    // Группа навигации
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament-panels::resources.groups.users_group_label');
+    }
+
+    // Динамическая надпись в навигации
     public static function getNavigationLabel(): string
     {
+
         return __('filament-panels::resources.positions.navigation_label');
     }
+
+    // Иконка в навигации
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Briefcase;
+
+    // ---ЗАВЕРШЕНИЕ НАСТРОЙКИ НАВИГАЦИИ---
+
 
     public static function getSingularLabel(): string
     {
@@ -61,10 +79,6 @@ class PositionResource extends Resource
         return __('filament-panels::resources.positions.table_title');
     }
 
-    public static function getNavigationGroup(): ?string
-    {
-        return __('filament-panels::resources.groups.users_group_label');
-    }
 
     public static function form(Schema $schema): Schema
     {

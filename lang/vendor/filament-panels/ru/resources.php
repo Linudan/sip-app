@@ -487,10 +487,11 @@ return [
 
     // Переводы для групп
     "groups"               => [
-        "other_group_label"      => "Прочее",
         "tikets_group_label"     => "Управление заявками",
         "equipments_group_label" => "Управление оборудованием",
         "users_group_label"      => "Управление пользователями",
+        "settings_group_label" => "Настройки",
+        "audit_group_label" => "Аудит действий",
     ],
 
     // Общие переводы

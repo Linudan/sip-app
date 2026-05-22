@@ -23,7 +23,7 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?int $navigationSort = 1;
+    // ---НАСТРОЙКА ПЛАГИНА ГЛОБАЛЬНОГО ПОИСКА---
 
     // Включение глобального поиска (GlobalSearchModal) для ресурса
     public static function getGloballySearchableAttributes(): array
@@ -38,12 +38,28 @@ class UserResource extends Resource
         return trim($record->surname . ' ' . $record->name . ' ' . $record->patronymic);
     }
 
+    // ---ЗАВЕРШЕНИЕ НАСТРОЙКИ ПЛАГИНА ГЛОБАЛЬНОГО ПОИСКА---
+
+
+    // ---НАСТРОЙКА НАВИГАЦИИ---
+
+    // Группа навигации
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament-panels::resources.groups.users_group_label');
+    }
+
     // Динамическая надпись в навигации
     public static function getNavigationLabel(): string
     {
 
         return __('filament-panels::resources.users.navigation_label');
     }
+
+    // Иконка в навигации
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Users;
+
+    // ---ЗАВЕРШЕНИЕ НАСТРОЙКИ НАВИГАЦИИ---
 
     // Динамическаое название таблицы во множественном числе
     public static function getPluralLabel(): string
@@ -66,15 +82,6 @@ class UserResource extends Resource
     public function getTitle(): string
     {
         return __('filament-panels::resources.users.table_title');
-    }
-
-    // Иконка
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::Users;
-
-    // Динамическая надпись
-    public static function getNavigationGroup(): ?string
-    {
-        return __('filament-panels::resources.groups.users_group_label');
     }
 
     // Мягкое удаление

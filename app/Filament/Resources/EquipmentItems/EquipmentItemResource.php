@@ -23,7 +23,7 @@ class EquipmentItemResource extends Resource
 {
     protected static ?string $model = EquipmentItem::class;
 
-    protected static ?int $navigationSort = 3;
+    // ---НАСТРОЙКА ПЛАГИНА ГЛОБАЛЬНОГО ПОИСКА---
 
     // Включение глобального поиска (GlobalSearchModal) для ресурса
     public static function getGloballySearchableAttributes(): array
@@ -38,12 +38,29 @@ class EquipmentItemResource extends Resource
         return $record->name;
     }
 
+    // ---ЗАВЕРШЕНИЕ НАСТРОЙКИ ПЛАГИНА ГЛОБАЛЬНОГО ПОИСКА---
+
+
+    // ---НАСТРОЙКА НАВИГАЦИИ---
+
+    // Группа навигации
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament-panels::resources.groups.equipments_group_label');
+    }
+
     // Динамическая надпись в навигации
     public static function getNavigationLabel(): string
     {
 
         return __('filament-panels::resources.equipments.navigation_label');
     }
+
+    // Иконка в навигации
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::ComputerDesktop;
+
+    // ---ЗАВЕРШЕНИЕ НАСТРОЙКИ НАВИГАЦИИ---
+
 
     // Динамическаое название таблицы во единственном числе
     public static function getSingularLabel(): string
@@ -67,15 +84,6 @@ class EquipmentItemResource extends Resource
     public function getTitle(): string
     {
         return __('filament-panels::resources.departments.table_title');
-    }
-
-    // Иконка
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::ComputerDesktop;
-
-    // Динамическая надпись
-    public static function getNavigationGroup(): ?string
-    {
-        return __('filament-panels::resources.groups.equipments_group_label');
     }
 
     public static function form(Schema $schema): Schema

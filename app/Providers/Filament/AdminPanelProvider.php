@@ -15,10 +15,12 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\Support\Icons\Heroicon;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -36,6 +38,23 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
+            ->navigationGroups([
+                // Создание группы "Управление пользователями"
+                NavigationGroup::make()
+                    ->label(fn (): string => __('filament-panels::resources.groups.users_group_label')),
+                // Создание группы "Управление заявками"
+                NavigationGroup::make()
+                    ->label(fn (): string => __('filament-panels::resources.groups.tikets_group_label')),
+                // Создание группы "Управление оборудованием"
+                NavigationGroup::make()
+                    ->label(fn (): string => __('filament-panels::resources.groups.equipments_group_label')),
+                // Создание группы "Аудит"
+                NavigationGroup::make()
+                    ->label(fn (): string => __('filament-panels::resources.groups.audit_group_label')),
+                // Создание группы "Настройки"
+                NavigationGroup::make()
+                    ->label(fn (): string => __('filament-panels::resources.groups.settings_group_label')),
+            ])
             ->id('admin')
             ->path('admin')
             ->login()
@@ -74,14 +93,19 @@ class AdminPanelProvider extends PanelProvider
             ])
             // Подключение плагинов
             ->plugins([
+                // Плагин Breezy
                 BreezyCore::make()
                     ->myProfile(shouldRegisterNavigation: false)
                     ->enableBrowserSessions()
                     ->enableTwoFactorAuthentication(false),
+                // Плагин LaravelBackup
                 FilamentSpatieLaravelBackupPlugin::make()
                     ->authorize(fn(): bool => auth()->user()?->hasRole(['admin', 'it_specialist'])),
+                // Плагин GlobalSearch
                 GlobalSearchModalPlugin::make(),
-                ActivityLogPlugin::make(),
+                // Плагин ActivityLog
+                ActivityLogPlugin::make()
+                    ->navigationGroup(fn (): string => __('filament-panels::resources.groups.audit_group_label'))
             ])
             ->middleware([
                 EncryptCookies::class,

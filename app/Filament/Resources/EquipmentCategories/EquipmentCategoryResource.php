@@ -20,6 +20,8 @@ class EquipmentCategoryResource extends Resource
 {
     protected static ?string $model = EquipmentCategory::class;
 
+    // ---НАСТРОЙКА ПЛАГИНА ГЛОБАЛЬНОГО ПОИСКА---
+
     // Включение глобального поиска (GlobalSearchModal) для ресурса
     public static function getGloballySearchableAttributes(): array
     {
@@ -33,12 +35,29 @@ class EquipmentCategoryResource extends Resource
         return $record->name;
     }
 
-    // Динамическая надпись
+    // ---ЗАВЕРШЕНИЕ НАСТРОЙКИ ПЛАГИНА ГЛОБАЛЬНОГО ПОИСКА---
+
+
+    // ---НАСТРОЙКА НАВИГАЦИИ---
+
+    // Группа навигации
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament-panels::resources.groups.equipments_group_label');
+    }
+
+    // Динамическая надпись в навигации
     public static function getNavigationLabel(): string
     {
 
         return __('filament-panels::resources.equipment-сategories.navigation_label');
     }
+
+    // Иконка в навигации
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Tag;
+
+    // ---ЗАВЕРШЕНИЕ НАСТРОЙКИ НАВИГАЦИИ---
+
 
     // Динамическаое название таблицы во единственном числе
     public static function getSingularLabel(): string
@@ -61,16 +80,6 @@ class EquipmentCategoryResource extends Resource
     public function getTitle(): string
     {
         return __('filament-panels::resources.equipment-сategories.table_title');
-    }
-
-    // Иконка
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::Tag;
-
-    // Можно сделать потом динамическую надпись для поддержки языков
-    // Динамическая надпись
-    public static function getNavigationGroup(): ?string
-    {
-        return __('filament-panels::resources.groups.equipments_group_label');
     }
 
     public static function form(Schema $schema): Schema
