@@ -141,7 +141,7 @@ return [
             'revert' => true,
             'restore' => true,
             'delete' => true,
-            'export' => true,
+            'export' => false,
         ],
         'bulk_actions' => [
             'delete' => true,
@@ -311,7 +311,7 @@ return [
             'heading' => null, // null uses translation key
             'sort' => 0,
             'polling_interval' => null, // e.g., '10s', '1m', null to disable
-            'limit' => 10,
+            'limit' => 5,
             'paginated' => false,
             'columns' => [
                 'event' => true,
