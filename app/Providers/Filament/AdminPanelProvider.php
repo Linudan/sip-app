@@ -31,6 +31,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
 use ShuvroRoy\FilamentSpatieLaravelBackup\FilamentSpatieLaravelBackupPlugin;
+use FinityLabs\FinAvatar\AvatarProviders\UiAvatarsProvider;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -60,13 +61,15 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             // Включение режима SPA
             ->spa()
+            // Плагин для аватаров
+            ->defaultAvatarProvider(UiAvatarsProvider::class)
             // Включение возможности складования панели навигации
             ->sidebarCollapsibleOnDesktop()
             // Настройка шрифта, возможно изменить
             ->font("IBM Plex Sans")
             // Панель профиля (стандартная Filament)
             ->profile()
-            // явный домашний URL
+            // Явный домашний URL
             ->homeUrl('/admin')
             // Настройка цветов
             ->colors([
@@ -96,8 +99,8 @@ class AdminPanelProvider extends PanelProvider
                 // Плагин Breezy
                 BreezyCore::make()
                     ->myProfile(shouldRegisterNavigation: false)
-                    ->enableBrowserSessions()
-                    ->enableTwoFactorAuthentication(false),
+                    ->enableBrowserSessions(true)
+                    ->enableTwoFactorAuthentication(true),
                 // Плагин LaravelBackup
                 FilamentSpatieLaravelBackupPlugin::make()
                     ->authorize(fn(): bool => auth()->user()?->hasRole(['admin', 'it_specialist'])),

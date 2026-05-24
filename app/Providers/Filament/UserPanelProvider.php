@@ -23,6 +23,8 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
+use FinityLabs\FinAvatar\AvatarProviders\UiAvatarsProvider;
+
 
 class UserPanelProvider extends PanelProvider
 {
@@ -35,6 +37,8 @@ class UserPanelProvider extends PanelProvider
             ->spa()
             // Настройка шрифта, возможно изменить
             ->font("IBM Plex Sans")
+            // Плагин для аватаров
+            ->defaultAvatarProvider(UiAvatarsProvider::class)
             // явный домашний URL
             ->homeUrl('/user-panel')
             // Cтраница входа Breezy
@@ -74,7 +78,7 @@ class UserPanelProvider extends PanelProvider
                         // не показывать в боковом меню
                         shouldRegisterNavigation: false,
                         // включить аватарки
-                        hasAvatars: true,
+                        hasAvatars: false,
                         // префикс
                         // slug: 'profile'
                     )

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "224718eece5318aaaf605b5eec3c2ff4",
+    "content-hash": "ae134af4c21af6cec262719b20aefb36",
     "packages": [
         {
             "name": "alizharb/filament-activity-log",
@@ -2127,6 +2127,72 @@
                 "source": "https://github.com/filamentphp/filament"
             },
             "time": "2026-04-03T15:40:06+00:00"
+        },
+        {
+            "name": "finity-labs/fin-avatar",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/finity-labs/fin-avatar.git",
+                "reference": "05a4f83f707e3f92648b3d1b7bba658ef97d713d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/finity-labs/fin-avatar/zipball/05a4f83f707e3f92648b3d1b7bba658ef97d713d",
+                "reference": "05a4f83f707e3f92648b3d1b7bba658ef97d713d",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^4.0 | ^5.0",
+                "php": "^8.2",
+                "spatie/laravel-package-tools": "^1.9"
+            },
+            "require-dev": {
+                "larastan/larastan": "^3.9",
+                "laravel/pint": "^1.27",
+                "orchestra/testbench": "^10.9",
+                "pestphp/pest": "^3.8",
+                "pestphp/pest-plugin-laravel": "^3.2",
+                "phpstan/phpstan": "^2.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "FinityLabs\\FinAvatar\\FinAvatarServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "FinityLabs\\FinAvatar\\": "src/",
+                    "FinityLabs\\FinAvatar\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Finity Labs",
+                    "email": "filament.infinity@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Privacy-focused SVG avatar generator for Filament.",
+            "keywords": [
+                "avatar",
+                "filament",
+                "laravel",
+                "privacy",
+                "svg"
+            ],
+            "support": {
+                "issues": "https://github.com/finity-labs/fin-avatar/issues",
+                "source": "https://github.com/finity-labs/fin-avatar/tree/v1.1.0"
+            },
+            "time": "2026-04-14T21:14:23+00:00"
         },
         {
             "name": "fruitcake/php-cors",

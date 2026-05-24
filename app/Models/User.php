@@ -16,6 +16,7 @@ use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\Models\Concerns\LogsActivity;
 use Spatie\Activitylog\Support\LogOptions;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -29,14 +30,15 @@ class User extends Authenticatable
     use SoftDeletes;
     use TwoFactorAuthenticatable;
     use LogsActivity;
+    use InteractsWithMedia;
 
     // Включение ресурса в логирование
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            // ->logAll() // Будет логировать все изменения атрибутов
+        // ->logAll() // Будет логировать все изменения атрибутов
             ->logOnlyDirty();
-            // ->logOnly(['name', 'email']); // Или только указанные поля
+        // ->logOnly(['name', 'email']); // Или только указанные поля
     }
 
     /**
@@ -55,7 +57,6 @@ class User extends Authenticatable
         'internal_phone',
         'telegram_username',
         'max_username',
-        'avatar_url',
         'last_login_at',
         'email_verified_at',
         'password',
@@ -71,15 +72,6 @@ class User extends Authenticatable
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
-    ];
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array<int, string>
-     */
-    protected $appends = [
-        'avatar',
     ];
 
     /**
@@ -174,14 +166,5 @@ class User extends Authenticatable
             ->take(2)
             ->map(fn($word) => Str::substr($word, 0, 1))
             ->implode('');
-    }
-
-    // Аксессор для получения полного URL аватара (нужно исправить)
-    public function getAvatarAttribute(): string
-    {
-        if (! empty($this->attributes['avatar_url'])) {
-            return Storage::disk('public')->url($this->attributes['avatar_url']);
-        }
-        return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&color=7F9CF5&background=EBF4FF';
     }
 }

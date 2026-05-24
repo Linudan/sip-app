@@ -72,9 +72,6 @@ class UserForm
                     ->preload()
                     ->searchable()
                     ->nullable(),
-                TextInput::make('avatar_url')
-                    ->label(__('filament-panels::resources.users.columns.avatar_url'))
-                    ->helperText('Не меняйте если хотите использовать простой аватар'),
                 DateTimePicker::make('email_verified_at')
                     ->label(__('filament-panels::resources.users.columns.email_verified_at')),
                 TextInput::make('password')
