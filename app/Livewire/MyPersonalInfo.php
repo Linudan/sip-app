@@ -54,7 +54,7 @@ class MyPersonalInfo extends PersonalInfo
 
     protected function getSurnameComponent(): TextInput
     {
-        return TextInput::make('surname')->label('Фамилия');
+        return TextInput::make('surname')->label('Фамилия')->required();
     }
 
     protected function getPatronymicComponent(): TextInput
@@ -81,6 +81,7 @@ class MyPersonalInfo extends PersonalInfo
     protected function getPhoneComponent(): TextInput
     {
         return TextInput::make('phone')
+            ->required()
             ->label('Телефон')
             ->tel()
             ->mask('+7 (999) 999-99-99')
@@ -100,12 +101,16 @@ class MyPersonalInfo extends PersonalInfo
 
     protected function getTelegramUsernameComponent(): TextInput
     {
-        return TextInput::make('telegram_username')->label('Ник в Telegram');
+        return TextInput::make('telegram_username')
+            ->label('Ник в Telegram')
+            ->helperText('Лучше указать для удобной коммуникации');
     }
 
     protected function getMaxUsernameComponent(): TextInput
     {
-        return TextInput::make('max_username')->label('Ник в MAXe');
+        return TextInput::make('max_username')
+            ->label('Ник в MAXe')
+            ->helperText('Лучше указать для удобной коммуникации');
     }
 
     protected function getDepartmentComponent(): TextInput

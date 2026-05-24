@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\AdminPanelAccess;
+use App\Http\Middleware\CheckProfileCompletion;
 use App\Http\Middleware\UserPanelAccess;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -17,6 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin.panel' => AdminPanelAccess::class,
             'user.panel' => UserPanelAccess::class,
+            'profile.complete' => CheckProfileCompletion::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

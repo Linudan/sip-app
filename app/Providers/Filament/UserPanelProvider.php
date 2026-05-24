@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use App\Filament\User\Widgets\UserInfoWidget;
 use App\Filament\User\Widgets\UserLatestTicketsWidget;
 use App\Filament\User\Widgets\UserTicketStatsWidget;
+use App\Http\Middleware\CheckProfileCompletion;
 use App\Livewire\MyPersonalInfo;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -98,6 +99,7 @@ class UserPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                CheckProfileCompletion::class,
             ])
             ->authMiddleware([
                 Authenticate::class,
