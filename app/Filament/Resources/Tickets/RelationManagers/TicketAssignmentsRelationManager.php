@@ -40,10 +40,11 @@ class TicketAssignmentsRelationManager extends RelationManager
             ]);
     }
 
-
     public function table(Table $table): Table
     {
         return $table
+            ->heading(__('filament-panels::resources.tikets.assignments.label'))
+            ->emptyStateHeading(__('filament-panels::resources.tikets.assignments.empty'))
             ->paginated(false)
             ->columns([
                 TextColumn::make('full_name_with_initials')

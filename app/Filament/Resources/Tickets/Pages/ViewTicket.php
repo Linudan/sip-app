@@ -73,7 +73,7 @@ class ViewTicket extends ViewRecord
                     ->compact()
                     ->schema([
                         TextEntry::make('description')
-                            ->label('')
+                            ->label(__('filament-panels::resources.tikets.view_tikets_cards.descrption'))
                             ->placeholder('Нет описания')
                             ->markdown()
                             ->columnSpanFull(),
@@ -104,7 +104,7 @@ class ViewTicket extends ViewRecord
                     ->compact()
                     ->schema([
                         TextEntry::make('assignedUsers')
-                            ->label('')
+                            ->label(__('filament-panels::resources.tikets.assignments.label'))
                             ->placeholder('Не назначены')
                             ->formatStateUsing(function ($state, $record) {
                                 $users = $record->assignedUsers;
@@ -162,17 +162,17 @@ class ViewTicket extends ViewRecord
                             ->columnSpanFull(),
                     ]),
                 // Карточка 7: Вложения
-                Section::make('Вложения')
+                Section::make(__('filament-panels::resources.tikets.view_tikets_cards.attachments'))
                     ->icon('heroicon-o-paper-clip')
                     ->collapsible()
                     ->compact()
                     ->schema([
                         TextEntry::make('attachments_list')
-                            ->label('')
+                            ->label(__('filament-panels::resources.tikets.view_tikets_cards.attachments_list'))
                             ->getStateUsing(function ($record) {
                                 $media = $record->getMedia('tickets_attachments');
                                 if ($media->isEmpty()) {
-                                    return 'Нет прикреплённых файлов';
+                                    return __('filament-panels::resources.tikets.view_tikets_cards.no_attachments');
                                 }
                                 $html = '<ul class="list-disc pl-5">';
                                 foreach ($media as $item) {

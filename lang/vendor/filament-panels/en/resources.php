@@ -25,6 +25,7 @@ return [
 
         'users'            => [
             'label'   => 'Users',
+            'empty'   => 'No users found in this department',
             'columns' => [
                 'full_name' => 'Full name',
                 'email'     => 'Email',
@@ -115,6 +116,15 @@ return [
 
         "validation"       => [
             "email_unique" => "A user with this email already exists.",
+        ],
+
+        'tickets'          => [
+            'label' => 'Tickets',
+            'empty' => 'User has no tickets',
+        ],
+        'equipment'        => [
+            'label' => 'Equipments',
+            'empty' => 'User has no equipment',
         ],
     ],
 
@@ -239,6 +249,11 @@ return [
             'created_at'  => 'Created at',
             'updated_at'  => 'Updated at',
         ],
+
+        'equipment'        => [
+            'label' => 'Equipment',
+            'empty' => 'No equipment in this category',
+        ],
     ],
 
     "equipment-histories"  => [
@@ -353,13 +368,16 @@ return [
             'resolved_at'   => 'Created at',
         ],
         "view_tikets_cards"  => [
-            'basic_information'  => 'Basic information',
+            'basic_information'  => 'Basic Information',
             'descrption'         => 'Description',
-            'user_and_equipment' => 'User and equipment',
+            'user_and_equipment' => 'User and Equipment',
+            'attachments'        => 'Attachments',
+            'attachments_list'   => 'List of attached files',
+            'no_attachments'     => 'No attached files',
             'assigned_users'     => 'Assigned specialists',
-            'communication'      => 'Chats & communication',
+            'communication'      => 'Chats and communication',
             'time'               => 'Timestamps',
-            'rating_and_review'  => 'Rating and review',
+            'rating_and_review'  => 'Rating and Review',
         ],
 
         'assignments'        => [
@@ -370,6 +388,7 @@ return [
             'add_action'       => 'Add assignee',
             'already_assigned' => 'This assignee is already assigned',
             'added_success'    => 'Assignee added successfully',
+            'empty'            => 'No assignees',
         ],
     ],
 
@@ -391,6 +410,11 @@ return [
             'slug'       => 'URL slug',
             'created_at' => 'Created at',
             'updated_at' => 'Updated at',
+        ],
+
+        'tickets'          => [
+            'label' => 'Tickets',
+            'empty' => 'No tickets in this category',
         ],
     ],
 

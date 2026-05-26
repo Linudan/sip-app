@@ -1,7 +1,6 @@
 <?php
 namespace App\Filament\Resources\TicketCategories\RelationManagers;
 
-use Filament\Actions\Action;
 use Filament\Actions\ViewAction;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Columns\TextColumn;
@@ -10,12 +9,13 @@ use Filament\Tables\Table;
 class TicketsRelationManager extends RelationManager
 {
     protected static string $relationship = 'tickets';
-
     protected static ?string $recordTitleAttribute = 'ticket_number';
 
     public function table(Table $table): Table
     {
         return $table
+            ->heading(__('filament-panels::resources.ticket-categories.tickets.label'))
+            ->emptyStateHeading(__('filament-panels::resources.ticket-categories.tickets.empty'))
             ->columns([
                 TextColumn::make('ticket_number')
                     ->label(__('filament-panels::resources.tikets.columns.ticket_number'))
@@ -59,7 +59,7 @@ class TicketsRelationManager extends RelationManager
             ])
             ->actions([
                 ViewAction::make()
-                    ->url(fn ($record) => route('filament.admin.resources.tickets.view', $record))
+                    ->url(fn($record) => route('filament.admin.resources.tickets.view', $record))
                     ->modal(false)
                     ->openUrlInNewTab(false),
             ]);

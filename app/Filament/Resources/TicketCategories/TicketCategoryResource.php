@@ -7,7 +7,7 @@ use App\Filament\Resources\TicketCategories\Pages\EditTicketCategory;
 use App\Filament\Resources\TicketCategories\Pages\ListTicketCategories;
 use App\Filament\Resources\TicketCategories\Schemas\TicketCategoryForm;
 use App\Filament\Resources\TicketCategories\Tables\TicketCategoriesTable;
-use App\Filament\Resources\UserResource\RelationManagers\TicketsRelationManager;
+use App\Filament\Resources\TicketCategories\RelationManagers\TicketsRelationManager;
 use App\Models\TicketCategory;
 use BackedEnum;
 use Filament\Resources\Resource;

@@ -25,6 +25,7 @@ return [
 
         'users'            => [
             'label'   => 'Usuarios',
+            'empty'   => 'No hay usuarios en este departamento',
             'columns' => [
                 'full_name' => 'Nombre completo',
                 'email'     => 'Correo electrónico',
@@ -115,6 +116,15 @@ return [
 
         "validation"       => [
             "email_unique" => "Ya existe un usuario con este correo electrónico.",
+        ],
+
+        'tickets'          => [
+            'label' => 'Tickets',
+            'empty' => 'El usuario no tiene tickets',
+        ],
+        'equipment'        => [
+            'label' => 'Equipos',
+            'empty' => 'El usuario no tiene equipo',
         ],
     ],
 
@@ -239,6 +249,11 @@ return [
             'created_at'  => 'Creado el',
             'updated_at'  => 'Actualizado el',
         ],
+
+        'equipment'        => [
+            'label' => 'Equipos',
+            'empty' => 'No hay equipo en esta categoría',
+        ],
     ],
 
     "equipment-histories"  => [
@@ -356,10 +371,13 @@ return [
             'basic_information'  => 'Información básica',
             'descrption'         => 'Descripción',
             'user_and_equipment' => 'Usuario y equipo',
+            'attachments'        => 'Archivos adjuntos',
+            'attachments_list'   => 'Lista de archivos adjuntos',
+            'no_attachments'     => 'No hay archivos adjuntos',
             'assigned_users'     => 'Especialistas asignados',
             'communication'      => 'Chats y comunicación',
             'time'               => 'Marcas de tiempo',
-            'rating_and_review'  => 'Calificación y comentarios',
+            'rating_and_review'  => 'Calificación y reseña',
         ],
 
         'assignments'        => [
@@ -370,6 +388,7 @@ return [
             'add_action'       => 'Agregar asignado',
             'already_assigned' => 'Este asignado ya está asignado',
             'added_success'    => 'Asignado agregado correctamente',
+            'empty'            => 'No hay asignados',
         ],
     ],
 
@@ -391,6 +410,11 @@ return [
             'slug'       => 'Slug de URL',
             'created_at' => 'Creado el',
             'updated_at' => 'Actualizado el',
+        ],
+
+        'tickets'          => [
+            'label' => 'Solicitudes',
+            'empty' => 'No hay tickets en esta categoría',
         ],
     ],
 

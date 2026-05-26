@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Resources\DepartmentResource\RelationManagers;
 
 use Filament\Actions\EditAction;
@@ -7,7 +6,6 @@ use Filament\Actions\ViewAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
-use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -39,6 +37,8 @@ class UsersRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
+            ->heading(__('filament-panels::resources.departments.users.label'))
+            ->emptyStateHeading(__('filament-panels::resources.departments.users.empty'))
             ->columns([
                 TextColumn::make('full_name_with_initials')
                     ->label(__('filament-panels::resources.departments.users.columns.full_name'))
@@ -53,9 +53,9 @@ class UsersRelationManager extends RelationManager
             ])
             ->actions([
                 ViewAction::make()
-                    ->url(fn ($record) => route('filament.admin.resources.users.view', $record)),
+                    ->url(fn($record) => route('filament.admin.resources.users.view', $record)),
                 EditAction::make()
-                    ->url(fn ($record) => route('filament.admin.resources.users.edit', $record)),
+                    ->url(fn($record) => route('filament.admin.resources.users.edit', $record)),
             ]);
     }
 }

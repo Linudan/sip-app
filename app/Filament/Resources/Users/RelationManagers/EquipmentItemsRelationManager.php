@@ -1,13 +1,11 @@
 <?php
-
 namespace App\Filament\Resources\UserResource\RelationManagers;
 
-use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 
 class EquipmentItemsRelationManager extends RelationManager
 {
@@ -15,9 +13,16 @@ class EquipmentItemsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    public static function getTitle(Model $ownerRecord, string $pageClass): string
+    {
+        return __('filament-panels::resources.users.equipment.label');
+    }
+
     public function table(Table $table): Table
     {
         return $table
+            ->heading(__('filament-panels::resources.users.equipment.label'))
+            ->emptyStateHeading(__('filament-panels::resources.users.equipment.empty'))
             ->columns([
                 TextColumn::make('category.name')
                     ->label(__('filament-panels::resources.equipments.columns.category_name'))
@@ -54,7 +59,7 @@ class EquipmentItemsRelationManager extends RelationManager
             ])
             ->actions([
                 ViewAction::make()
-                    ->url(fn ($record) => route('filament.admin.resources.equipment-items.view', $record)),
+                    ->url(fn($record) => route('filament.admin.resources.equipment-items.view', $record)),
             ]);
     }
 }

@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Filament\Resources\EquipmentCategories\RelationManagers;
 
 use Filament\Actions\ViewAction;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -14,10 +12,11 @@ class EquipmentItemsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'name';
 
-
     public function table(Table $table): Table
     {
         return $table
+            ->heading(__('filament-panels::resources.equipment-сategories.equipment.label'))
+            ->emptyStateHeading(__('filament-panels::resources.equipment-сategories.equipment.empty'))
             ->columns([
                 TextColumn::make('name')
                     ->label(__('filament-panels::resources.equipments.columns.name'))
@@ -51,7 +50,7 @@ class EquipmentItemsRelationManager extends RelationManager
             ])
             ->actions([
                 ViewAction::make()
-                    ->url(fn ($record) => route('filament.admin.resources.equipment-items.view', $record)),
+                    ->url(fn($record) => route('filament.admin.resources.equipment-items.view', $record)),
             ]);
     }
 }
