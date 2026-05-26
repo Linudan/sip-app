@@ -47,9 +47,9 @@ class UserPanelProvider extends PanelProvider
             // Cтраница регистрации Breezy
             ->registration()
             // Функция восстановления пароля
-            ->passwordReset()
+            // ->passwordReset()
             // Функция подтверждения почты
-            ->emailVerification()
+            // ->emailVerification()
             // Настройка цветов
             ->colors([
                 'primary' => Color::Emerald,
