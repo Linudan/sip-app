@@ -1,31 +1,34 @@
 <?php
-
 namespace App\Filament\User\Resources\MyTickets\Schemas;
 
+use App\Models\EquipmentItem;
+use App\Models\TicketCategory;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
-use App\Models\EquipmentItem;
-use App\Models\TicketCategory;
 use Illuminate\Support\Facades\Auth;
 
 class MyTicketForm
 {
     public static function configure(Schema $schema): Schema
     {
-        $user = Auth::user();
-        $departmentId = $user->department_id;
+        $user           = Auth::user();
+        $equipmentQuery = EquipmentItem::query();
 
-        $equipmentQuery = EquipmentItem::query()
-            ->where(function ($query) use ($user, $departmentId) {
+        if ($user->department_id) {
+            $equipmentQuery->where(function ($query) use ($user) {
                 $query->where('current_user_id', $user->id)
-                    ->orWhere(function ($q) use ($departmentId) {
-                        $q->where('current_department_id', $departmentId)
+                    ->orWhere(function ($q) use ($user) {
+                        $q->where('current_department_id', $user->department_id)
                             ->whereNull('current_user_id');
                     });
-            })
-            ->orderBy('name');
+            });
+        } else {
+            $equipmentQuery->where('current_user_id', $user->id);
+        }
+
+        $equipmentQuery->orderBy('name');
 
         return $schema
             ->schema([

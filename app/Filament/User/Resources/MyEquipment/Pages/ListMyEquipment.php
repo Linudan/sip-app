@@ -1,13 +1,12 @@
 <?php
-
 namespace App\Filament\User\Resources\MyEquipment\Pages;
 
 use App\Filament\User\Resources\MyEquipment\MyEquipmentResource;
+use App\Models\EquipmentItem;
 use Filament\Resources\Pages\ListRecords;
+use Filament\Schemas\Components\Tabs\Tab;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
-use App\Models\EquipmentItem;
-use Filament\Schemas\Components\Tabs\Tab;
 
 class ListMyEquipment extends ListRecords
 {
@@ -20,19 +19,25 @@ class ListMyEquipment extends ListRecords
 
     public function getTabs(): array
     {
-        $userId = Auth::id();
+        $userId       = Auth::id();
         $departmentId = Auth::user()->department_id;
+        $tabs         = [];
 
-        return [
-            'my' => Tab::make(__('filament-panels::user-panel.my_equipment.tabs.my'))
-                ->modifyQueryUsing(fn(Builder $query) => $query->where('current_user_id', $userId))
-                ->badge(EquipmentItem::where('current_user_id', $userId)->count()),
-            'department' => Tab::make(__('filament-panels::user-panel.my_equipment.tabs.department'))
+        // Вкладка "Моё оборудование" всегда есть
+        $tabs['my'] = Tab::make(__('filament-panels::user-panel.my_equipment.tabs.my'))
+            ->modifyQueryUsing(fn(Builder $query) => $query->where('current_user_id', $userId))
+            ->badge(EquipmentItem::where('current_user_id', $userId)->count());
+
+        // Вкладка "Оборудование отдела" – только если пользователь в отделе
+        if ($departmentId) {
+            $tabs['department'] = Tab::make(__('filament-panels::user-panel.my_equipment.tabs.department'))
                 ->modifyQueryUsing(fn(Builder $query) => $query
-                    ->where('current_department_id', $departmentId)
-                    ->whereNull('current_user_id')
+                        ->where('current_department_id', $departmentId)
+                        ->whereNull('current_user_id')
                 )
-                ->badge(EquipmentItem::where('current_department_id', $departmentId)->whereNull('current_user_id')->count()),
-        ];
+                ->badge(EquipmentItem::where('current_department_id', $departmentId)->whereNull('current_user_id')->count());
+        }
+
+        return $tabs;
     }
 }
