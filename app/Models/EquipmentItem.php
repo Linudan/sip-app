@@ -1,10 +1,8 @@
 <?php
 namespace App\Models;
 
-use BaconQrCode\Renderer\ImageRenderer;
-use BaconQrCode\Renderer\Image\SvgImageBackEnd;
-use BaconQrCode\Renderer\RendererStyle\RendererStyle;
-use BaconQrCode\Writer;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\SvgWriter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -76,18 +74,19 @@ class EquipmentItem extends Model implements HasMedia
     }
 
     // Метод для работы с qr-кодами
+    public function getQrCodeUrlAttribute(): string
+    {
+        // Генерируем полный URL для страницы просмотра оборудования в панели администратора
+        return route('filament.admin.resources.equipment-items.view', $this);
+    }
+
     public function getQrCodeImageAttribute(): string
     {
-        $data = $this->qr_code_hash ?? $this->inventory_number ?? $this->id;
-
-        $renderer = new ImageRenderer(
-            new RendererStyle(150),
-            new SvgImageBackEnd()
-        );
-
-        $writer = new Writer($renderer);
-
-        return 'data:image/svg+xml;base64,' . base64_encode($writer->writeString($data));
+        $data   = $this->inventory_number;
+        $qrCode = new QrCode($data);
+        $writer = new SvgWriter();
+        $result = $writer->write($qrCode);
+        return 'data:image/svg+xml;base64,' . base64_encode($result->getString());
     }
 
     // ==================== СВЯЗИ ====================

@@ -9,6 +9,7 @@ use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use JeffersonGoncalves\Filament\QrCodeField\Forms\Components\QrCodeInput;
 
 class EquipmentItemForm
 {
@@ -110,8 +111,7 @@ class EquipmentItemForm
                 Textarea::make('notes')
                     ->label(__('filament-panels::resources.equipments.columns.notes'))
                     ->columnSpanFull(),
-                TextInput::make('qr_code_hash')
-                    ->label(__('filament-panels::resources.equipments.columns.qr_code_hash')),
+                TextInput::make('qr_code_hash')->disabled()
             ]);
     }
 }

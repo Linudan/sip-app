@@ -143,7 +143,6 @@ class ViewEquipmentItem extends ViewRecord
                             ->label('QR-код')
                             ->height(150)
                             ->width(150)
-                            ->visible(fn($record) => filled($record->qr_code_image))
                             ->columnSpanFull(),
                         TextEntry::make('qr_code_hash')
                             ->label(__('filament-panels::resources.equipments.columns.qr_code_hash'))

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Observers;
 
 use App\Models\EquipmentHistory;
@@ -39,11 +38,11 @@ class EquipmentItemObserver
     }
 
     public function creating(EquipmentItem $equipmentItem): void
-{
-    if (empty($equipmentItem->qr_code_hash)) {
-        $equipmentItem->qr_code_hash = Str::random(32);
+    {
+        if (empty($equipmentItem->qr_code_hash)) {
+            $equipmentItem->qr_code_hash = Str::random(32);
+        }
     }
-}
 
     public function created(EquipmentItem $equipmentItem): void
     {
