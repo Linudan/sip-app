@@ -1,0 +1,2771 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://foxium.ru/docs/%D0%98%D0%A2-%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D0%B0%D0%BB%D0%B8%D1%81%D1%82%D0%B0%D0%BC/Linux/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20WSL.html">
+      
+      
+        <link rel="prev" href="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20ALT%20Linux.html">
+      
+      
+        <link rel="next" href="../Windows/%D0%90%D0%BA%D1%82%D0%B8%D0%B2%D0%B0%D1%86%D0%B8%D1%8F%20Windows%20%D1%87%D0%B5%D1%80%D0%B5%D0%B7%20CMD.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Настройка WSL - SИP База знаний</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#wsl" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../../index.html" title="SИP База знаний" class="md-header__button md-logo" aria-label="SИP База знаний" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SИP База знаний
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Настройка WSL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключится на светлую тему"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключится на светлую тему" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Переключится на темную тему"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключится на темную тему" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Системная тема"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Системная тема" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Поделиться" aria-label="Поделиться" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Главная
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ИТ специалистам
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%D0%A1%D0%BE%D1%82%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D0%BA%D0%B0%D0%BC/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Сотрудникам
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="SИP База знаний" class="md-nav__button md-logo" aria-label="SИP База знаний" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SИP База знаний
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ИТ специалистам
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ИТ специалистам
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Docker.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="VPN.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VPN
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%D0%9CAX.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    МAX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20ALT%20Linux.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Настройка ALT Linux
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Настройка WSL
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20WSL.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Настройка WSL
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#wsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Теория по WSL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Установка
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Установка">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wsl-windows-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Установка WSL Windows 11
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Установка WSL Windows 11">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cписок доступных дистрибутивов
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Установка WSL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Установить дистрибутив в качестве дистрибутива по умолчанию
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ручная установка WSL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ручная установка WSL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Установим следующие компоненты Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-wsl2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Скачаем и установим обновление ядра Linux для WSL2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl-2-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Назначим версию WSL 2 в качестве среды по-умолчанию
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#powershell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Установка дистрибутива через PowerShell
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Настройки параметров WSL и дистрибутивов Linux
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Удаление WSL-дистрибутива
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl-_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Удаление WSL-дистрибутива из другого дистрибутива
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Резервная копия дистрибутива
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Импорт резервной копии
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wsl_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Команды для управления WSL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Команды для управления WSL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wsl_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Проверить текущую версию ядра WSL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Обновить ядро WSL вручную
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Откатится к предыдущему ядру WSL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Вывести список установленных версий Linux
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Вывести дистрибутив Linux, который используется по-умолчанию
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Изменить дистрибутив по-умолчанию
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Запустить определенный дистрибутив в WSL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Завершить среду WSL из терминала Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Завершить работу из Linux
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Завершение работы определенного дистрибутива Linux:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl-ubuntu-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Войти в WSL Ubuntu под root и сбросить пароль
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Вернуть пользователя по умолчанию
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ускорение файловой системы
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ускорение файловой системы">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-fs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Перенос проектов в Linux-FS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Монтирование с опциями
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overlayfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Использование overlayfs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Оптимизация сетевого взаимодействия
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Оптимизация сетевого взаимодействия">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Фиксируем DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Быстрый доступ к локальным сервисам
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcp-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TCP-оптимизация
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Прочая оптимизация
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Прочая оптимизация">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ограничение использования оперативной памяти
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ram-temp-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Виртуальный RAM-диск: для сверхбыстрых temp-папок
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Затем в WSL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fsnotify-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fsnotify со стороны Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Параллельные прокси
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Windows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Windows/%D0%90%D0%BA%D1%82%D0%B8%D0%B2%D0%B0%D1%86%D0%B8%D1%8F%20Windows%20%D1%87%D0%B5%D1%80%D0%B5%D0%B7%20CMD.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Активация Windows через CMD
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Windows/%D0%92%D0%BE%D1%81%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D1%87%D0%B8%D0%BA%D0%B0%20Windows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Восстановление загрузчика Windows
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Windows/%D0%98%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%8F%D0%B7%D1%8B%D0%BA%D0%B0%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B%20%D0%B2%20%D1%80%D1%83%D1%87%D0%BD%D1%83%D1%8E.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Изменение языка системы в ручную
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Windows/%D0%9E%D1%82%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%B0%20%D0%BA%20%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%B0%D0%BC%20Microsoft.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Отключение доступа к серверам Microsoft
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Windows/%D0%9F%D1%80%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%20%D0%BA%D0%BB%D1%8E%D1%87%D0%B0%20Windows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Просмотр ключа Windows
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Windows/%D0%A1%D0%B1%D1%80%D0%BE%D1%81%20%D0%BF%D0%B0%D1%80%D0%BE%D0%BB%D1%8F%20%D0%B2%20Windows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сброс пароля в Windows
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Windows/%D0%A1%D0%B1%D1%80%D0%BE%D1%81%20%D1%81%D0%B5%D1%82%D0%B5%D0%B2%D1%8B%D1%85%20%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B5%D0%BA.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сброс сетевых настроек
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Windows/%D0%A1%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%B0%20Windows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Скачивание образа Windows
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Windows/%D0%A3%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D1%87%D0%B8%D0%BA%D0%B0%20Bios.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Удаление загрузчика Bios
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Windows/%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0%20Microsoft%20Store.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Установка Microsoft Store
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Windows/%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D0%B5%D1%80%D0%BE%D0%B2%20%20%D0%B2%20Windows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Установка драйверов  в Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Программы
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Программы
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D1%8B/%D0%9A%D1%80%D0%B8%D0%BF%D1%82%D0%BE%D0%9F%D0%A0%D0%9E%20%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%B8%20%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    КриптоПРО Установка и Настройка
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D1%8B/%D0%9E%D1%88%D0%B8%D0%B1%D0%BA%D0%B8%20%D0%9A%D1%80%D0%B8%D0%BF%D1%82%D0%BE%D0%9F%D0%A0%D0%9E.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ошибки КриптоПРО
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../%D0%A1%D0%BE%D1%82%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D0%BA%D0%B0%D0%BC/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сотрудникам
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Сотрудникам
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#wsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Теория по WSL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Установка
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Установка">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wsl-windows-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Установка WSL Windows 11
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Установка WSL Windows 11">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cписок доступных дистрибутивов
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Установка WSL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Установить дистрибутив в качестве дистрибутива по умолчанию
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ручная установка WSL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ручная установка WSL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Установим следующие компоненты Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-wsl2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Скачаем и установим обновление ядра Linux для WSL2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl-2-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Назначим версию WSL 2 в качестве среды по-умолчанию
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#powershell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Установка дистрибутива через PowerShell
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Настройки параметров WSL и дистрибутивов Linux
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Удаление WSL-дистрибутива
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl-_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Удаление WSL-дистрибутива из другого дистрибутива
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Резервная копия дистрибутива
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Импорт резервной копии
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wsl_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Команды для управления WSL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Команды для управления WSL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wsl_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Проверить текущую версию ядра WSL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Обновить ядро WSL вручную
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Откатится к предыдущему ядру WSL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Вывести список установленных версий Linux
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Вывести дистрибутив Linux, который используется по-умолчанию
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Изменить дистрибутив по-умолчанию
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Запустить определенный дистрибутив в WSL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Завершить среду WSL из терминала Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Завершить работу из Linux
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Завершение работы определенного дистрибутива Linux:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl-ubuntu-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Войти в WSL Ubuntu под root и сбросить пароль
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Вернуть пользователя по умолчанию
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ускорение файловой системы
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ускорение файловой системы">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-fs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Перенос проектов в Linux-FS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Монтирование с опциями
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overlayfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Использование overlayfs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Оптимизация сетевого взаимодействия
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Оптимизация сетевого взаимодействия">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Фиксируем DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Быстрый доступ к локальным сервисам
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcp-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TCP-оптимизация
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Прочая оптимизация
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Прочая оптимизация">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ограничение использования оперативной памяти
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ram-temp-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Виртуальный RAM-диск: для сверхбыстрых temp-папок
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Затем в WSL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fsnotify-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fsnotify со стороны Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Параллельные прокси
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Навигация" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Главная
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../index.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    ИТ специалистам
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="Docker.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Linux
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">linux</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">wsl</span>
+      
+    
+  </nav>
+
+
+
+<div id="mkdocs-encrypted-content" style="display:none">e8rUqZhLwJhUln3pm7Lzzg==;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</div>
+<div id="mkdocs-decrypted-content" style="display:none">
+    <form id="mkdocs-decrypt-form" class="md-content__inner md-typeset">
+        <h1>Эта страница защищена паролем. Введите пароль для просмотра.</h1>
+        
+        <input class="md-input" type="password" id="mkdocs-content-password" placeholder="Пароль">
+        <button class="md-button md-button--primary" id="mkdocs-decrypt-button">Разблокировать</button>
+        <p id="mkdocs-decrypt-msg"></p>
+    </form>
+</div>
+
+<script type="text/javascript">
+var encryptcontent_id = "encryptcontent_2";
+var encryptcontent_path = "docs/%D0%98%D0%A2-%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D0%B0%D0%BB%D0%B8%D1%81%D1%82%D0%B0%D0%BC/Linux/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20WSL.html";
+var decryption_failure_message = "\u041f\u0430\u0440\u043e\u043b\u044c \u043d\u0435 \u0432\u0435\u0440\u043d\u044b\u0439, \u043f\u043e\u043f\u0440\u043e\u0431\u0443\u0439\u0442\u0435 \u0435\u0449\u0435 \u0440\u0430\u0437.";
+var encryptcontent_keystore = ["T/yGvpWEM3Cj4/Snn+oGTg==;T2z8HueD2tYlbQy6L7V4yn1DtYZ9oPELh68CmyCPxRLoQ9suGrv/rwma1ZrggjguWwe5ikV+arjJNrVfRdman0UAcgOsYgRK+qqcuftonHyMKq11256RW2lqEIsmd3gT;vT9KLGUcDj4bbaZDBvsCZA==", "i9O0Ib7l0JwKfFiU0Mhc9Q==;HZB8tsCJqC2Zvh3IrE4puA8zq4TQFB0EupKMd+wAVn4CsifUBzZW46ta7MWmBDpwx5lYiOBavQsTzU5sCvI0hD2OclFhRtXs0sDC9GKfoICsrjLc+bch0DvSx4t3ZetC;zKQFIX1xNlo8SUiE04pCCA=="];
+var encryptcontent_obfuscate = 0;
+
+const encryptcontent_event = new Event("encryptcontent_event");
+var encryptcontent_done = false;
+</script>
+<script type="module">
+if (!window.hasOwnProperty("init_decryptor")) {
+    import("../../assets/javascripts/decrypt-contents.js");
+} else {
+    init_decryptor();
+}
+</script>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Нижний колонтитул" >
+        
+          
+          <a href="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20ALT%20Linux.html" class="md-footer__link md-footer__link--prev" aria-label="Назад: Настройка ALT Linux">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Назад
+              </span>
+              <div class="md-ellipsis">
+                Настройка ALT Linux
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../Windows/%D0%90%D0%BA%D1%82%D0%B8%D0%B2%D0%B0%D1%86%D0%B8%D1%8F%20Windows%20%D1%87%D0%B5%D1%80%D0%B5%D0%B7%20CMD.html" class="md-footer__link md-footer__link--next" aria-label="Вперед: Активация Windows через CMD">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Вперед
+              </span>
+              <div class="md-ellipsis">
+                Активация Windows через CMD
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 - Система SИP. Чебоксарский муниципальный округ Чувашской Республики | <a href="https://chebs.cap.ru/">Официальный сайт</a>
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+
+<h4>Согласие на использование cookie</h4>
+<p>Мы используем файлы cookie для улучшения работы сайта. Вы можете выбрать, какие категории разрешить.
+</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+      
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="analytics" checked>
+      <span class="task-list-indicator"></span>
+      Аналитика браузера
+    </label>
+  </li>
+
+      
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="custom" >
+      <span class="task-list-indicator"></span>
+      Дополнительные сервисы (для обеспечения корректной работы сайта)
+    </label>
+  </li>
+
+      
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Принять</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Управлять настройками</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["search.suggest", "search.share", "content.code.copy", "navigation.footer", "navigation.tabs", "navigation.instant", "navigation.instant.progress", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.path", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

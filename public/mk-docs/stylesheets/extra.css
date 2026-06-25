@@ -1,0 +1,325 @@
+html {
+  scroll-behavior: smooth;
+}
+
+:root,
+[data-md-color-scheme="default"] {
+  /* Основной цвет – используется для кнопок, ссылок, вкладок */
+  --md-primary-fg-color:        #615FFF;
+  --md-primary-fg-color--light: #b3b2ff;
+  --md-primary-fg-color--dark:  #3b3a9e;
+
+  /* Акцентный цвет – для выделений и интерактивных элементов */
+  --md-accent-fg-color:         #615FFF;
+  --md-accent-fg-color--light:  #b3b2ff;
+  --md-accent-fg-color--dark:   #3b3a9e;
+
+  /* Фон страницы */
+  --md-default-bg-color:        #FAFAFA;
+
+  /* Цвет текста на основном фоне */
+  --md-default-fg-color:        #1a1a1e;
+}
+
+/* ----- Тёмная тема ----- */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color:        #615FFF;
+  --md-primary-fg-color--light: #b3b2ff;
+  --md-primary-fg-color--dark:  #3b3a9e;
+
+  --md-accent-fg-color:         #615FFF;
+  --md-accent-fg-color--light:  #b3b2ff;
+  --md-accent-fg-color--dark:   #3b3a9e;
+
+  /* Фон страницы – #202024 (холодный тёмно-серый) */
+  --md-default-bg-color:        #202024;
+
+  /* Цвет текста на основном фоне */
+  --md-default-fg-color:        #f0f0f0;
+}
+
+/* ============================================================
+ОТДЕЛЬНОЕ ОФОРМЛЕНИЕ ХЕДЕРА 
+============================================================ */
+
+/* ----- Светлая тема: хедер белый с тенью ----- */
+[data-md-color-scheme="default"] .md-header {
+  background-color: #ffffff;
+}
+
+/* ----- Тёмная тема: хедер чуть светлее фона ----- */
+[data-md-color-scheme="slate"] .md-header {
+  background-color: #2a2a30;
+}
+
+/* ----- Цвета текста и иконок в хедере ----- */
+[data-md-color-scheme="default"] .md-header,
+[data-md-color-scheme="default"] .md-header a,
+[data-md-color-scheme="default"] .md-header .md-icon,
+[data-md-color-scheme="default"] .md-header .md-search__input {
+  color: #1a1a1e;
+}
+
+[data-md-color-scheme="slate"] .md-header,
+[data-md-color-scheme="slate"] .md-header a,
+[data-md-color-scheme="slate"] .md-header .md-icon,
+[data-md-color-scheme="slate"] .md-header .md-search__input {
+  color: #f0f0f0;
+}
+
+/* ----- Плейсхолдер поиска в хедере ----- */
+[data-md-color-scheme="default"] .md-header .md-search__input::placeholder {
+  color: rgba(21, 21, 35, 1);
+}
+
+[data-md-color-scheme="slate"] .md-header .md-search__input::placeholder {
+  color: rgba(240, 240, 240, 0.5);
+}
+
+/* ----- Иконка переключения темы в хедере ----- */
+[data-md-color-scheme="default"] .md-header .md-icon:hover {
+  color: #615FFF;
+}
+
+[data-md-color-scheme="slate"] .md-header .md-icon:hover {
+  color: #b3b2ff;
+}
+
+/* ----- Поле поиска в светлой теме ----- */
+[data-md-color-scheme="default"] .md-search__input {
+  background-color: #f0efef !important;
+  color: #1a1a1e;
+}
+
+[data-md-color-scheme="default"] .md-search__input::placeholder {
+  color: rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Чтобы иконка поиска тоже была тёмной */
+[data-md-color-scheme="default"] .md-search__icon {
+  color: #1a1a1e !important;
+}
+
+/* ----- Поле поиска в тёмной теме ----- */
+[data-md-color-scheme="slate"] .md-search__input {
+  background-color: #3e3e3e;
+  color: #f0f0f0;
+}
+
+[data-md-color-scheme="slate"] .md-search__input::placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* ============================================================
+ВКЛАДКИ НАВИГАЦИИ
+============================================================ */
+
+[data-md-color-scheme="default"] .md-tabs {
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+[data-md-color-scheme="slate"] .md-tabs {
+  background-color: #2a2a30; /* такой же как хедер, для единства */
+}
+
+[data-md-color-scheme="default"] .md-tabs a {
+  color: #1a1a1e;
+}
+
+[data-md-color-scheme="slate"] .md-tabs a {
+  color: #f0f0f0;
+}
+
+/* Активная вкладка использует основной цвет */
+.md-tabs .md-tabs__item--active a {
+  color: var(--md-primary-fg-color) !important;
+}
+
+/* ============================================================
+ОТСТУПЫ ПРИ ВВОДЕ ПАРОЛЯ
+============================================================ */
+
+/* Отступ между полем пароля и кнопкой разблокировки */
+#mkdocs-decrypt-form input {
+  max-width: 217px;
+  padding: 22px;
+  margin-right: 16px;
+}
+
+@media (max-width: 496px) {
+  #mkdocs-decrypt-form input{
+    margin-right: 0px;
+    margin-bottom: 16px;
+    max-width: 217px;
+  }
+
+  #mkdocs-decrypt-form button {
+    min-width: 217px;
+  }
+}
+
+/* Конец сителей под поле ввода и кнопку */
+
+/* ============================================================
+   КАРТОЧКИ-ССЫЛКИ ДЛЯ ГЛАВНОЙ СТРАНИЦЫ
+   ============================================================ */
+
+.custom-cards {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin: 24px 0;
+}
+
+.custom-card-link {
+  display: block;
+  flex: 1 1 280px;
+  background: var(--md-default-bg-color);
+  border-radius: 16px;
+  padding: 28px 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  border: 1px solid rgba(97, 95, 255, 0.12);
+  text-decoration: none !important;
+  color: inherit !important;
+  cursor: pointer;
+}
+
+.custom-card-link:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(97, 95, 255, 0.18);
+  border-color: var(--md-primary-fg-color);
+}
+
+.custom-card-link .card-icon {
+  font-size: 40px;
+  line-height: 1;
+  margin-bottom: 12px;
+  color: var(--md-primary-fg-color);
+}
+
+.custom-card-link h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--md-default-fg-color);
+}
+
+.custom-card-link p {
+  margin: 0;
+  color: var(--md-default-fg-color--light, #555);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Адаптация для тёмной темы */
+[data-md-color-scheme="slate"] .custom-card-link {
+  background: #2a2a30;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+[data-md-color-scheme="slate"] .custom-card-link:hover {
+  border-color: var(--md-primary-fg-color);
+  box-shadow: 0 12px 28px rgba(97, 95, 255, 0.25);
+}
+
+[data-md-color-scheme="slate"] .custom-card-link p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ============================================================
+БЫСТРЫЕ ССЫЛКИ 
+============================================================ */
+
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 16px 0 24px 0;
+}
+
+.quick-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--md-default-bg-color);
+  border-radius: 12px;
+  border: 1px solid rgba(97, 95, 255, 0.10);
+  text-decoration: none !important;
+  color: var(--md-default-fg-color) !important;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.quick-link:hover {
+  transform: translateY(-2px);
+  border-color: var(--md-primary-fg-color);
+  box-shadow: 0 6px 16px rgba(97, 95, 255, 0.12);
+  background: rgba(97, 95, 255, 0.04);
+}
+
+.quick-link .quick-icon {
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.quick-link .quick-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--md-default-fg-color);
+}
+
+/* Адаптация для тёмной темы */
+[data-md-color-scheme="slate"] .quick-link {
+  background: #2a2a30;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+[data-md-color-scheme="slate"] .quick-link:hover {
+  background: rgba(97, 95, 255, 0.12);
+  border-color: var(--md-primary-fg-color);
+}
+
+/* ============================================================
+БЛОК НОВОСТЕЙ
+============================================================ */
+
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 12px 0 20px 0;
+}
+
+.news-item {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(97, 95, 255, 0.08);
+}
+
+.news-item:last-child {
+  border-bottom: none;
+}
+
+.news-date {
+  flex-shrink: 0;
+  font-weight: 600;
+  color: var(--md-primary-fg-color);
+  font-size: 0.85rem;
+  min-width: 90px;
+}
+
+.news-text {
+  color: var(--md-default-fg-color);
+  font-size: 0.95rem;
+}
+
+/* Адаптация для тёмной темы */
+[data-md-color-scheme="slate"] .news-item {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}

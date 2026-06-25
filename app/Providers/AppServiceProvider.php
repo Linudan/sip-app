@@ -1,8 +1,6 @@
 <?php
 namespace App\Providers;
 
-// Для плагина Laguage Switch
-
 use App\Listeners\AssignDefaultRole;
 use App\Models\EquipmentItem;
 use App\Models\Ticket;
@@ -12,6 +10,7 @@ use BezhanSalleh\LanguageSwitch\LanguageSwitch;
 use Filament\Auth\Events\Registered;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -54,5 +53,6 @@ class AppServiceProvider extends ServiceProvider
             Registered::class,
             AssignDefaultRole::class,
         );
+        URL::forceScheme('https');
     }
 }
