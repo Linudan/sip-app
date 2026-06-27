@@ -43,6 +43,7 @@ class TicketForm
                 SpatieMediaLibraryFileUpload::make('attachments')
                 // Создание коллекции
                     ->collection('tickets_attachments')
+                    ->disk('public')
                 // Загрузка нескольких файлов одновременно
                     ->multiple()
                 // Загрузка только изображений
@@ -93,15 +94,52 @@ class TicketForm
                 Select::make('status')
                     ->label(__('filament-panels::resources.tikets.placeholder.status'))
                     ->required()
-                    ->options([
-                        'new'         => __('filament-panels::resources.tikets.enums.status.new'),
-                        'in_progress' => __('filament-panels::resources.tikets.enums.status.in_progress'),
-                        'pending'     => __('filament-panels::resources.tikets.enums.status.pending'),
-                        'resolved'    => __('filament-panels::resources.tikets.enums.status.resolved'),
-                        'closed'      => __('filament-panels::resources.tikets.enums.status.closed'),
-                        'cancelled'   => __('filament-panels::resources.tikets.enums.status.cancelled'),
-                    ])
-                    ->default('new'),
+                    ->options(function ($record, $livewire) {
+                        $user          = auth()->user();
+                        $isCreate      = $livewire instanceof \Filament\Resources\Pages\CreateRecord;
+                        $currentStatus = $record ? $record->status : null;
+
+                        $allStatuses = [
+                            'new'         => __('filament-panels::resources.tikets.enums.status.new'),
+                            'in_progress' => __('filament-panels::resources.tikets.enums.status.in_progress'),
+                            'pending'     => __('filament-panels::resources.tikets.enums.status.pending'),
+                            'resolved'    => __('filament-panels::resources.tikets.enums.status.resolved'),
+                            'closed'      => __('filament-panels::resources.tikets.enums.status.closed'),
+                            'cancelled'   => __('filament-panels::resources.tikets.enums.status.cancelled'),
+                        ];
+
+                        // Определяем доступные статусы для ролей
+                        if ($user->hasRole(['admin', 'it_specialist'])) {
+                            if ($isCreate) {
+                                // При создании админ/IT может выбрать только начальные статусы
+                                $allowed = ['new', 'in_progress', 'pending'];
+                            } else {
+                                // При редактировании разрешаем только рабочие статусы (не финальные)
+                                $allowed = ['in_progress', 'pending', 'resolved'];
+                                // Если текущий статус 'new', то разрешаем его тоже (чтобы можно было оставить)
+                                if ($currentStatus === 'new') {
+                                    $allowed[] = 'new';
+                                }
+                                // Если текущий статус уже 'resolved', то можно вернуть обратно в работу
+                                // (это не запрещено, так как 'resolved' уже в списке)
+                            }
+                        } else {
+                            // Для обычных пользователей поле скрыто (см. visible ниже)
+                            $allowed = [];
+                        }
+
+                        return array_intersect_key($allStatuses, array_flip($allowed));
+                    })
+                    ->default('new')
+                    ->visible(fn($livewire) => auth()->user()->hasRole(['admin', 'it_specialist']))
+                    ->afterStateUpdated(function ($state, callable $set, $record) {
+                        // Если статус меняется на 'resolved', автоматически проставляем resolved_at
+                        if ($state === 'resolved' && $record && ! $record->resolved_at) {
+                            $set('resolved_at', now());
+                        }
+                        // Если статус меняется на 'closed' или 'cancelled', можно проставить соответствующие даты,
+                        // но эти статусы мы не даём выбирать админу, поэтому здесь не нужно.
+                    }),
                 DateTimePicker::make('resolved_at')
                     ->disabled()
                     ->label(__('filament-panels::resources.tikets.placeholder.resolved_at')),

@@ -1,5 +1,5 @@
 <?php
-namespace App\Filament\Resources\PositionResource\RelationManagers;
+namespace App\Filament\Resources\Positions\RelationManagers;
 
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;

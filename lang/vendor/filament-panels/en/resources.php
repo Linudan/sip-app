@@ -155,6 +155,7 @@ return [
             'qr_code_hash'       => 'QR‑code hash',
             'created_at'         => 'Created at',
             'updated_at'         => 'Updated at',
+            'attachments'        => 'Attachments',
         ],
         "placeholder"           => [
             'deleted_at'         => 'Deleted at',
@@ -224,6 +225,12 @@ return [
             'financial_data'          => 'Financial data',
             'additionally'            => 'Additional',
             'system_information'      => 'System information',
+            'attachments'             => 'Attachments',
+            'no_attachments'          => 'No attached files',
+        ],
+
+        "helper_text"           => [
+            'attachments' => 'Allowed formats: images, documents (PDF, DOC, XLS, PPT, TXT, RTF, ODT, ODS, ODP) and Markdown. Max size 10 MB.',
         ],
     ],
 
@@ -331,6 +338,15 @@ return [
             'created_at'          => 'Created at',
             'updated_at'          => 'Updated at',
         ],
+        'actions'            => [
+            'change_status' => 'Change status',
+        ],
+
+        'messages'           => [
+            'status_changed' => 'Status changed successfully',
+        ],
+
+
         'enums'              => [
             'priority' => [
                 'low'      => 'Low',

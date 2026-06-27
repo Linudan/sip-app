@@ -1,5 +1,5 @@
 <?php
-namespace App\Filament\Resources\TicketResource\RelationManagers;
+namespace App\Filament\Resources\Tickets\RelationManagers;
 
 use App\Models\User;
 use Filament\Actions\Action;

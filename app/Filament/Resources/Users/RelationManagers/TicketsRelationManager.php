@@ -1,5 +1,5 @@
 <?php
-namespace App\Filament\Resources\UserResource\RelationManagers;
+namespace App\Filament\Resources\Users\RelationManagers;
 
 use Filament\Actions\ViewAction;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -25,16 +25,16 @@ class TicketsRelationManager extends RelationManager
             ->emptyStateHeading(__('filament-panels::resources.users.tickets.empty'))
             ->columns([
                 TextColumn::make('ticket_number')
-                    ->label(__('filament-panels::resources.tickets.columns.ticket_number'))
+                    ->label(__('filament-panels::resources.tikets.columns.ticket_number'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('title')
-                    ->label(__('filament-panels::resources.tickets.columns.title'))
+                    ->label(__('filament-panels::resources.tikets.columns.title'))
                     ->limit(40),
                 TextColumn::make('category.name')
-                    ->label(__('filament-panels::resources.tickets.columns.category_name')),
+                    ->label(__('filament-panels::resources.tikets.columns.category_name')),
                 TextColumn::make('priority')
-                    ->label(__('filament-panels::resources.tickets.columns.priority'))
+                    ->label(__('filament-panels::resources.tikets.columns.priority'))
                     ->badge()
                     ->color(fn(string $state): string => match ($state) {
                         'low'      => 'gray',
@@ -43,10 +43,10 @@ class TicketsRelationManager extends RelationManager
                         'critical' => 'danger',
                     })
                     ->formatStateUsing(fn(string $state): string =>
-                        __('filament-panels::resources.tickets.enums.priority.' . $state)
+                        __('filament-panels::resources.tikets.enums.priority.' . $state)
                     ),
                 TextColumn::make('status')
-                    ->label(__('filament-panels::resources.tickets.columns.status'))
+                    ->label(__('filament-panels::resources.tikets.columns.status'))
                     ->badge()
                     ->color(fn(string $state): string => match ($state) {
                         'new'         => 'gray',
@@ -57,10 +57,10 @@ class TicketsRelationManager extends RelationManager
                         'cancelled'   => 'danger',
                     })
                     ->formatStateUsing(fn(string $state): string =>
-                        __('filament-panels::resources.tickets.enums.status.' . $state)
+                        __('filament-panels::resources.tikets.enums.status.' . $state)
                     ),
                 TextColumn::make('assignedUsers')
-                    ->label(__('filament-panels::resources.tickets.assignments.label'))
+                    ->label(__('filament-panels::resources.tikets.assignments.label'))
                     ->html()
                     ->getStateUsing(function ($record) {
                         return $record->assignedUsers->map(function ($user) {
@@ -72,7 +72,7 @@ class TicketsRelationManager extends RelationManager
                         })->implode(', ');
                     }),
                 TextColumn::make('created_at')
-                    ->label(__('filament-panels::resources.tickets.columns.created_at'))
+                    ->label(__('filament-panels::resources.tikets.columns.created_at'))
                     ->dateTime('d.m.Y H:i'),
             ])
             ->actions([

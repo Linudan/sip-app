@@ -1,7 +1,7 @@
 <?php
 namespace App\Filament\Resources\Positions;
 
-use App\Filament\Resources\PositionResource\RelationManagers\UsersRelationManager;
+use App\Filament\Resources\Positions\RelationManagers\UsersRelationManager;
 use App\Filament\Resources\Positions\Pages\CreatePosition;
 use App\Filament\Resources\Positions\Pages\EditPosition;
 use App\Filament\Resources\Positions\Pages\ListPositions;

@@ -37,6 +37,11 @@ class MyTicketResource extends Resource
         return __('filament-panels::user-panel.my_tickets.singular_label');
     }
 
+    public static function getLabel(): string
+    {
+        return __('filament-panels::resources.tikets.label');
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()

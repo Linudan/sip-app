@@ -264,9 +264,9 @@ return [
         'dashboard' => true,
         'widgets' => [
             // ActivityChartWidget::class,
-            LatestActivityWidget::class,
-            ActivityHeatmapWidget::class,
-            ActivityStatsWidget::class,
+            // LatestActivityWidget::class,
+            // ActivityHeatmapWidget::class,
+            // ActivityStatsWidget::class,
         ],
 
         /**

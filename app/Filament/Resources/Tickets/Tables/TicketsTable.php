@@ -10,8 +10,12 @@ use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\RecordActionsPosition;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use Filament\Forms\Components\Select;
+use Filament\Notifications\Notification;
+use Filament\Actions\Action;
 use pxlrbt\FilamentExcel\Actions\ExportAction;
 use pxlrbt\FilamentExcel\Actions\ExportBulkAction;
 
@@ -142,10 +146,47 @@ class TicketsTable
             ])
             ->filters([
                 TrashedFilter::make(),
+                SelectFilter::make('status')
+                    ->label(__('filament-panels::resources.tikets.columns.status'))
+                    ->options([
+                        'new'         => __('filament-panels::resources.tikets.enums.status.new'),
+                        'in_progress' => __('filament-panels::resources.tikets.enums.status.in_progress'),
+                        'pending'     => __('filament-panels::resources.tikets.enums.status.pending'),
+                        'resolved'    => __('filament-panels::resources.tikets.enums.status.resolved'),
+                        'closed'      => __('filament-panels::resources.tikets.enums.status.closed'),
+                        'cancelled'   => __('filament-panels::resources.tikets.enums.status.cancelled'),
+                    ])
+                    ->attribute('status'),
             ])
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
+                Action::make('changeStatus')
+                    ->label(__('filament-panels::resources.tikets.actions.change_status'))
+                    ->icon('heroicon-o-arrow-path')
+                    ->color('primary')
+                    ->visible(fn() => auth()->user()->hasRole(['admin', 'it_specialist']))
+                    ->form([
+                        Select::make('status')
+                            ->label(__('filament-panels::resources.tikets.columns.status'))
+                            ->options([
+                                'in_progress' => __('filament-panels::resources.tikets.enums.status.in_progress'),
+                                'pending'     => __('filament-panels::resources.tikets.enums.status.pending'),
+                                'resolved'    => __('filament-panels::resources.tikets.enums.status.resolved'),
+                                // можно добавить и другие, если нужно
+                            ])
+                            ->required(),
+                    ])
+                    ->action(function ($record, array $data) {
+                        $record->update(['status' => $data['status']]);
+                        if ($data['status'] === 'resolved' && ! $record->resolved_at) {
+                            $record->update(['resolved_at' => now()]);
+                        }
+                        Notification::make()
+                            ->title(__('filament-panels::resources.tikets.messages.status_changed'))
+                            ->success()
+                            ->send();
+                    }),
             ])
             ->headerActions([
                 // Экспорт всей таблицы (кнопка в заголовке)
@@ -157,8 +198,8 @@ class TicketsTable
                             ->fromTable()
                             ->except(['resolved_at', 'closed_at', 'deleted_at', 'updated_at'])
                             ->withFilename(fn() => 'Заявки_' . date('Y-m-d'))
-                            // предложить формат (xlsx, csv, ...)
-                            ->askForWriterType()
+                        // предложить формат (xlsx, csv, ...)
+                            ->askForWriterType(),
                     ]),
             ])
             ->toolbarActions([
@@ -173,8 +214,8 @@ class TicketsTable
                             TicketExport::make()
                                 ->fromTable()
                                 ->except(['resolved_at', 'closed_at', 'deleted_at', 'updated_at'])
-                                ->withFilename(fn () => 'Заявки_' . date('Y-m-d'))
-                                ->askForWriterType()
+                                ->withFilename(fn() => 'Заявки_' . date('Y-m-d'))
+                                ->askForWriterType(),
                         ]),
                 ]),
             ])

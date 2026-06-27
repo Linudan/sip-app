@@ -168,6 +168,7 @@ return [
             'qr_code_hash'       => 'Hash-qr-кода',
             'created_at'         => 'Дата создания',
             'updated_at'         => 'Дата редактирования',
+            'attachments'        => 'Вложения',
         ],
 
         // Placeholders
@@ -247,6 +248,12 @@ return [
             'financial_data'          => 'Финансовые данные',
             'additionally'            => 'Дополнительно',
             'system_information'      => 'Системная информация',
+            'attachments'             => 'Вложения',
+            'no_attachments'          => 'Нет прикреплённых файлов',
+        ],
+
+        "helper_text"           => [
+            'attachments' => 'Разрешённые форматы: изображения, документы (PDF, DOC, XLS, PPT, TXT, RTF, ODT, ODS, ODP) и Markdown. Макс. размер 10 МБ.',
         ],
     ],
 
@@ -374,6 +381,14 @@ return [
             'updated_at'          => 'Дата редактирования',
         ],
 
+        'actions'            => [
+            'change_status' => 'Изменить статус',
+        ],
+
+        'messages'           => [
+            'status_changed' => 'Статус успешно изменён',
+        ],
+
         // Enums
         'enums'              => [
             // Priority
@@ -420,9 +435,9 @@ return [
             'basic_information'  => 'Основная информация',
             'descrption'         => 'Описание',
             'user_and_equipment' => 'Пользователь и оборудование',
-            'attachments' => 'Вложения',
-            'attachments_list' => 'Список прикрепленных файлов',
-            'no_attachments' => 'Нет прикреплённых файлов',
+            'attachments'        => 'Вложения',
+            'attachments_list'   => 'Список прикрепленных файлов',
+            'no_attachments'     => 'Нет прикреплённых файлов',
             'assigned_users'     => 'Назначенные специалисты',
             'communication'      => 'Чаты и связь',
             'time'               => 'Временные метки',

@@ -9,7 +9,6 @@ use AlizHarb\ActivityLog\Widgets\LatestActivityWidget;
 use App\Filament\Widgets\EquipmentStatsWidget;
 use App\Filament\Widgets\LatestTicketsWidget;
 use App\Filament\Widgets\NewEquipmentWidget;
-use App\Filament\Widgets\QrScannerWidget;
 use App\Filament\Widgets\TicketStatsWidget;
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 use Filament\Http\Middleware\Authenticate;
@@ -84,7 +83,7 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 // Виджеты плагина Activity Log
                 ActivityStatsWidget::class,
-                ActivityHeatmapWidget::class,
+                // ActivityHeatmapWidget::class,
 
                 // Мои виджеты
                 AccountWidget::class,
@@ -93,7 +92,6 @@ class AdminPanelProvider extends PanelProvider
                 NewEquipmentWidget::class,
                 TicketStatsWidget::class,
                 EquipmentStatsWidget::class,
-                QrScannerWidget::class,
             ])
             // Подключение плагинов
             ->plugins([

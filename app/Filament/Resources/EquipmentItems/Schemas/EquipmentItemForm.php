@@ -33,6 +33,8 @@ class EquipmentItemForm
                 TextInput::make('model')
                     ->label(__('filament-panels::resources.equipments.columns.model')),
                 SpatieMediaLibraryFileUpload::make('attachments')
+                    ->label(__('filament-panels::resources.equipments.columns.attachments'))
+                    ->helperText(__('filament-panels::resources.equipments.helper_text.attachments'))
                     ->collection('equipment_attachments')
                     ->multiple()
                     ->downloadable()
@@ -111,7 +113,6 @@ class EquipmentItemForm
                 Textarea::make('notes')
                     ->label(__('filament-panels::resources.equipments.columns.notes'))
                     ->columnSpanFull(),
-                TextInput::make('qr_code_hash')->disabled()
             ]);
     }
 }

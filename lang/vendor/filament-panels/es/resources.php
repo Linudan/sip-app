@@ -331,6 +331,13 @@ return [
             'created_at'          => 'Creado el',
             'updated_at'          => 'Actualizado el',
         ],
+
+        'actions'            => [
+            'change_status' => 'Cambiar estado',
+        ],
+        'messages'           => [
+            'status_changed' => 'Estado cambiado exitosamente',
+        ],
         'enums'              => [
             'priority' => [
                 'low'      => 'Baja',

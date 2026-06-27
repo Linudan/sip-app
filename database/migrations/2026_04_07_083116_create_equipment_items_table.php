@@ -25,7 +25,6 @@ return new class extends Migration
             $table->foreignId('current_user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('current_department_id')->nullable()->constrained('departments')->nullOnDelete();
             $table->text('notes')->nullable();
-            $table->string('qr_code_hash')->nullable()->unique();
             $table->timestamps();
         });
     }

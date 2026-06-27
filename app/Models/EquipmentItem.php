@@ -33,7 +33,6 @@ class EquipmentItem extends Model implements HasMedia
         'current_user_id',
         'current_department_id',
         'notes',
-        'qr_code_hash',
     ];
 
     // Включение ресурса в логирование
@@ -71,22 +70,6 @@ class EquipmentItem extends Model implements HasMedia
             'purchase_date'  => 'date',
             'warranty_until' => 'date',
         ];
-    }
-
-    // Метод для работы с qr-кодами
-    public function getQrCodeUrlAttribute(): string
-    {
-        // Генерируем полный URL для страницы просмотра оборудования в панели администратора
-        return route('filament.admin.resources.equipment-items.view', $this);
-    }
-
-    public function getQrCodeImageAttribute(): string
-    {
-        $data   = $this->inventory_number;
-        $qrCode = new QrCode($data);
-        $writer = new SvgWriter();
-        $result = $writer->write($qrCode);
-        return 'data:image/svg+xml;base64,' . base64_encode($result->getString());
     }
 
     // ==================== СВЯЗИ ====================

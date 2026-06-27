@@ -17,6 +17,11 @@ class MyEquipmentResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ComputerDesktop;
 
+    public static function getLabel(): string
+    {
+        return __('filament-panels::resources.equipments.label');
+    }
+
     public static function getNavigationLabel(): string
     {
         return __('filament-panels::user-panel.my_equipment.navigation_label');

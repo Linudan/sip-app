@@ -68,12 +68,13 @@ class ViewEquipmentItem extends ViewRecord
 
                 // Секция "Подробные характеристики" с универсальным отображением JSON/текста
                 Section::make(__('filament-panels::resources.equipments.view_equipments_cards.detailed_specifications'))
+                    ->label('')
                     ->icon('heroicon-o-document-chart-bar')
                     ->collapsible()
                     ->compact()
                     ->schema([
                         TextEntry::make('specifications')
-                            ->label('')
+                            ->label( __('filament-panels::resources.equipments.view_equipments_cards.detailed_specifications'))
                             ->formatStateUsing(function ($state) {
                                 if (empty($state)) {
                                     return '<em>Нет характеристик</em>';
@@ -139,30 +140,19 @@ class ViewEquipmentItem extends ViewRecord
                             ->markdown()
                             ->placeholder('—')
                             ->columnSpanFull(),
-                        ImageEntry::make('qr_code_image')
-                            ->label('QR-код')
-                            ->height(150)
-                            ->width(150)
-                            ->columnSpanFull(),
-                        TextEntry::make('qr_code_hash')
-                            ->label(__('filament-panels::resources.equipments.columns.qr_code_hash'))
-                            ->copyable()
-                            ->placeholder('—')
-                            ->visible(fn($record) => blank($record->qr_code_image))
-                            ->columnSpanFull(),
                     ]),
 
-                Section::make('Вложения')
+                Section::make( __('filament-panels::resources.equipments.view_equipments_cards.attachments'))
                     ->icon('heroicon-o-paper-clip')
                     ->collapsible()
                     ->compact()
                     ->schema([
                         TextEntry::make('attachments_list')
-                            ->label('')
+                            ->label(__('filament-panels::resources.equipments.view_equipments_cards.attachments'))
                             ->getStateUsing(function ($record) {
                                 $media = $record->getMedia('equipment_attachments');
                                 if ($media->isEmpty()) {
-                                    return 'Нет прикреплённых файлов';
+                                    return __('filament-panels::resources.equipments.view_equipments_cards.no_attachments');
                                 }
                                 $html = '<ul class="list-disc pl-5">';
                                 foreach ($media as $item) {

@@ -1,10 +1,13 @@
 <?php
-
 namespace App\Filament\User\Resources\MyTickets\Pages;
 
 use App\Filament\User\Resources\MyTickets\MyTicketResource;
-use Filament\Resources\Pages\ViewRecord;
+use Filament\Actions\Action;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Notifications\Notification;
+use Filament\Resources\Pages\ViewRecord;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
@@ -14,11 +17,76 @@ class ViewMyTicket extends ViewRecord
 
     protected function getHeaderActions(): array
     {
-        return [];
+        $record = $this->record;
+
+        return [
+            // Кнопка "Отменить" – доступна, если статус 'in_progress' или 'pending'
+            Action::make('cancel')
+                ->label(__('filament-panels::user-panel.my_tickets.actions.cancel'))
+                ->color('danger')
+                ->icon('heroicon-o-x-circle')
+                ->visible(fn() =>
+                    $record &&
+                    in_array($record->status, ['in_progress', 'pending']) &&
+                    $record->user_id === auth()->id()
+                )
+                ->requiresConfirmation()
+                ->action(function () use ($record) {
+                    $record->update([
+                        'status' => 'cancelled',
+                    ]);
+                    Notification::make()
+                        ->title(__('filament-panels::user-panel.my_tickets.messages.cancelled_success'))
+                        ->success()
+                        ->send();
+                }),
+
+            // Кнопка "Завершить" – доступна, если статус 'resolved'
+            Action::make('close')
+                ->label(__('filament-panels::user-panel.my_tickets.actions.close'))
+                ->color('success')
+                ->icon('heroicon-o-check-circle')
+                ->visible(fn() =>
+                    $record &&
+                    $record->status === 'resolved' &&
+                    $record->user_id === auth()->id()
+                )
+                ->form([
+                    Select::make('user_rating')
+                        ->label(__('filament-panels::user-panel.my_tickets.feedback.rating_label'))
+                        ->options([
+                            1 => '1 ★',
+                            2 => '2 ★★',
+                            3 => '3 ★★★',
+                            4 => '4 ★★★★',
+                            5 => '5 ★★★★★',
+                        ])
+                        ->placeholder(__('filament-panels::user-panel.my_tickets.feedback.rating_placeholder'))
+                        ->nullable(),
+                    Textarea::make('user_feedback')
+                        ->label(__('filament-panels::user-panel.my_tickets.feedback.review_label'))
+                        ->placeholder(__('filament-panels::user-panel.my_tickets.feedback.review_placeholder'))
+                        ->rows(3)
+                        ->nullable(),
+                ])
+                ->action(function (array $data, $record) {
+                    $record->update([
+                        'status'        => 'closed',
+                        'closed_at'     => now(),
+                        'user_rating'   => $data['user_rating'] ?? null,
+                        'user_feedback' => $data['user_feedback'] ?? null,
+                    ]);
+                    Notification::make()
+                        ->title(__('filament-panels::user-panel.my_tickets.messages.closed_success'))
+                        ->success()
+                        ->send();
+                }),
+        ];
     }
 
     public function infolist(Schema $schema): Schema
     {
+        // Оставляем без изменений (ваш текущий код)
         return $schema
             ->schema([
                 Section::make(__('filament-panels::user-panel.my_tickets.view.ticket_info'))
