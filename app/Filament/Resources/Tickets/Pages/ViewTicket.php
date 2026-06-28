@@ -74,7 +74,7 @@ class ViewTicket extends ViewRecord
                     ->schema([
                         TextEntry::make('description')
                             ->label(__('filament-panels::resources.tikets.view_tikets_cards.descrption'))
-                            ->placeholder('Нет описания')
+                            ->placeholder('—')
                             ->markdown()
                             ->columnSpanFull(),
                     ]),
@@ -91,9 +91,12 @@ class ViewTicket extends ViewRecord
                             ->placeholder('—'),
                         TextEntry::make('equipmentItem.name')
                             ->label(__('filament-panels::resources.tikets.columns.equipment_item_name'))
-                            ->placeholder('Не указано'),
+                            ->placeholder('—'),
                         TextEntry::make('category.name')
                             ->label(__('filament-panels::resources.tikets.columns.category_name'))
+                            ->placeholder('—'),
+                        TextEntry::make('equipmentItem.inventory_number')
+                            ->label(__('filament-panels::resources.equipments.columns.inventory_number'))
                             ->placeholder('—'),
                     ]),
 
@@ -154,11 +157,12 @@ class ViewTicket extends ViewRecord
                     ->schema([
                         TextEntry::make('user_rating')
                             ->label(__('filament-panels::resources.tikets.columns.user_rating'))
-                            ->formatStateUsing(fn($state) => $state ? str_repeat('★', $state) . str_repeat('☆', 5 - $state) : '—'),
+                            ->formatStateUsing(fn($state) => $state ? str_repeat('★', $state) . str_repeat('☆', 5 - $state) : '—')
+                            ->placeholder('—'),
                         TextEntry::make('user_feedback')
-                            ->label(__('filament-panels::resources.tikets.columns.user_feedback'))
+                            ->label(__('filament-panels::user-panel.my_tickets.view.review'))
                             ->markdown()
-                            ->placeholder('Нет отзыва')
+                            ->placeholder('—')
                             ->columnSpanFull(),
                     ]),
                 // Карточка 7: Вложения

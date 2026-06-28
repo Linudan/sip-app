@@ -34,9 +34,25 @@ class TicketForm
                 Select::make('equipment_item_id')
                     ->label(__('filament-panels::resources.tikets.placeholder.equipment_item_name'))
                     ->searchable()
-                // Подгрузка возможных значений
                     ->preload()
+                    ->reactive()
+                    ->afterStateUpdated(function ($state, callable $set) {
+                        // При изменении оборудования обновляем значение инвентарного номера
+                        if ($state) {
+                            $equipment = \App\Models\EquipmentItem::find($state);
+                            $set('equipment_inventory_number', $equipment ? $equipment->inventory_number : '—');
+                        } else {
+                            $set('equipment_inventory_number', '—');
+                        }
+                    })
                     ->relationship('equipmentItem', 'name'),
+
+                TextInput::make('equipment_inventory_number')
+                    ->label(__('filament-panels::resources.equipments.columns.inventory_number'))
+                    ->disabled()
+                    ->placeholder('—')
+                    ->dehydrated(false) 
+                    ->default('—'),
                 TextInput::make('title')
                     ->label(__('filament-panels::resources.tikets.placeholder.title'))
                     ->required(),

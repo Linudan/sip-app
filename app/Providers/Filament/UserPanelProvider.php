@@ -103,7 +103,7 @@ class UserPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-                'user.panel',
+                \App\Http\Middleware\UserPanelAccess::class,
             ]);
     }
 }

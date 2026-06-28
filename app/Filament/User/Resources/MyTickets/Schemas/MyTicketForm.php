@@ -4,6 +4,7 @@ namespace App\Filament\User\Resources\MyTickets\Schemas;
 use App\Models\EquipmentItem;
 use App\Models\TicketCategory;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -59,6 +60,35 @@ class MyTicketForm
                     ])
                     ->default('medium')
                     ->required(),
+                SpatieMediaLibraryFileUpload::make('attachments')
+                    ->collection('tickets_attachments')
+                    ->disk('public')
+                    ->multiple()
+                    ->downloadable()
+                    ->openable()
+                    ->deletable(true)
+                    ->reorderable()
+                    ->responsiveImages()
+                    ->maxFiles(10)
+                    ->maxSize(10240) // 10 МБ
+                    ->acceptedFileTypes([
+                        'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml', 'image/bmp',
+                        'application/pdf',
+                        'application/msword',
+                        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                        'application/vnd.ms-excel',
+                        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                        'application/vnd.ms-powerpoint',
+                        'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+                        'text/plain',
+                        'application/rtf',
+                        'application/vnd.oasis.opendocument.text',
+                        'application/vnd.oasis.opendocument.spreadsheet',
+                        'application/vnd.oasis.opendocument.presentation',
+                        'text/markdown', 'text/x-markdown',
+                    ])
+                    ->label(__('filament-panels::user-panel.my_tickets.form.attachments'))
+                    ->helperText(__('filament-panels::user-panel.my_tickets.form.attachments_helper')),
             ]);
     }
 }

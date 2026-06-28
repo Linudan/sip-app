@@ -86,7 +86,6 @@ class ViewMyTicket extends ViewRecord
 
     public function infolist(Schema $schema): Schema
     {
-        // Оставляем без изменений (ваш текущий код)
         return $schema
             ->schema([
                 Section::make(__('filament-panels::user-panel.my_tickets.view.ticket_info'))
@@ -147,14 +146,37 @@ class ViewMyTicket extends ViewRecord
                     ->schema([
                         TextEntry::make('equipmentItem.name')
                             ->label(__('filament-panels::user-panel.my_tickets.form.equipment_item_id'))
-                            ->placeholder('Не указано'),
+                            ->placeholder('—'),
+                    ]),
+                Section::make(__('filament-panels::user-panel.my_tickets.view.attachments'))
+                    ->icon('heroicon-o-paper-clip')
+                    ->collapsible()
+                    ->compact()
+                    ->schema([
+                        TextEntry::make('attachments_list')
+                            ->label(__('filament-panels::user-panel.my_tickets.view.attachments_list'))
+                            ->getStateUsing(function ($record) {
+                                $media = $record->getMedia('tickets_attachments');
+                                if ($media->isEmpty()) {
+                                    return __('filament-panels::user-panel.my_tickets.view.no_attachments');
+                                }
+                                $html = '<ul class="list-disc pl-5">';
+                                foreach ($media as $item) {
+                                    $html .= '<li><a href="' . $item->getUrl() . '" target="_blank">' . e($item->file_name) . '</a></li>';
+                                }
+                                $html .= '</ul>';
+                                return $html;
+                            })
+                            ->html()
+                            ->columnSpanFull(),
                     ]),
                 Section::make(__('filament-panels::user-panel.my_tickets.view.feedback'))
                     ->columns(2)
                     ->schema([
                         TextEntry::make('user_rating')
                             ->label(__('filament-panels::user-panel.my_tickets.view.rating'))
-                            ->formatStateUsing(fn($state) => $state ? str_repeat('★', $state) . str_repeat('☆', 5 - $state) : '—'),
+                            ->formatStateUsing(fn($state) => $state ? str_repeat('★', $state) . str_repeat('☆', 5 - $state) : '—')
+                            ->placeholder('—'),
                         TextEntry::make('user_feedback')
                             ->label(__('filament-panels::user-panel.my_tickets.view.review'))
                             ->markdown()

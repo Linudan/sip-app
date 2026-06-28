@@ -6,6 +6,7 @@ use App\Models\Ticket;
 use App\Filament\User\Resources\MyTickets\Pages\CreateMyTicket;
 use App\Filament\User\Resources\MyTickets\Pages\ListMyTickets;
 use App\Filament\User\Resources\MyTickets\Pages\ViewMyTicket;
+use App\Filament\User\Resources\MyTickets\Pages\EditMyTicket;
 use App\Filament\User\Resources\MyTickets\Schemas\MyTicketForm;
 use App\Filament\User\Resources\MyTickets\Tables\MyTicketsTable;
 use BackedEnum;
@@ -59,6 +60,7 @@ class MyTicketResource extends Resource
             'index'  => ListMyTickets::route('/'),
             'create' => CreateMyTicket::route('/create'),
             'view'   => ViewMyTicket::route('/{record}'),
+            'edit'   => EditMyTicket::route('/{record}/edit'),
         ];
     }
 
@@ -69,7 +71,7 @@ class MyTicketResource extends Resource
 
     public static function canEdit($record): bool
     {
-        return false;
+        return $record && !in_array($record->status, ['closed', 'cancelled']);
     }
 
     public static function form(Schema $schema): Schema

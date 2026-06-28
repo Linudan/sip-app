@@ -122,7 +122,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-                // 'admin.panel',
+                \App\Http\Middleware\AdminPanelAccess::class
             ]);
     }
 }

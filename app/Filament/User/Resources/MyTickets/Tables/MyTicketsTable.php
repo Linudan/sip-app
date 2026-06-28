@@ -1,10 +1,10 @@
 <?php
-
 namespace App\Filament\User\Resources\MyTickets\Tables;
 
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Actions\EditAction;
 
 class MyTicketsTable
 {
@@ -49,6 +49,8 @@ class MyTicketsTable
             ->filters([])
             ->recordActions([
                 ViewAction::make(),
+                EditAction::make()
+                    ->visible(fn($record) => ! in_array($record->status, ['closed', 'cancelled'])),
             ]);
     }
 }

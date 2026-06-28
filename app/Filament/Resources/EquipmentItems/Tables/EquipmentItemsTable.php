@@ -15,6 +15,7 @@ use Filament\Forms\Components\Select;
 use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\RecordActionsPosition;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use pxlrbt\FilamentExcel\Actions\ExportAction;
@@ -88,7 +89,7 @@ class EquipmentItemsTable
                     ->toggleable(),
                 TextColumn::make('purchase_price')
                     ->label(__('filament-panels::resources.equipments.columns.purchase_price'))
-                    ->money()
+                    ->money('RUB')
                     ->sortable()
                     ->toggleable(),
                 TextColumn::make('currentUser.full_name_with_initials')
@@ -118,6 +119,15 @@ class EquipmentItemsTable
             ])
             ->filters([
                 TrashedFilter::make(),
+                SelectFilter::make('status')
+                    ->label(__('filament-panels::resources.equipments.columns.status'))
+                    ->options([
+                        'in_use'      => __('filament-panels::resources.equipments.enums.status.in_use'),
+                        'in_stock'    => __('filament-panels::resources.equipments.enums.status.in_stock'),
+                        'in_repair'   => __('filament-panels::resources.equipments.enums.status.in_repair'),
+                        'written_off' => __('filament-panels::resources.equipments.enums.status.written_off'),
+                    ])
+                    ->attribute('status'),
             ])
             ->headerActions([
                 ExportAction::make()
@@ -194,10 +204,10 @@ class EquipmentItemsTable
                         ->color('gray')
                         ->exports([
                             EquipmentItemExport::make()
-                            ->fromTable()
-                            ->except(['deleted_at', 'updated_at', 'specifications', 'qr_code_hash', 'created_at'])
-                            ->withFilename(fn() => 'Оборудование_' . date('Y-m-d'))
-                            ->askForWriterType(),
+                                ->fromTable()
+                                ->except(['deleted_at', 'updated_at', 'specifications', 'qr_code_hash', 'created_at'])
+                                ->withFilename(fn() => 'Оборудование_' . date('Y-m-d'))
+                                ->askForWriterType(),
                         ]),
                 ]),
             ])
